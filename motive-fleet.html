@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motive & Fleet Energy Storage — Coulomb Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:   #6BBF00;
+      --charcoal:#1A1A1A;
+      --white:   #FFFFFF;
+      --blue:    #0066FF;
+      --gray:    #6B6B6B;
+      --light:   #F7F7F7;
+      --max-w:   1400px;
+      --pad-x:   40px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', Arial, sans-serif; color: var(--charcoal); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.05; }
+    h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; line-height: 1.2; }
+    h3 { font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 600; line-height: 1.3; }
+    p  { font-size: 1rem; font-weight: 400; line-height: 1.65; color: var(--gray); }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .btn { display: inline-block; padding: 14px 32px; font-family: 'Inter', Arial, sans-serif; font-size: 0.95rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.25s ease; border: 2px solid transparent; letter-spacing: 0.02em; }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: #0052cc; border-color: #0052cc; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,102,255,0.3); }
+    .btn-outline { background: transparent; color: var(--charcoal); border-color: rgba(26,26,26,0.4); }
+    .btn-outline:hover { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); transform: translateY(-1px); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.6); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+    .btn-green { background: var(--green); color: var(--charcoal); border-color: var(--green); font-weight: 700; }
+    .btn-green:hover { background: #7ad400; border-color: #7ad400; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,191,0,0.35); }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; display: block; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.07); transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.1); }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 100%; width: auto; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 500; padding: 8px 14px; border-radius: 4px; transition: background 0.2s; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover, .nav-links a.active { background: var(--light); }
+    .nav-links a.active { color: var(--blue); font-weight: 600; }
+    .nav-arrow { font-size: 0.6rem; opacity: 0.5; }
+    .nav-cta-group { display: flex; align-items: center; gap: 12px; }
+    .nav-contact { text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 500; padding: 8px 14px; border-radius: 4px; transition: background 0.2s; }
+    .nav-contact:hover { background: var(--light); }
+    .nav-cta { background: var(--blue); color: var(--white); font-size: 0.875rem; font-weight: 600; padding: 10px 22px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
+
+    /* PAGE HERO */
+    .page-hero { position: relative; height: 70vh; min-height: 520px; display: flex; align-items: flex-end; overflow: hidden; margin-top: 72px; }
+    .page-hero-bg { position: absolute; inset: 0; background: url('images/hero_motive.jpg') center center / cover no-repeat; }
+    .page-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.40) 45%, rgba(10,10,10,0.10) 100%); }
+    .page-hero-content { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x) 72px; width: 100%; }
+    .page-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(107,191,0,0.15); border: 1px solid rgba(107,191,0,0.35); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
+    .page-hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .page-hero-content h1 { color: var(--white); max-width: 780px; margin-bottom: 18px; }
+    .page-hero-content p { color: rgba(255,255,255,0.85); max-width: 640px; font-size: 1.1rem; margin-bottom: 32px; }
+    .page-hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* OVERVIEW */
+    .overview-section { padding: 90px 0; background: var(--white); }
+    .overview-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .overview-inner h2 { margin-bottom: 20px; }
+    .overview-inner > p { max-width: 780px; margin-bottom: 48px; font-size: 1.05rem; }
+    .overview-callouts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e8e8e8; border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
+    .callout-card { background: var(--white); padding: 28px 24px; }
+    .callout-title { font-size: 0.95rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+    .callout-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.5; }
+
+    /* APPLICATIONS GRID */
+    .apps-section { padding: 90px 0; background: var(--light); }
+    .apps-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .apps-inner > h2 { margin-bottom: 12px; }
+    .apps-inner > p { max-width: 680px; margin-bottom: 48px; }
+    .apps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .app-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e5e5;
+      transition: all 0.25s;
+    }
+    .app-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+    .app-card-img { height: 200px; overflow: hidden; }
+    .app-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .app-card:hover .app-card-img img { transform: scale(1.05); }
+    .app-card-body { padding: 24px; }
+    .app-card-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .app-card-title { font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-bottom: 10px; }
+    .app-card-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+    .app-card-benefits { list-style: none; padding: 0; border-top: 1px solid #f0f0f0; padding-top: 14px; }
+    .app-card-benefits li { font-size: 0.82rem; color: var(--charcoal); padding: 3px 0 3px 18px; position: relative; }
+    .app-card-benefits li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 0.75rem; }
+
+    /* VS COMPARISON */
+    .comparison-section { padding: 90px 0; background: var(--charcoal); }
+    .comparison-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .comparison-inner .section-label { color: var(--green); }
+    .comparison-inner h2 { color: var(--white); margin-bottom: 48px; }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .comparison-table th {
+      padding: 18px 24px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: left;
+      letter-spacing: 0.05em;
+    }
+    .comparison-table th:first-child { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); width: 28%; }
+    .comparison-table th.th-bad { background: rgba(220,50,50,0.15); color: #ff6b6b; text-align: center; }
+    .comparison-table th.th-good { background: rgba(107,191,0,0.15); color: var(--green); text-align: center; }
+    .comparison-table td { padding: 14px 24px; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .comparison-table td:first-child { color: rgba(255,255,255,0.75); font-weight: 500; background: rgba(255,255,255,0.03); }
+    .comparison-table td.td-bad { color: rgba(255,100,100,0.9); text-align: center; background: rgba(220,50,50,0.05); }
+    .comparison-table td.td-good { color: rgba(107,191,0,0.95); text-align: center; background: rgba(107,191,0,0.05); font-weight: 600; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+
+    /* PROCESS */
+    .process-section { padding: 90px 0; background: var(--white); }
+    .process-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
+    .process-inner h2 { margin-bottom: 16px; }
+    .process-inner > p { max-width: 600px; margin: 0 auto 56px; }
+    .process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 48px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 36px; left: calc(16.66% + 20px); right: calc(16.66% + 20px); height: 2px; background: linear-gradient(to right, var(--green), var(--blue)); }
+    .process-step { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .process-step-num { width: 72px; height: 72px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+    .process-step:nth-child(2) .process-step-num { background: var(--green); color: var(--charcoal); }
+    .process-step:nth-child(3) .process-step-num { background: var(--charcoal); }
+    .process-step h4 { font-size: 1.05rem; font-weight: 700; }
+    .process-step p { font-size: 0.9rem; max-width: 220px; }
+
+    /* PARTNERS */
+    .partners-section { padding: 48px 0; background: var(--light); border-top: 1px solid #e8e8e8; }
+    .partners-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .partners-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); text-align: center; margin-bottom: 24px; }
+    .partners-logos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .partner-chip { background: var(--white); border: 1px solid #e0e0e0; border-radius: 100px; padding: 8px 18px; font-size: 0.82rem; font-weight: 500; color: var(--gray); }
+
+    /* CTA */
+    .cta-section { padding: 90px 0; background: var(--white); }
+    .cta-inner { max-width: 900px; margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
+    .cta-inner h2 { margin-bottom: 16px; }
+    .cta-inner > p { margin-bottom: 40px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .footer { background: var(--charcoal); color: var(--white); padding: 64px 0 32px; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { height: 40px; margin-bottom: 16px; }
+    .footer-logo img { height: 100%; width: auto; display: block; }
+    .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.70); line-height: 1.6; max-width: 300px; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.75); transition: all 0.2s; text-decoration: none; }
+    .footer-social a:hover { background: var(--green); color: var(--charcoal); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { text-decoration: none; color: rgba(255,255,255,0.78); font-size: 0.9rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .footer-made { font-size: 0.82rem; color: rgba(255,255,255,0.60); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-legal a:hover { color: var(--white); }
+
+    @media (max-width: 1024px) {
+      :root { --pad-x: 24px; }
+      .overview-callouts { grid-template-columns: repeat(2, 1fr); }
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      :root { --pad-x: 16px; }
+      .overview-callouts { grid-template-columns: 1fr; }
+      .apps-grid { grid-template-columns: 1fr; }
+      .page-hero-ctas { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .comparison-table { font-size: 0.8rem; }
+      .comparison-table th, .comparison-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/coulomb-logo-black.jpg" alt="Coulomb Technology" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Industries <span class="nav-arrow">▾</span></a></li>
+        <li><a href="#">Products <span class="nav-arrow">▾</span></a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-cta-group">
+        <a href="#" class="nav-contact">Contact</a>
+        <a href="#" class="nav-cta">Fleet Consultation</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Motive &amp; Fleet</div>
+      <h1>Solar-Charged Fleets for Every<br/>Campus, Course &amp; Facility</h1>
+      <p>Sodium-ion batteries engineered for golf courses, resort campuses, university security, airport ground support, and industrial fleets. Longer range, zero maintenance, all-weather reliability.</p>
+      <div class="page-hero-ctas">
+        <a href="#" class="btn btn-primary">Request Fleet Consultation</a>
+        <a href="#applications" class="btn btn-outline-white">Explore Applications</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="overview-section">
+    <div class="overview-inner">
+      <span class="section-label fade-up">Overview</span>
+      <h2 class="fade-up">Built for Fleet Performance in Any Environment</h2>
+      <p class="fade-up">Lead-acid batteries hold your fleet back — heavy, maintenance-intensive, and unreliable in temperature extremes. Coulomb's sodium-ion traction batteries deliver the power, cycle life, and safety your operations demand, whether you're running a golf course fleet in summer heat or a cold-storage warehouse in sub-zero conditions.</p>
+      <div class="overview-callouts">
+        <div class="callout-card fade-up">
+          <div class="callout-title">All-Weather Operation</div>
+          <div class="callout-desc">Full rated capacity from −40°C to +55°C — no performance loss in cold storage or outdoor heat</div>
+        </div>
+        <div class="callout-card fade-up fade-up-d1">
+          <div class="callout-title">Zero Maintenance</div>
+          <div class="callout-desc">No watering, no equalization, no sulfation — drop in and forget it</div>
+        </div>
+        <div class="callout-card fade-up fade-up-d2">
+          <div class="callout-title">Longer Range Per Charge</div>
+          <div class="callout-desc">Full capacity delivered in any temperature means more rounds, more shifts, more uptime</div>
+        </div>
+        <div class="callout-card fade-up fade-up-d3">
+          <div class="callout-title">Enhanced Safety</div>
+          <div class="callout-desc">No thermal runaway risk — safe in enclosed operator compartments and indoor charging areas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="apps-section" id="applications">
+    <div class="apps-inner">
+      <span class="section-label fade-up">Markets</span>
+      <h2 class="fade-up">Fleet Applications We Power</h2>
+      <p class="fade-up">From the first tee to the warehouse floor, Coulomb's sodium-ion batteries are engineered for the duty cycles and environments your fleet operates in.</p>
+      <div class="apps-grid">
+
+        <div class="app-card fade-up">
+          <div class="app-card-img">
+            <img src="images/hero_motive.jpg" alt="Golf course fleet with solar charging canopy" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Golf &amp; Country Clubs</div>
+            <div class="app-card-title">Golf Course &amp; Club Fleets</div>
+            <div class="app-card-desc">Solar-charged sodium-ion batteries keep your fleet running all day without mid-round battery swaps or watering schedules.</div>
+            <ul class="app-card-benefits">
+              <li>Full 18-hole range in any weather condition</li>
+              <li>Solar canopy integration for net-zero fleet charging</li>
+              <li>No acid spills — safe on greens and in cart barns</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="app-card fade-up fade-up-d1">
+          <div class="app-card-img">
+            <img src="images/coulomb_campus_security.jpg" alt="Security patrol golf carts on campus" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Resorts &amp; Hospitality</div>
+            <div class="app-card-title">Resort &amp; Campus Security Patrol</div>
+            <div class="app-card-desc">24/7 security and guest transport fleets need batteries that last through multi-shift operations without maintenance downtime.</div>
+            <ul class="app-card-benefits">
+              <li>Multi-shift operation without battery swaps</li>
+              <li>Quiet, zero-emission operation in guest areas</li>
+              <li>Reliable in all climates — from tropical resorts to mountain campuses</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="app-card fade-up fade-up-d2">
+          <div class="app-card-img">
+            <img src="images/ci_manufacturing.jpg" alt="Industrial warehouse with electric forklifts" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Industrial &amp; Warehouse</div>
+            <div class="app-card-title">Forklift &amp; Material Handling Fleets</div>
+            <div class="app-card-desc">Drop-in sodium-ion replacement for lead-acid in Class I–III forklifts, pallet jacks, and AGVs — with no infrastructure changes required.</div>
+            <ul class="app-card-benefits">
+              <li>Operates reliably in cold storage (−20°C) and outdoor heat (+50°C)</li>
+              <li>Rapid charge capability reduces shift downtime</li>
+              <li>40% lighter than lead-acid — improves payload capacity</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="app-card fade-up">
+          <div class="app-card-img">
+            <img src="images/ci_logistics.jpg" alt="Airport ground support equipment on tarmac" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Aviation</div>
+            <div class="app-card-title">Airport Ground Support Equipment</div>
+            <div class="app-card-desc">Baggage tugs, belt loaders, pushback tractors, and ground power units demand batteries that perform in extreme outdoor conditions around the clock.</div>
+            <ul class="app-card-benefits">
+              <li>High power delivery for heavy towing and pushing loads</li>
+              <li>All-weather reliability on exposed tarmac environments</li>
+              <li>Enhanced safety near aircraft and fuel systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="app-card fade-up fade-up-d1">
+          <div class="app-card-img">
+            <img src="images/coulomb_defense_image.jpg" alt="Military base with electric vehicles" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Defense &amp; Government</div>
+            <div class="app-card-title">Military Base &amp; Government Campus Fleets</div>
+            <div class="app-card-desc">Base patrol, logistics support, and utility vehicle fleets on government campuses require batteries that meet safety and compliance standards.</div>
+            <ul class="app-card-benefits">
+              <li>ITAR-compliant domestic supply chain pathway</li>
+              <li>Extreme temperature operation for global deployments</li>
+              <li>Enhanced safety for personnel-adjacent operations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="app-card fade-up fade-up-d2">
+          <div class="app-card-img">
+            <img src="images/ci_datacenter.jpg" alt="University campus with electric fleet vehicles" loading="lazy" />
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-tag">Education &amp; Healthcare</div>
+            <div class="app-card-title">University &amp; Healthcare Campus Fleets</div>
+            <div class="app-card-desc">Large campuses need quiet, safe, zero-emission fleets for facilities management, security patrol, and patient transport.</div>
+            <ul class="app-card-benefits">
+              <li>Zero-emission operation meets campus sustainability goals</li>
+              <li>Safe for indoor use in buildings and parking structures</li>
+              <li>Low maintenance reduces facilities management burden</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SODIUM-ION FOR FLEETS -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <span class="section-label fade-up">Technology Advantage</span>
+      <h2 class="fade-up" style="color:var(--white);">Why Sodium-Ion for Your Fleet?</h2>
+      <table class="comparison-table fade-up">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="th-bad">Lead-Acid</th>
+            <th class="th-bad">Lithium-Ion</th>
+            <th class="th-good">Coulomb Sodium-Ion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Safety</td>
+            <td class="td-bad">Acid spills, hydrogen gas</td>
+            <td class="td-bad">Thermal runaway risk</td>
+            <td class="td-good">Zero thermal runaway risk</td>
+          </tr>
+          <tr>
+            <td>Cold Weather Performance</td>
+            <td class="td-bad">Significant capacity loss</td>
+            <td class="td-bad">Up to 30% capacity loss</td>
+            <td class="td-good">Full capacity to −40°C</td>
+          </tr>
+          <tr>
+            <td>Hot Weather Performance</td>
+            <td class="td-bad">Accelerated degradation</td>
+            <td class="td-bad">Requires active cooling</td>
+            <td class="td-good">Rated to +55°C, no HVAC</td>
+          </tr>
+          <tr>
+            <td>Cycle Life</td>
+            <td class="td-bad">300–500 cycles</td>
+            <td class="td-bad">1,000–2,000 cycles</td>
+            <td class="td-good">3,000+ cycles</td>
+          </tr>
+          <tr>
+            <td>Maintenance</td>
+            <td class="td-bad">Weekly watering required</td>
+            <td class="td-bad">BMS monitoring required</td>
+            <td class="td-good">Zero maintenance</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td class="td-bad">Heavy — limits payload</td>
+            <td class="td-bad">Moderate</td>
+            <td class="td-good">40% lighter than lead-acid</td>
+          </tr>
+          <tr>
+            <td>15-Year TCO</td>
+            <td class="td-bad">Multiple replacements</td>
+            <td class="td-bad">High CapEx, service costs</td>
+            <td class="td-good">14% lower than Li-ion</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="process-inner">
+      <span class="section-label fade-up">How We Work</span>
+      <h2 class="fade-up">Electrify Your Fleet in Three Steps</h2>
+      <p class="fade-up">Our fleet electrification team handles everything from initial assessment through installation and ongoing support.</p>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="process-step-num">1</div>
+          <h4>Fleet Assessment</h4>
+          <p>We evaluate your current fleet, duty cycles, and charging infrastructure</p>
+        </div>
+        <div class="process-step fade-up fade-up-d1">
+          <div class="process-step-num">2</div>
+          <h4>Right-Sizing</h4>
+          <p>We specify the optimal battery configuration for your vehicles and usage patterns</p>
+        </div>
+        <div class="process-step fade-up fade-up-d2">
+          <div class="process-step-num">3</div>
+          <h4>Ongoing Support</h4>
+          <p>Technical support, monitoring, and warranty service through the battery's full life</p>
+        </div>
+      </div>
+      <a href="#" class="btn btn-primary">Request Fleet Consultation</a>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners-section">
+    <div class="partners-inner">
+      <div class="partners-eyebrow">Research &amp; Development Partners</div>
+      <div class="partners-logos">
+        <div class="partner-chip">Oak Ridge National Laboratory</div>
+        <div class="partner-chip">Argonne National Laboratory</div>
+        <div class="partner-chip">Rutgers University</div>
+        <div class="partner-chip">Nuvation Energy</div>
+        <div class="partner-chip">Spark Cleantech Accelerator</div>
+        <div class="partner-chip">NENY (New Energy New York)</div>
+        <div class="partner-chip">NEI Corporation</div>
+        <div class="partner-chip">Clean Tech Open 2024 Alumni</div>
+        <div class="partner-chip">Innovation Crossroads</div>
+        <div class="partner-chip">Cradle to Commerce</div>
+        <div class="partner-chip">Bronco Ventures</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <span class="section-label fade-up" style="text-align:center;">Ready to Upgrade?</span>
+      <h2 class="fade-up">Stop Watering Batteries. Start Running Fleets.</h2>
+      <p class="fade-up">Speak with a Coulomb fleet specialist about your vehicles, duty cycles, and charging setup. We'll help you find the right sodium-ion solution.</p>
+      <div class="cta-buttons fade-up">
+        <a href="#" class="btn btn-primary">Request Fleet Consultation</a>
+        <a href="#" class="btn btn-outline">View Traction Battery Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+          </div>
+          <p class="footer-tagline">Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">DC Battery Cabinets</a></li>
+            <li><a href="#">Motive / Traction Batteries</a></li>
+            <li><a href="#">Starter Batteries (SLI)</a></li>
+            <li><a href="#">BESS DC Block</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
+            <li><a href="defense-government.html">Defense &amp; Government</a></li>
+            <li><a href="motive-fleet.html">Motive &amp; Fleet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Coulomb Technology, Inc. All rights reserved.</div>
+        <div class="footer-made">🇺🇸 <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 20); });
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

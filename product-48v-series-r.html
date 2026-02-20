@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series-R 48V Traction Battery — Coulomb Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =============================================
+       COULOMB TECHNOLOGY — BRAND DESIGN SYSTEM v2
+       Energy Green:   #6BBF00
+       Charcoal Black: #1A1A1A
+       Pure White:     #FFFFFF
+       Electric Blue:  #0066FF
+       Cool Gray:      #6B6B6B
+       Light Gray:     #F7F7F7
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #6BBF00;
+      --charcoal:#1A1A1A;
+      --white:   #FFFFFF;
+      --blue:    #0066FF;
+      --gray:    #6B6B6B;
+      --light:   #F7F7F7;
+      --max-w:   1400px;
+      --pad-x:   40px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 800; line-height: 1.05; }
+    h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.2; }
+    h3 { font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 600; line-height: 1.3; }
+    p  { font-size: 1rem; font-weight: 400; line-height: 1.65; color: var(--gray); }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block; padding: 14px 32px;
+      font-family: 'Inter', Arial, sans-serif; font-size: 0.95rem; font-weight: 600;
+      border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: all 0.25s ease; border: 2px solid transparent; letter-spacing: 0.02em;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: #0052cc; border-color: #0052cc; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,102,255,0.3); }
+    .btn-outline { background: transparent; color: var(--charcoal); border-color: rgba(26,26,26,0.35); }
+    .btn-outline:hover { background: var(--charcoal); color: var(--white); border-color: var(--charcoal); transform: translateY(-1px); }
+    .btn-green { background: var(--green); color: var(--charcoal); border-color: var(--green); font-weight: 700; }
+    .btn-green:hover { background: #7ad400; border-color: #7ad400; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(107,191,0,0.35); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.6); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: var(--white); }
+
+    /* SCROLL ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+    .fade-up-d4 { transition-delay: 0.4s; }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.07); transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.1); }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x);
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; height: 44px; }
+    .nav-logo img { height: 100%; width: auto; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 4px; transition: background 0.2s;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .nav-links a:hover { background: var(--light); }
+    .nav-arrow { font-size: 0.6rem; opacity: 0.5; }
+    .nav-cta-group { display: flex; align-items: center; gap: 12px; }
+    .nav-contact {
+      text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 4px; transition: background 0.2s;
+    }
+    .nav-contact:hover { background: var(--light); }
+    .nav-cta {
+      background: var(--blue); color: var(--white); font-size: 0.875rem; font-weight: 600;
+      padding: 10px 22px; border-radius: 4px; text-decoration: none; transition: all 0.2s;
+    }
+    .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; }
+
+    /* =============================================
+       PRODUCT HERO
+    ============================================= */
+    .prod-hero {
+      padding-top: 72px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .prod-hero-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 660px;
+    }
+    .prod-hero-content {
+      padding: 72px 60px 72px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 700px;
+      margin-left: auto;
+    }
+    .prod-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .prod-breadcrumb a { color: var(--gray); text-decoration: none; }
+    .prod-breadcrumb a:hover { color: var(--blue); }
+    .prod-breadcrumb span { opacity: 0.4; }
+    .prod-series-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--charcoal);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .prod-hero-content h1 {
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+    .prod-tagline {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+    .prod-hero-content > p {
+      font-size: 1.05rem;
+      color: var(--gray);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .prod-quick-specs {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.09);
+      border-left: 4px solid var(--green);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .prod-quick-specs h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .spec-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 8px 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { font-size: 0.875rem; font-weight: 600; color: var(--charcoal); }
+    .spec-value { font-size: 0.875rem; color: var(--gray); }
+    .prod-hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .prod-hero-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0;
+    }
+    .prod-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .prod-hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(255,255,255,0.15) 0%, transparent 40%);
+    }
+    /* Capacity selector tabs on image */
+    .capacity-selector {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      gap: 8px;
+    }
+    .cap-tab {
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cap-tab.active, .cap-tab:hover {
+      background: var(--green);
+      color: var(--charcoal);
+      border-color: var(--green);
+    }
+
+    /* =============================================
+       OVERVIEW STRIP — 4 CALLOUTS
+    ============================================= */
+    .overview-strip {
+      background: linear-gradient(135deg, #0e1e16 0%, #12211a 50%, #0a1a10 100%);
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .overview-strip::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(107,191,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .overview-strip::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 10%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(107,191,0,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .overview-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .ov-callout {
+      padding: 40px 36px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.3s;
+    }
+    .ov-callout:hover { background: rgba(107,191,0,0.04); }
+    .ov-callout:last-child { border-right: none; }
+    .ov-icon {
+      width: 64px; height: 64px;
+      background: rgba(107,191,0,0.12);
+      border: 1px solid rgba(107,191,0,0.25);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ov-callout:hover .ov-icon { background: rgba(107,191,0,0.2); border-color: rgba(107,191,0,0.5); }
+    .ov-icon svg { width: 30px; height: 30px; color: var(--green); }
+    .ov-callout h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); }
+    .ov-callout p { font-size: 0.875rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
+    .ov-stat { font-size: 2.4rem; font-weight: 800; color: var(--green); line-height: 1; letter-spacing: -0.02em; }
+
+    /* =============================================
+       OVERVIEW SECTION — WHAT'S INCLUDED
+    ============================================= */
+    .overview-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .overview-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .overview-text .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(107,191,0,0.1);
+      padding: 5px 12px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+    .overview-text h2 { margin-bottom: 16px; }
+    .overview-text > p { margin-bottom: 32px; }
+    .includes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .include-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 18px 22px;
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-left: 4px solid var(--green);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .include-item:hover { transform: translateX(5px); box-shadow: 0 6px 24px rgba(107,191,0,0.12); border-left-color: var(--green); }
+    .include-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: linear-gradient(135deg, rgba(107,191,0,0.15) 0%, rgba(107,191,0,0.08) 100%);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(107,191,0,0.2);
+    }
+    .include-icon svg { width: 22px; height: 22px; color: var(--green); }
+    .include-text h4 { font-size: 0.9rem; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
+    .include-text p { font-size: 0.82rem; color: var(--gray); line-height: 1.45; }
+
+    .overview-visual {
+      position: relative;
+    }
+    .overview-main-img {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+    }
+    .overview-main-img img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .overview-badge {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--green);
+      color: var(--charcoal);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(107,191,0,0.35);
+    }
+    .overview-badge .badge-num { font-size: 2rem; font-weight: 800; line-height: 1; }
+    .overview-badge .badge-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+
+    /* =============================================
+       BENEFITS — WHY SODIUM-ION
+    ============================================= */
+    .benefits-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #f0f4f8 0%, var(--light) 100%);
+    }
+    .benefits-header {
+      max-width: var(--max-w);
+      margin: 0 auto 56px;
+      padding: 0 var(--pad-x);
+      text-align: center;
+    }
+    .benefits-header .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 16px;
+    }
+    .benefits-header h2 { margin-bottom: 12px; }
+    .benefits-header p { max-width: 560px; margin: 0 auto; }
+    .benefits-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .benefit-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .benefit-card:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(0,0,0,0.13); }
+    .benefit-card-top {
+      padding: 40px 36px 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .benefit-icon-wrap {
+      width: 72px; height: 72px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .benefit-icon-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 19px;
+      border: 1px solid currentColor;
+      opacity: 0.2;
+    }
+    .benefit-icon-wrap svg { width: 34px; height: 34px; }
+    .benefit-icon-wrap.blue { background: rgba(0,102,255,0.1); color: var(--blue); }
+    .benefit-icon-wrap.green { background: rgba(107,191,0,0.12); color: var(--green); }
+    .benefit-icon-wrap.orange { background: rgba(255,140,0,0.1); color: #FF8C00; }
+    .benefit-card-top h3 { font-size: 1.2rem; font-weight: 700; color: var(--charcoal); margin-bottom: 10px; }
+    .benefit-card-top p { font-size: 0.92rem; color: var(--gray); line-height: 1.6; }
+    .benefit-card-body { padding: 28px 36px 36px; }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .benefit-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.875rem; color: var(--charcoal);
+    }
+    .benefit-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .benefit-stat-bar {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green) 0%, #a8e63d 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .benefit-card:hover .benefit-stat-bar { transform: scaleX(1); }
+    .benefit-card-number {
+      position: absolute;
+      top: 28px; right: 28px;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* =============================================
+       TECHNICAL SPECIFICATIONS
+    ============================================= */
+    .specs-section {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .specs-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .specs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .specs-header .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 12px;
+    }
+    .specs-header h2 { margin-bottom: 0; }
+    .specs-download {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; font-weight: 600; color: var(--blue);
+      text-decoration: none; padding: 10px 20px;
+      border: 1.5px solid var(--blue); border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .specs-download:hover { background: var(--blue); color: var(--white); }
+    .specs-download svg { width: 16px; height: 16px; }
+
+    /* Capacity tabs */
+    .cap-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--light);
+      padding: 4px;
+      border-radius: 8px;
+      width: fit-content;
+      margin-bottom: 36px;
+    }
+    .cap-tab-btn {
+      padding: 10px 28px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--gray);
+      transition: all 0.2s;
+    }
+    .cap-tab-btn.active {
+      background: var(--white);
+      color: var(--charcoal);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cap-tab-btn:hover:not(.active) { color: var(--charcoal); }
+
+    .specs-table-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table thead tr {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+    .specs-table thead th {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .specs-table thead th:first-child { width: 40%; }
+    .specs-table thead th.highlight { color: var(--green); }
+    .specs-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.06); transition: background 0.15s; }
+    .specs-table tbody tr:last-child { border-bottom: none; }
+    .specs-table tbody tr:hover { background: rgba(107,191,0,0.04); }
+    .specs-table tbody tr:nth-child(even) { background: rgba(0,0,0,0.015); }
+    .specs-table tbody tr:nth-child(even):hover { background: rgba(107,191,0,0.04); }
+    .specs-table td {
+      padding: 14px 24px;
+      font-size: 0.9rem;
+    }
+    .specs-table td:first-child { font-weight: 600; color: var(--charcoal); }
+    .specs-table td:not(:first-child) { color: var(--gray); }
+    .specs-table td.highlight-val { color: var(--green); font-weight: 700; }
+
+    /* Compliance table */
+    .compliance-wrap {
+      margin-top: 48px;
+    }
+    .compliance-wrap h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; color: var(--charcoal); }
+    .compliance-table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .compliance-table { width: 100%; border-collapse: collapse; }
+    .compliance-table tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .compliance-table tr:last-child { border-bottom: none; }
+    .compliance-table td { padding: 14px 24px; font-size: 0.9rem; }
+    .compliance-table td:first-child { font-weight: 600; color: var(--charcoal); width: 220px; background: var(--light); }
+    .compliance-table td:last-child { color: var(--gray); }
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(107,191,0,0.1); color: var(--green);
+      font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 3px;
+    }
+
+    /* =============================================
+       APPLICATIONS — USE CASES
+    ============================================= */
+    .applications-section {
+      padding: 96px 0;
+      background: var(--light);
+    }
+    .applications-header {
+      max-width: var(--max-w);
+      margin: 0 auto 56px;
+      padding: 0 var(--pad-x);
+    }
+    .applications-header .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 16px;
+    }
+    .applications-header h2 { margin-bottom: 12px; }
+    .applications-header p { max-width: 560px; color: var(--gray); }
+
+    /* Alternating use case rows */
+    .use-case-row {
+      max-width: var(--max-w);
+      margin: 0 auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+    .use-case-row + .use-case-row { margin-top: 0; }
+
+    .uc-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .uc-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .use-case-row:hover .uc-image img { transform: scale(1.04); }
+    .uc-num {
+      position: absolute;
+      top: 24px; left: 24px;
+      width: 48px; height: 48px;
+      background: var(--green);
+      color: var(--charcoal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800;
+      box-shadow: 0 4px 16px rgba(107,191,0,0.4);
+    }
+    .uc-content {
+      background: var(--white);
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .use-case-row.reverse .uc-content { order: -1; background: linear-gradient(135deg, #0e1e16 0%, #12211a 100%); }
+    .use-case-row.reverse .uc-content h3 { color: var(--white); }
+    .use-case-row.reverse .uc-content p { color: rgba(255,255,255,0.75); }
+    .use-case-row.reverse .uc-content .uc-tag { background: rgba(107,191,0,0.2); color: var(--green); }
+    .use-case-row.reverse .uc-content .uc-list li { color: rgba(255,255,255,0.85); }
+    .use-case-row.reverse .uc-content .uc-list li::before { color: var(--green); }
+    .uc-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); background: rgba(0,102,255,0.08);
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+      border: 1px solid rgba(0,102,255,0.15);
+    }
+    .uc-content h3 { font-size: 1.65rem; font-weight: 700; color: var(--charcoal); margin-bottom: 14px; }
+    .uc-content p { color: var(--gray); margin-bottom: 24px; }
+    .uc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .uc-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--charcoal);
+    }
+    .uc-list li::before { content: '→'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+    .uc-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(107,191,0,0.1);
+      border-left: 3px solid var(--green);
+      padding: 10px 16px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .use-case-row.reverse .uc-highlight {
+      background: rgba(107,191,0,0.15);
+      color: var(--white);
+    }
+
+    /* =============================================
+       COMPARISON TABLE
+    ============================================= */
+    .comparison-section {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .comparison-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .comparison-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .comparison-header .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 16px;
+    }
+    .comparison-header h2 { margin-bottom: 12px; }
+    .comparison-header p { color: var(--gray); max-width: 520px; margin: 0 auto; }
+    .comparison-table-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    }
+    .comparison-table { width: 100%; border-collapse: collapse; }
+    .comparison-table thead tr { background: var(--charcoal); }
+    .comparison-table thead th {
+      padding: 18px 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.7);
+    }
+    .comparison-table thead th:first-child { text-align: left; width: 28%; color: rgba(255,255,255,0.5); }
+    .comparison-table thead th.coulomb-col { color: var(--green); background: rgba(107,191,0,0.12); }
+    .comparison-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .comparison-table tbody tr:last-child { border-bottom: none; }
+    .comparison-table tbody tr:hover { background: rgba(0,0,0,0.02); }
+    .comparison-table td {
+      padding: 14px 24px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .comparison-table td:first-child { text-align: left; font-weight: 600; color: var(--charcoal); }
+    .comparison-table td.coulomb-col { background: rgba(107,191,0,0.05); color: var(--green); font-weight: 700; }
+    .comparison-table td.bad { color: #cc3333; }
+    .comparison-table td.ok { color: var(--gray); }
+    .win-badge { display: inline-flex; align-items: center; gap: 4px; }
+    .win-badge::before { content: '✓'; font-weight: 800; }
+
+    /* =============================================
+       RELATED PRODUCTS
+    ============================================= */
+    .related-section {
+      padding: 80px 0;
+      background: var(--light);
+    }
+    .related-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .related-header { margin-bottom: 40px; }
+    .related-header .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 12px;
+    }
+    .related-header h2 { font-size: 1.8rem; }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .related-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+    .related-card-img {
+      height: 200px;
+      overflow: hidden;
+      background: var(--light);
+    }
+    .related-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .related-card:hover .related-card-img img { transform: scale(1.05); }
+    .related-card-body { padding: 24px; }
+    .related-card-series {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 6px;
+    }
+    .related-card-body h3 { font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+    .related-card-body p { font-size: 0.85rem; color: var(--gray); margin-bottom: 16px; }
+    .related-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.875rem; font-weight: 600; color: var(--blue);
+      text-decoration: none; transition: gap 0.2s;
+    }
+    .related-card-link:hover { gap: 10px; }
+
+    /* =============================================
+       FINAL CTA
+    ============================================= */
+    .prod-cta-section {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .prod-cta-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      text-align: center;
+    }
+    .prod-cta-inner .section-label {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(107,191,0,0.1); padding: 5px 12px; border-radius: 3px; margin-bottom: 20px;
+    }
+    .prod-cta-inner h2 { margin-bottom: 16px; }
+    .prod-cta-inner p { max-width: 520px; margin: 0 auto 40px; font-size: 1.05rem; }
+    .prod-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .prod-cta-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 56px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      flex-wrap: wrap;
+    }
+    .cta-stat { text-align: center; }
+    .cta-stat-num { font-size: 2.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .cta-stat-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-top: 6px; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: #1a1a2e;
+      padding: 64px 0 32px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-logo { height: 40px; margin-bottom: 16px; }
+    .footer-logo img { height: 100%; width: auto; display: block; }
+    .footer-tagline { font-size: 0.875rem; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 280px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; text-decoration: none;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.12); }
+    .footer-social svg { width: 15px; height: 15px; color: rgba(255,255,255,0.80); }
+    .footer-col h4 {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.875rem; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.60); }
+    .footer-made { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+    .footer-made strong { color: rgba(255,255,255,0.85); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.78rem; color: rgba(255,255,255,0.60); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.95); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1100px) {
+      .prod-hero-inner { grid-template-columns: 1fr; min-height: auto; }
+      .prod-hero-content { padding: 56px var(--pad-x) 40px; }
+      .prod-hero-image { height: 400px; }
+      .overview-inner { grid-template-columns: 1fr; gap: 48px; }
+      .overview-badge { bottom: 16px; right: 16px; }
+      .overview-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .ov-callout:nth-child(2) { border-right: none; }
+      .ov-callout:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.07); }
+      .ov-callout:nth-child(4) { border-right: none; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .use-case-row { grid-template-columns: 1fr; min-height: auto; }
+      .use-case-row.reverse .uc-content { order: 0; }
+      .uc-image { height: 300px; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --pad-x: 20px; }
+      .nav-links, .nav-cta-group { display: none; }
+      .nav-hamburger { display: flex; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .prod-cta-stats { gap: 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .comparison-table { font-size: 0.8rem; }
+      .comparison-table td, .comparison-table th { padding: 10px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Coulomb Technology">
+        <img src="images/coulomb-logo-black.jpg" alt="Coulomb Technology" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Industries <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">Products <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-cta-group">
+        <a href="#" class="nav-contact">Contact</a>
+        <a href="#prod-cta" class="nav-cta">Request Quote</a>
+      </div>
+      <div class="nav-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       SECTION 1: PRODUCT HERO
+  ============================================= -->
+  <section class="prod-hero">
+    <div class="prod-hero-inner">
+      <!-- Left: Content -->
+      <div class="prod-hero-content fade-up">
+        <div class="prod-breadcrumb">
+          <a href="index.html">Home</a>
+          <span>›</span>
+          <a href="#">Products</a>
+          <span>›</span>
+          <span>Series-R 48V Traction Battery</span>
+        </div>
+
+        <div class="prod-series-badge">
+          ⚡ Series-R &nbsp;|&nbsp; Motive Power
+        </div>
+
+        <h1>48V Traction Battery</h1>
+        <p class="prod-tagline">Sodium-Ion NFPP &nbsp;|&nbsp; Opportunity & Fast Charging &nbsp;|&nbsp; Drop-In Replacement</p>
+        <p>The Series-R is a drop-in sodium-ion replacement for lead-acid and lithium in material handling equipment. Engineered for opportunity charging, extreme temperatures, and 24/7 operations where downtime is not an option.</p>
+
+        <div class="prod-quick-specs">
+          <h4>Quick Specs</h4>
+          <div class="spec-row">
+            <span class="spec-label">Nominal Voltage</span>
+            <span class="spec-value">48V</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Capacity Options</span>
+            <span class="spec-value">200Ah &nbsp;/&nbsp; 300Ah &nbsp;/&nbsp; 400Ah</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Energy Range</span>
+            <span class="spec-value">9.6 kWh – 19.2 kWh</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Operating Temp</span>
+            <span class="spec-value">−20°C to +60°C</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Cycle Life</span>
+            <span class="spec-value">6,000+ cycles @ 80% DOD</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Warranty</span>
+            <span class="spec-value">5 Years</span>
+          </div>
+        </div>
+
+        <div class="prod-hero-ctas">
+          <a href="#prod-cta" class="btn btn-primary">Request Quote</a>
+          <a href="#specs" class="btn btn-outline">Download Spec Sheet</a>
+        </div>
+      </div>
+
+      <!-- Right: Hero Image -->
+      <div class="prod-hero-image">
+        <img src="images/prod_48v_hero.jpg" alt="Coulomb Series-R 48V Traction Battery installed in electric forklift" />
+        <div class="prod-hero-image-overlay"></div>
+        <div class="capacity-selector">
+          <div class="cap-tab active">200Ah</div>
+          <div class="cap-tab">300Ah</div>
+          <div class="cap-tab">400Ah</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       OVERVIEW STRIP — 4 CALLOUTS
+  ============================================= -->
+  <div class="overview-strip">
+    <div class="overview-strip-inner">
+      <div class="ov-callout fade-up">
+        <div class="ov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="ov-stat">6,000+</div>
+        <h3>Cycle Life</h3>
+        <p>Rated at 80% DOD — outlasts lead-acid by 3× and matches or exceeds lithium without the fire risk.</p>
+      </div>
+      <div class="ov-callout fade-up fade-up-d1">
+        <div class="ov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+        </div>
+        <div class="ov-stat">−20°C</div>
+        <h3>Cold Operation</h3>
+        <p>Full performance in freezer warehouses and outdoor environments where lithium-ion fails to deliver.</p>
+      </div>
+      <div class="ov-callout fade-up fade-up-d2">
+        <div class="ov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="ov-stat">0</div>
+        <h3>Thermal Incidents</h3>
+        <p>Sodium-ion NFPP chemistry eliminates thermal runaway risk — no fire suppression required.</p>
+      </div>
+      <div class="ov-callout fade-up fade-up-d3">
+        <div class="ov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="ov-stat">Lower TCO</div>
+        <h3>Better Economics</h3>
+        <p>No watering, no maintenance, no battery swapping. Lower total cost of ownership over the equipment life.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       SECTION 2: WHAT'S INCLUDED
+  ============================================= -->
+  <section class="overview-section">
+    <div class="overview-inner">
+      <div class="overview-text fade-up">
+        <span class="section-label">Overview</span>
+        <h2>Built for Material Handling Demands</h2>
+        <p>Replace lead-acid or lithium batteries in forklifts, AGVs, and warehouse equipment with a complete system engineered for superior safety, performance, and economics.</p>
+
+        <div class="includes-list">
+          <div class="include-item">
+            <div class="include-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="include-text">
+              <h4>Sodium-Ion Cells</h4>
+              <p>Prismatic cell configuration optimized for high discharge rates and continuous operation cycles.</p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+            </div>
+            <div class="include-text">
+              <h4>Integrated BMS</h4>
+              <p>8 intelligent protections with real-time monitoring via CAN Bus and Modbus communication.</p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="include-text">
+              <h4>Opportunity Charging</h4>
+              <p>Fast charge capability during break times without degradation — no battery swapping or battery room needed.</p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="include-text">
+              <h4>Rugged Construction</h4>
+              <p>Vibration-resistant design for material handling environments with standard drop-in mounting compatibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-visual fade-up fade-up-d1">
+        <div class="overview-main-img">
+          <img src="images/prod_48v_forklift.jpg" alt="Fleet of electric forklifts in a large distribution warehouse" />
+        </div>
+        <div class="overview-badge">
+          <div class="badge-num">5yr</div>
+          <div class="badge-label">Warranty</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3: KEY BENEFITS
+  ============================================= -->
+  <section class="benefits-section">
+    <div class="benefits-header fade-up">
+      <span class="section-label">Key Benefits</span>
+      <h2>Why Material Handling Operations Choose Sodium-Ion</h2>
+      <p>Three core advantages that make the Series-R the superior choice over lead-acid and lithium-ion for industrial fleets.</p>
+    </div>
+    <div class="benefits-grid">
+          <div class="benefit-card fade-up">
+            <div class="benefit-card-number">01</div>
+            <div class="benefit-card-top">
+              <div class="benefit-icon-wrap blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Opportunity Charging</h3>
+          <p>Charge during breaks without degradation concerns. No battery swapping, no battery room, no downtime.</p>
+        </div>
+        <div class="benefit-card-body">
+          <ul class="benefit-list">
+            <li>Fast charging capability — charge in 1–2 hours</li>
+            <li>No battery swapping needed</li>
+            <li>Reduced battery room footprint</li>
+            <li>Simplified operations and lower labor cost</li>
+            <li>No memory effect or degradation from partial charges</li>
+          </ul>
+        </div>
+        <div class="benefit-stat-bar"></div>
+      </div>
+
+          <div class="benefit-card fade-up fade-up-d1">
+            <div class="benefit-card-number">02</div>
+            <div class="benefit-card-top">
+              <div class="benefit-icon-wrap orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+          </div>
+          <h3>Extreme Performance</h3>
+          <p>Reliable power in cold storage and outdoor applications where traditional batteries fail.</p>
+        </div>
+        <div class="benefit-card-body">
+          <ul class="benefit-list">
+            <li>−20°C to +60°C operating range</li>
+            <li>Minimal derating in cold environments</li>
+            <li>No thermal runaway risk</li>
+            <li>6,000+ cycle life at 80% DOD</li>
+            <li>Consistent power output across temperature range</li>
+          </ul>
+        </div>
+        <div class="benefit-stat-bar"></div>
+      </div>
+
+          <div class="benefit-card fade-up fade-up-d2">
+            <div class="benefit-card-number">03</div>
+            <div class="benefit-card-top">
+              <div class="benefit-icon-wrap green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Lower Total Cost of Ownership</h3>
+          <p>Better economics than lead-acid or lithium over the full equipment life cycle.</p>
+        </div>
+        <div class="benefit-card-body">
+          <ul class="benefit-list">
+            <li>No watering or maintenance required</li>
+            <li>Longer lifespan than lead-acid (3× cycle life)</li>
+            <li>Lower cost than lithium-ion over equipment life</li>
+            <li>Reduced insurance costs — zero fire risk</li>
+            <li>Air-shippable — no hazmat restrictions</li>
+          </ul>
+        </div>
+        <div class="benefit-stat-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 4: TECHNICAL SPECIFICATIONS
+  ============================================= -->
+  <section class="specs-section" id="specs">
+    <div class="specs-inner">
+      <div class="specs-header fade-up">
+        <div>
+          <span class="section-label">Technical Specifications</span>
+          <h2>Series-R 48V Traction Battery Specifications</h2>
+        </div>
+        <a href="#" class="specs-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Spec Sheet
+        </a>
+      </div>
+
+      <!-- Capacity tabs -->
+      <div class="cap-tabs fade-up">
+        <button class="cap-tab-btn active" onclick="showCap(this,'200')">200Ah — 9.6 kWh</button>
+        <button class="cap-tab-btn" onclick="showCap(this,'300')">300Ah — 14.4 kWh</button>
+        <button class="cap-tab-btn" onclick="showCap(this,'400')">400Ah — 19.2 kWh</button>
+      </div>
+
+      <div class="specs-table-wrap fade-up">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th class="highlight coulomb-col" id="cap-head">200Ah</th>
+              <th>Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Nominal Voltage</td><td class="coulomb-col">48V</td><td>VDC</td></tr>
+            <tr><td>Energy Capacity</td><td class="coulomb-col highlight-val" id="cap-energy">9.6 kWh</td><td>kWh</td></tr>
+            <tr><td>Cell Configuration</td><td class="coulomb-col" id="cap-config">15S2P</td><td>—</td></tr>
+            <tr><td>Cycle Life (80% DOD)</td><td class="coulomb-col highlight-val">6,000+</td><td>Cycles</td></tr>
+            <tr><td>Operating Temperature</td><td class="coulomb-col">−20°C to +60°C</td><td>°C</td></tr>
+            <tr><td>Max Charge Current</td><td class="coulomb-col" id="cap-charge">100A</td><td>Amps</td></tr>
+            <tr><td>Max Discharge Current</td><td class="coulomb-col" id="cap-discharge">200A</td><td>Amps</td></tr>
+            <tr><td>BMS Protections</td><td class="coulomb-col">8 Intelligent Protections</td><td>—</td></tr>
+            <tr><td>Communication Protocol</td><td class="coulomb-col">CAN Bus, Modbus</td><td>—</td></tr>
+            <tr><td>Cell Chemistry</td><td class="coulomb-col">Sodium-Ion NFPP</td><td>—</td></tr>
+            <tr><td>Certifications</td><td class="coulomb-col">UL 1973, UL 9540, UN38.3</td><td>—</td></tr>
+            <tr><td>Warranty</td><td class="coulomb-col highlight-val">5 Years</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compliance-wrap fade-up">
+        <h3>Compliance & Certifications</h3>
+        <div class="compliance-table-wrap">
+          <table class="compliance-table">
+            <tr>
+              <td>Certifications</td>
+              <td>
+                <span class="cert-badge">UL 1973</span>&nbsp;
+                <span class="cert-badge">UL 9540</span>&nbsp;
+                <span class="cert-badge">UN38.3</span>
+              </td>
+            </tr>
+            <tr>
+              <td>UL 9540A Testing</td>
+              <td>Cell Tested &nbsp;|&nbsp; Module/System In Progress</td>
+            </tr>
+            <tr>
+              <td>Shipping Classification</td>
+              <td>Air-shippable — No hazardous materials restrictions</td>
+            </tr>
+            <tr>
+              <td>Warranty</td>
+              <td>5-Year Cell & System Warranty</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 5: APPLICATIONS
+  ============================================= -->
+  <section class="applications-section">
+    <div class="applications-header fade-up">
+      <span class="section-label">Applications</span>
+      <h2>Ideal For Material Handling &amp; Fleet Operations</h2>
+      <p>Where the Series-R 48V Traction Battery delivers maximum value — from freezer warehouses to airport tarmacs.</p>
+    </div>
+
+    <!-- Row 1: Forklift Fleets -->
+    <div class="use-case-row fade-up">
+      <div class="uc-image">
+        <img src="images/prod_48v_forklift.jpg" alt="Electric forklift fleet in distribution warehouse" />
+        <div class="uc-num">01</div>
+      </div>
+      <div class="uc-content">
+        <span class="uc-tag">Forklift Fleets</span>
+        <h3>Class I, II &amp; III Electric Forklifts</h3>
+        <p>Drop-in replacement for lead-acid with no battery swapping required. The Series-R fits existing battery compartments and charges during breaks — eliminating battery rooms and swap labor entirely.</p>
+        <ul class="uc-list">
+          <li>Class I, II, III electric forklifts</li>
+          <li>Reach trucks &amp; order pickers</li>
+          <li>Pallet jacks &amp; walkie stackers</li>
+          <li>Opportunity charging during shift breaks</li>
+        </ul>
+        <div class="uc-highlight">
+          ✓ Drop-in replacement — no infrastructure changes required
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: AGVs (reversed) -->
+    <div class="use-case-row reverse fade-up">
+      <div class="uc-image">
+        <img src="images/prod_48v_agv.jpg" alt="Automated guided vehicles in modern fulfillment center" />
+        <div class="uc-num">02</div>
+      </div>
+      <div class="uc-content">
+        <span class="uc-tag">Automated Guided Vehicles</span>
+        <h3>AGVs, AMRs &amp; Warehouse Automation</h3>
+        <p>Fast charging and long cycle life for 24/7 automated operations. The Series-R supports continuous operation cycles without the thermal management complexity of lithium-ion.</p>
+        <ul class="uc-list">
+          <li>AGVs &amp; AMRs in fulfillment centers</li>
+          <li>Warehouse automation &amp; tuggers</li>
+          <li>Tow tractors &amp; continuous operation cycles</li>
+          <li>24/7 automated operations without downtime</li>
+        </ul>
+        <div class="uc-highlight">
+          ✓ No thermal runaway risk — safer in enclosed automation environments
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Cold Storage -->
+    <div class="use-case-row fade-up">
+      <div class="uc-image">
+        <img src="images/prod_48v_cold.jpg" alt="Electric forklift operating in freezer warehouse" />
+        <div class="uc-num">03</div>
+      </div>
+      <div class="uc-content">
+        <span class="uc-tag">Cold Storage Operations</span>
+        <h3>Freezer Warehouses &amp; Cold Chain Logistics</h3>
+        <p>Maintains full performance in extreme cold environments where lithium-ion fails. The Series-R operates down to −20°C with minimal derating — keeping cold chain operations running around the clock.</p>
+        <ul class="uc-list">
+          <li>Freezer warehouse equipment (−20°C to −30°C)</li>
+          <li>Cold chain logistics &amp; food distribution</li>
+          <li>Refrigerated dock equipment</li>
+          <li>Outdoor cold-weather operations</li>
+        </ul>
+        <div class="uc-highlight">
+          ✓ Maintains performance in extreme cold where lithium fails
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Outdoor / Airport GSE (reversed) -->
+    <div class="use-case-row reverse fade-up">
+      <div class="uc-image">
+        <img src="images/prod_48v_outdoor.jpg" alt="Electric ground support equipment at airport tarmac" />
+        <div class="uc-num">04</div>
+      </div>
+      <div class="uc-content">
+        <span class="uc-tag">Outdoor &amp; Airport GSE</span>
+        <h3>Port Terminals, Airport Ground Support &amp; Outdoor Equipment</h3>
+        <p>Wide temperature range for year-round outdoor operation. The Series-R powers port terminal tractors, airport ground support equipment, and outdoor material handling in all weather conditions.</p>
+        <ul class="uc-list">
+          <li>Airport ground support equipment (GSE)</li>
+          <li>Port terminal tractors &amp; cargo handling</li>
+          <li>Construction equipment &amp; outdoor material handling</li>
+          <li>Year-round outdoor operations in all climates</li>
+        </ul>
+        <div class="uc-highlight">
+          ✓ −20°C to +60°C range — operates in any climate, any season
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       COMPARISON TABLE
+  ============================================= -->
+  <section class="comparison-section">
+    <div class="comparison-inner">
+      <div class="comparison-header fade-up">
+        <span class="section-label">Why Sodium-Ion</span>
+        <h2>Series-R vs. Lead-Acid vs. Lithium-Ion</h2>
+        <p>See how Coulomb's sodium-ion chemistry stacks up against the alternatives across the metrics that matter most.</p>
+      </div>
+      <div class="comparison-table-wrap fade-up">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Lead-Acid</th>
+              <th>Lithium-Ion</th>
+              <th class="coulomb-col">Coulomb Series-R</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cycle Life (80% DOD)</td>
+              <td class="bad">~1,500 cycles</td>
+              <td class="ok">~3,000 cycles</td>
+              <td class="coulomb-col"><span class="win-badge">6,000+ cycles</span></td>
+            </tr>
+            <tr>
+              <td>Cold Temperature Performance</td>
+              <td class="bad">Severe derating below 0°C</td>
+              <td class="bad">Significant derating below −10°C</td>
+              <td class="coulomb-col"><span class="win-badge">Full power to −20°C</span></td>
+            </tr>
+            <tr>
+              <td>Thermal Runaway Risk</td>
+              <td class="ok">Low (acid spill risk)</td>
+              <td class="bad">High — fire suppression required</td>
+              <td class="coulomb-col"><span class="win-badge">Zero — NFPP chemistry</span></td>
+            </tr>
+            <tr>
+              <td>Opportunity Charging</td>
+              <td class="bad">Not recommended — damages cells</td>
+              <td class="ok">Possible with limitations</td>
+              <td class="coulomb-col"><span class="win-badge">Full support — no degradation</span></td>
+            </tr>
+            <tr>
+              <td>Maintenance Required</td>
+              <td class="bad">Weekly watering, equalization</td>
+              <td class="ok">Minimal</td>
+              <td class="coulomb-col"><span class="win-badge">Zero maintenance</span></td>
+            </tr>
+            <tr>
+              <td>Shipping Classification</td>
+              <td class="ok">Standard</td>
+              <td class="bad">Hazmat — restricted air freight</td>
+              <td class="coulomb-col"><span class="win-badge">Air-shippable — no restrictions</span></td>
+            </tr>
+            <tr>
+              <td>Total Cost of Ownership (10yr)</td>
+              <td class="bad">Highest — replacements + maintenance</td>
+              <td class="ok">Medium</td>
+              <td class="coulomb-col"><span class="win-badge">Lowest — 14% below lithium</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       RELATED PRODUCTS
+  ============================================= -->
+  <section class="related-section">
+    <div class="related-inner">
+      <div class="related-header fade-up">
+        <span class="section-label">Complete Your Solution</span>
+        <h2>Complete Your Fleet Electrification</h2>
+      </div>
+      <div class="related-grid">
+        <div class="related-card fade-up">
+          <div class="related-card-img">
+            <img src="images/hero_ci.jpg" alt="279kWh BESS for stationary storage" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-series">Series-DC &nbsp;|&nbsp; Stationary BESS</div>
+            <h3>279kWh DC Battery Cabinet</h3>
+            <p>Stationary energy storage for facility operations — peak shaving, backup power, and grid services.</p>
+            <a href="#" class="related-card-link">Learn More →</a>
+          </div>
+        </div>
+        <div class="related-card fade-up fade-up-d1">
+          <div class="related-card-img">
+            <img src="images/coulomb_motive_image.jpg" alt="Motive fleet batteries" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-series">Series-S &nbsp;|&nbsp; Starter Batteries</div>
+            <h3>12V Starter Battery Series</h3>
+            <p>30–100Ah sodium-ion starter batteries for vehicles and equipment with optional BMS and telematics.</p>
+            <a href="#" class="related-card-link">Learn More →</a>
+          </div>
+        </div>
+        <div class="related-card fade-up fade-up-d2">
+          <div class="related-card-img">
+            <img src="images/hero_motive.jpg" alt="Motive and fleet solutions" />
+          </div>
+          <div class="related-card-body">
+            <div class="related-card-series">Industry Page</div>
+            <h3>Motive &amp; Fleet Solutions</h3>
+            <p>See how Coulomb's full sodium-ion product line powers material handling, fleet, and campus operations.</p>
+            <a href="motive-fleet.html" class="related-card-link">View Industry Page →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FINAL CTA
+  ============================================= -->
+  <section class="prod-cta-section" id="prod-cta">
+    <div class="prod-cta-inner fade-up">
+      <span class="section-label">Get Started</span>
+      <h2>Ready to Electrify Your Fleet?</h2>
+      <p>Get a custom quote for Series-R 48V traction batteries sized for your material handling operations and fleet requirements.</p>
+      <div class="prod-cta-buttons">
+        <a href="#" class="btn btn-primary">Request a Quote</a>
+        <a href="#specs" class="btn btn-outline">Download Spec Sheet</a>
+        <a href="motive-fleet.html" class="btn btn-outline">View Industry Page</a>
+      </div>
+      <div class="prod-cta-stats">
+        <div class="cta-stat">
+          <div class="cta-stat-num">6,000+</div>
+          <div class="cta-stat-label">Cycle Life</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num">−20°C</div>
+          <div class="cta-stat-label">Cold Operation</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num">0</div>
+          <div class="cta-stat-label">Thermal Incidents</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num">5yr</div>
+          <div class="cta-stat-label">Warranty</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+          </div>
+          <p class="footer-tagline">Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">Series-DC (279kWh BESS)</a></li>
+            <li><a href="#">Series-B (Business BESS)</a></li>
+            <li><a href="product-48v-series-r.html">Series-R (48V Traction)</a></li>
+            <li><a href="#">Series-S (Starter Batteries)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
+            <li><a href="defense-government.html">Defense &amp; Government</a></li>
+            <li><a href="motive-fleet.html">Motive &amp; Fleet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Coulomb Technology, Inc. All rights reserved.</div>
+        <div class="footer-made">🇺🇸 <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Capacity tab selector (hero image overlay)
+    document.querySelectorAll('.cap-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.cap-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    // Specs table capacity switcher
+    const capData = {
+      '200': { head: '200Ah', energy: '9.6 kWh', config: '15S2P', charge: '100A', discharge: '200A' },
+      '300': { head: '300Ah', energy: '14.4 kWh', config: '15S3P', charge: '150A', discharge: '300A' },
+      '400': { head: '400Ah', energy: '19.2 kWh', config: '15S4P', charge: '200A', discharge: '400A' }
+    };
+    function showCap(btn, cap) {
+      document.querySelectorAll('.cap-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const d = capData[cap];
+      document.getElementById('cap-head').textContent = d.head;
+      document.getElementById('cap-energy').textContent = d.energy;
+      document.getElementById('cap-config').textContent = d.config;
+      document.getElementById('cap-charge').textContent = d.charge;
+      document.getElementById('cap-discharge').textContent = d.discharge;
+    }
+  </script>
+</body>
+</html>

@@ -6,1267 +6,2321 @@
   <title>Coulomb Technology — Energy Storage You Can Bank On</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    /* =============================================
+       COULOMB TECHNOLOGY — BRAND DESIGN SYSTEM v2
+       Energy Green:   #6BBF00
+       Charcoal Black: #1A1A1A
+       Pure White:     #FFFFFF
+       Electric Blue:  #0066FF
+       Cool Gray:      #6B6B6B
+       Light Gray:     #F7F7F7
+    ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #80FF00;
-      --green-dark: #5cb800;
-      --black: #0a0a0a;
-      --charcoal: #1a1a1a;
-      --dark-card: #222222;
-      --text-dark: #1a1a1a;
-      --text-mid: #444;
-      --text-light: #888;
-      --white: #ffffff;
-      --off-white: #f7f8f5;
-      --red: #e74c3c;
-      --border: #e8e8e8;
-      --max-w: 1320px;
+      --green:   #6BBF00;
+      --charcoal:#1A1A1A;
+      --white:   #FFFFFF;
+      --blue:    #0066FF;
+      --gray:    #6B6B6B;
+      --light:   #F7F7F7;
+      --max-w:   1400px;
+      --pad-x:   40px;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); line-height: 1.6; }
-
-    /* ── NAV ── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; height: 72px;
-      border-bottom: 1px solid rgba(128,255,0,0.15);
-    }
-    .nav-logo img { height: 36px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--green); }
-    .nav-cta {
-      background: var(--green); color: var(--black) !important;
-      padding: 10px 22px; border-radius: 4px; font-weight: 700 !important;
-      font-size: 13px !important; letter-spacing: 0.05em;
-    }
-    .nav-cta:hover { background: var(--green-dark) !important; color: var(--white) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      margin-top: 72px;
-      min-height: 88vh;
-      display: flex; flex-direction: column;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('images/coulomb_hero_montage.jpg') center center / cover no-repeat;
-    }
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.25) 100%);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      flex: 1;
-      display: flex; flex-direction: column; justify-content: center;
-      max-width: var(--max-w); margin: 0 auto; padding: 80px 40px 60px;
-      width: 100%;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(128,255,0,0.12); border: 1px solid rgba(128,255,0,0.4);
-      color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; padding: 6px 14px; border-radius: 20px;
-      margin-bottom: 28px; width: fit-content;
-    }
-    .hero-badge svg { width: 12px; height: 12px; }
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      font-weight: 900; color: var(--white); line-height: 1.1;
-      max-width: 700px; margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 span { color: var(--green); }
-    .hero-sub {
-      font-size: clamp(1rem, 1.5vw, 1.2rem); color: rgba(255,255,255,0.75);
-      max-width: 560px; margin-bottom: 40px; font-weight: 300; line-height: 1.7;
-    }
-    .hero-value-props {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 12px; max-width: 760px; margin-bottom: 44px;
-    }
-    .vp-card {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px; padding: 16px;
-      backdrop-filter: blur(8px);
-    }
-    .vp-card svg { width: 22px; height: 22px; color: var(--green); margin-bottom: 8px; }
-    .vp-card strong { display: block; color: var(--white); font-size: 13px; font-weight: 600; margin-bottom: 3px; }
-    .vp-card span { color: rgba(255,255,255,0.6); font-size: 11px; line-height: 1.4; }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--green); color: var(--black);
-      padding: 16px 36px; border-radius: 4px;
-      font-size: 15px; font-weight: 700; letter-spacing: 0.05em;
-      text-decoration: none; text-transform: uppercase;
-      transition: all 0.2s; width: fit-content;
-    }
-    .hero-cta:hover { background: var(--green-dark); color: var(--white); transform: translateY(-1px); }
-    .hero-cta svg { width: 16px; height: 16px; }
-
-    /* Hero stats bar */
-    .hero-stats {
-      position: relative; z-index: 2;
-      background: rgba(0,0,0,0.7);
-      border-top: 1px solid rgba(128,255,0,0.2);
-      backdrop-filter: blur(10px);
-    }
-    .hero-stats-inner {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
-      display: grid; grid-template-columns: repeat(8, 1fr);
-    }
-    .stat-item {
-      padding: 18px 0;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num { display: block; font-size: 1.3rem; font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 3px; }
-    .stat-label { display: block; font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; }
-
-    /* ── SECTION COMMON ── */
-    .section { padding: 90px 40px; }
-    .section-inner { max-width: var(--max-w); margin: 0 auto; }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--green-dark); margin-bottom: 14px; display: block;
-    }
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700;
-      color: var(--text-dark); line-height: 1.2; margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 1.05rem; color: var(--text-mid); max-width: 600px; line-height: 1.7;
-    }
-    .section-header { margin-bottom: 56px; }
-
-    /* ── INDUSTRIES ── */
-    .industries { background: var(--off-white); }
-    .industries .section-title { color: var(--text-dark); }
-    .industry-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .industry-card {
-      position: relative; border-radius: 12px; overflow: hidden;
-      min-height: 480px; display: flex; flex-direction: column; justify-content: flex-end;
-      text-decoration: none; transition: transform 0.3s;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-    }
-    .industry-card:hover { transform: translateY(-4px); }
-    .industry-card-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.4s;
-    }
-    .industry-card:hover .industry-card-bg { transform: scale(1.04); }
-    .industry-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
-    }
-    .industry-card-content {
-      position: relative; z-index: 2;
-      padding: 36px;
-    }
-    .industry-tag {
-      display: inline-block;
-      background: var(--green); color: var(--black);
-      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 3px; margin-bottom: 14px;
-    }
-    .industry-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem; font-weight: 700; color: var(--white);
-      margin-bottom: 12px; line-height: 1.2;
-    }
-    .industry-card p {
-      font-size: 0.92rem; color: rgba(255,255,255,0.75);
-      line-height: 1.65; margin-bottom: 20px; max-width: 420px;
-    }
-    .industry-markets {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
-    }
-    .market-tag {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8); font-size: 11px; padding: 4px 10px; border-radius: 20px;
-    }
-    .industry-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--green); font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .industry-link svg { width: 14px; height: 14px; transition: transform 0.2s; }
-    .industry-card:hover .industry-link svg { transform: translateX(4px); }
-
-    /* Sub-industry cards */
-    .sub-industries {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--border);
-      margin-top: 0;
-    }
-    .sub-card {
-      padding: 28px 24px;
-      border-right: 1px solid var(--border);
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--charcoal);
       background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.05; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2; }
+    h3 { font-size: clamp(1.05rem, 1.8vw, 1.35rem); font-weight: 600; line-height: 1.3; }
+    p  { font-size: 1rem; font-weight: 400; line-height: 1.65; color: var(--gray); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .btn-primary:hover {
+      background: #0052cc;
+      border-color: #0052cc;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,102,255,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      border-color: rgba(26,26,26,0.4);
+    }
+    .btn-outline:hover {
+      background: rgba(0,0,0,0.05);
+      border-color: var(--charcoal);
+    }
+    .btn-green {
+      background: var(--green);
+      color: #000;
+      border-color: var(--green);
+      font-weight: 700;
+    }
+    .btn-green:hover {
+      background: #5aaa00;
+      border-color: #5aaa00;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(107,191,0,0.3);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      border-color: rgba(255,255,255,0.25);
+    }
+    .btn-outline-white:hover {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.05);
+    }
+    .btn-outline:hover {
+      background: var(--charcoal);
+      color: var(--white);
+      border-color: var(--charcoal);
+      transform: translateY(-1px);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--white);
+    }
+    .btn-green {
+      background: var(--green);
+      color: var(--charcoal);
+      border-color: var(--green);
+    }
+    .btn-green:hover {
+      background: #7ad400;
+      border-color: #7ad400;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(107,191,0,0.35);
+    }
+
+    /* ── Scroll animations ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+
+    /* =============================================
+       NAVIGATION
+    ============================================= */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.1); }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 44px;
+    }
+    .nav-logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+      /* Remove white background from JPG logo */
+      mix-blend-mode: multiply;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-links a:hover { background: var(--light); }
+    .nav-arrow { font-size: 0.6rem; opacity: 0.5; }
+    .nav-cta-group { display: flex; align-items: center; gap: 12px; }
+    .nav-contact {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 4px;
       transition: background 0.2s;
     }
-    .sub-card:last-child { border-right: none; }
-    .sub-card:hover { background: #f0f9e0; }
-    .sub-card-icon {
-      width: 40px; height: 40px;
-      background: rgba(128,255,0,0.12); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 12px;
-    }
-    .sub-card-icon svg { width: 20px; height: 20px; color: var(--green-dark); }
-    .sub-card h4 { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
-    .sub-card p { font-size: 12px; color: var(--text-light); line-height: 1.5; margin-bottom: 10px; }
-    .sub-card-apps { display: flex; flex-wrap: wrap; gap: 4px; }
-    .app-tag {
-      font-size: 10px; color: var(--green-dark); background: rgba(128,255,0,0.1);
-      padding: 2px 8px; border-radius: 10px; font-weight: 600;
-    }
-
-    /* Industry section wrapper */
-    .industry-block { margin-bottom: 60px; }
-    .industry-block-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 0;
-    }
-    .industry-block-header-text {}
-    .industry-block-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;
-    }
-    .industry-block-sub { font-size: 0.9rem; color: var(--text-mid); }
-    .industry-block-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--text-dark); color: var(--white);
-      padding: 12px 24px; border-radius: 4px;
-      font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
-      text-decoration: none; text-transform: uppercase; white-space: nowrap;
+    .nav-contact:hover { background: var(--light); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
       transition: all 0.2s;
     }
-    .industry-block-cta:hover { background: var(--green); color: var(--black); }
-    .industry-block-cta svg { width: 14px; height: 14px; }
-
-    .industry-main-card {
-      position: relative; border-radius: 12px 12px 0 0; overflow: hidden;
-      height: 340px;
+    .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
     }
-    .industry-main-card-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-    }
-    .industry-main-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
-    }
-    .industry-main-card-content {
-      position: relative; z-index: 2; padding: 40px;
-      height: 100%; display: flex; flex-direction: column; justify-content: flex-end;
-    }
-    .industry-main-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem; font-weight: 700; color: var(--white); margin-bottom: 8px;
-    }
-    .industry-main-card p {
-      font-size: 0.95rem; color: rgba(255,255,255,0.8); max-width: 500px; line-height: 1.6;
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
     }
 
-    /* ── SMART PLATFORM ── */
-    .platform { background: var(--black); }
-    .platform .section-label { color: var(--green); }
-    .platform .section-title { color: var(--white); }
-    .platform .section-sub { color: rgba(255,255,255,0.6); }
+    /* =============================================
+       HERO — VIDEO BACKGROUND
+    ============================================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
 
-    .platform-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center; margin-bottom: 72px;
-    }
-    .platform-features { }
-    .platform-feature {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .platform-feature:last-child { border-bottom: none; }
-    .platform-feature-icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      background: rgba(128,255,0,0.1); border: 1px solid rgba(128,255,0,0.2);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    }
-    .platform-feature-icon svg { width: 20px; height: 20px; color: var(--green); }
-    .platform-feature-text h4 { color: var(--white); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .platform-feature-text p { color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.6; }
-
-    .platform-app-visual {
-      position: relative; display: flex; justify-content: center;
-    }
-    .app-mockup-wrap {
-      position: relative; display: inline-block;
-    }
-    .app-mockup-wrap img {
-      width: 280px; border-radius: 24px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(128,255,0,0.2);
-    }
-    .app-bubble {
+    /* Video background */
+    .hero-video-wrap {
       position: absolute;
-      background: var(--white); border-radius: 10px;
-      padding: 10px 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      white-space: nowrap;
+      inset: 0;
+      z-index: 0;
     }
-    .app-bubble strong { display: block; font-size: 16px; font-weight: 700; color: var(--text-dark); }
-    .app-bubble span { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; }
-    .bubble-savings { top: 10%; right: -30px; }
-    .bubble-uptime { bottom: 20%; left: -30px; }
-    .bubble-savings strong { color: #16a34a; }
-    .bubble-uptime strong { color: #2563eb; }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Fallback image shown while video loads */
+    .hero-video-wrap .hero-fallback {
+      position: absolute;
+      inset: 0;
+      background: url('images/coulomb_hero_montage.jpg') center center / cover no-repeat;
+      z-index: -1;
+    }
 
-    /* Engine cards */
-    .engines-header { margin-bottom: 32px; }
-    .engines-header h3 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .engines-header p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
-    .engines-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .engine-card {
-      background: var(--dark-card); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px; padding: 32px 28px; position: relative; overflow: hidden;
-      transition: border-color 0.2s;
+    /* Dark gradient overlay — lighter to let images breathe */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to top,
+        rgba(15,15,15,0.75) 0%,
+        rgba(15,15,15,0.35) 40%,
+        rgba(15,15,15,0.08) 70%,
+        rgba(15,15,15,0.00) 100%
+      );
     }
-    .engine-card:hover { border-color: rgba(128,255,0,0.3); }
-    .engine-num {
-      position: absolute; top: -10px; right: 16px;
-      font-family: 'Orbitron', sans-serif; font-size: 5rem; font-weight: 900;
-      color: rgba(255,255,255,0.04); line-height: 1; user-select: none;
-    }
-    .engine-icon {
-      width: 48px; height: 48px;
-      background: rgba(128,255,0,0.1); border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-    }
-    .engine-icon svg { width: 24px; height: 24px; color: var(--green); }
-    .engine-card h4 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-    .engine-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; margin-bottom: 16px; }
-    .engine-features { list-style: none; }
-    .engine-features li {
-      font-size: 12px; color: rgba(255,255,255,0.45);
-      padding: 4px 0; display: flex; align-items: center; gap: 8px;
-    }
-    .engine-features li::before { content: ''; width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
 
-    /* Revenue streams */
-    .revenue-streams {
-      background: rgba(128,255,0,0.05); border: 1px solid rgba(128,255,0,0.15);
-      border-radius: 12px; padding: 36px; margin-top: 40px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x) 80px;
+      width: 100%;
     }
-    .revenue-streams h4 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 20px; }
-    .revenue-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .revenue-item {
-      display: flex; align-items: flex-start; gap: 12px;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(107,191,0,0.15);
+      border: 1px solid rgba(107,191,0,0.35);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 22px;
     }
-    .revenue-item-icon {
-      width: 32px; height: 32px; flex-shrink: 0;
-      background: rgba(128,255,0,0.15); border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: blink 2.2s infinite;
     }
-    .revenue-item-icon svg { width: 15px; height: 15px; color: var(--green); }
-    .revenue-item h5 { color: var(--white); font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-    .revenue-item p { color: rgba(255,255,255,0.45); font-size: 11px; line-height: 1.4; }
+    @keyframes blink {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(1.4); }
+    }
+    .hero h1 {
+      color: var(--white);
+      max-width: 760px;
+      margin-bottom: 18px;
+      letter-spacing: -0.025em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-    /* ── PRODUCTS ── */
-    .products { background: var(--white); }
-    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .product-card {
-      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-      transition: all 0.2s; text-decoration: none;
+    /* =============================================
+       STATS STRIP — standalone section between hero & industries
+    ============================================= */
+    .stats-strip {
+      background: #1c2b1c;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .product-card:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(128,255,0,0.1); transform: translateY(-2px); }
-    .product-card-header {
-      background: var(--charcoal); padding: 24px;
-      display: flex; align-items: flex-start; justify-content: space-between;
+    .stats-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
     }
-    .product-series {
-      font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700;
-      color: var(--green); letter-spacing: 0.1em; text-transform: uppercase;
+    .stat-item {
+      padding: 40px 28px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(255,255,255,0.03); }
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+    }
+    .stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    /* =============================================
+       VALUE PROPS BAR (below stats strip)
+    ============================================= */
+    .value-bar {
+      background: #1e2e1e;
+    }
+    .value-bar-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .value-prop {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px 20px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.2s;
+    }
+    .value-prop:last-child { border-right: none; }
+    .value-prop:hover { background: rgba(255,255,255,0.04); }
+    .vp-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(107,191,0,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .vp-icon svg { width: 20px; height: 20px; color: var(--green); }
+    .vp-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .vp-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.80);
+    }
+
+    /* =============================================
+       SECTION LABELS & HEADERS
+    ============================================= */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    /* =============================================
+       SECTION 2: INDUSTRIES
+    ============================================= */
+    .industries-section {
+      padding: 96px var(--pad-x);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 52px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .section-header h2 { margin-bottom: 10px; }
+    .section-header p { max-width: 460px; }
+    .industry-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .industry-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .industry-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.11);
+      border-color: transparent;
+    }
+    .ic-img-wrap { overflow: hidden; }
+    .ic-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .industry-card:hover .ic-img { transform: scale(1.05); }
+    .ic-body {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .ic-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .ic-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .ic-body p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 12px;
+    }
+    .ic-meta {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-bottom: 22px;
+    }
+    .ic-meta strong { color: var(--charcoal); }
+    .ic-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 11px 20px;
+      background: var(--blue);
+      border-radius: 4px;
+      transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .ic-link:hover { background: #0052cc; }
+    .ic-link svg { width: 13px; height: 13px; }
+
+    /* =============================================
+       C&I SUB-INDUSTRY GRID
+    ============================================= */
+    .ci-sub-header {
+      max-width: var(--max-w);
+      margin: 72px auto 40px;
+      padding: 0 var(--pad-x);
+      text-align: center;
+    }
+    .ci-sub-header h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 8px 0 12px;
+    }
+    .ci-sub-header p { max-width: 680px; margin: 0 auto; }
+
+    .ci-sub-grid {
+      max-width: var(--max-w);
+      margin: 0 auto 80px;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 1024px) { .ci-sub-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 640px)  { .ci-sub-grid { grid-template-columns: 1fr; } }
+
+    .ci-sub-card {
+      background: var(--white);
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .ci-sub-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+    .ci-sub-img-wrap {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+    .ci-sub-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .ci-sub-card:hover .ci-sub-img-wrap img { transform: scale(1.05); }
+
+    .ci-sub-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .ci-sub-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(107,191,0,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .ci-sub-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--green);
+    }
+    .ci-sub-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
       margin-bottom: 4px;
     }
-    .product-name { font-size: 1.1rem; font-weight: 700; color: var(--white); }
-    .product-badge {
-      background: rgba(128,255,0,0.15); border: 1px solid rgba(128,255,0,0.3);
-      color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
+    .ci-sub-body h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .ci-sub-body p {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+    .ci-sub-challenges {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+    .ci-sub-challenges strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       SECTION 3: WHY SODIUM-ION — Bold Tabbed Split Layout
+    ============================================= */
+    .why-section {
+      background: #12211a;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Top intro bar */
+    .why-intro-bar {
+      padding: 72px var(--pad-x) 56px;
+      text-align: center;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .why-intro-bar h2 {
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .why-intro-bar p {
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Tab navigation */
+    .why-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .why-tab {
+      padding: 18px 36px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .why-tab:hover { color: rgba(255,255,255,0.95); }
+    .why-tab.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+    .why-tab-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      transition: background 0.25s;
+    }
+    .why-tab.active .why-tab-num {
+      background: var(--green);
+      color: #000;
+    }
+
+    /* Panel content — full-bleed split */
+    .why-panels { position: relative; }
+    .why-panel {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    .why-panel.active { display: grid; }
+
+    /* Left: dark content side */
+    .wp-left {
+      padding: 64px 56px 64px var(--pad-x);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 640px;
+      margin-left: auto;
+    }
+    .wp-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wp-eyebrow-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .wp-left h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .wp-left > p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* Comparison rows */
+    .wp-compare {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .wp-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .wp-row-bad {
+      background: rgba(220,53,69,0.08);
+      color: rgba(255,255,255,0.80);
+      border-bottom: 1px solid rgba(220,53,69,0.1);
+    }
+    .wp-row-good {
+      background: rgba(107,191,0,0.06);
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+    }
+    .wp-icon-bad, .wp-icon-good {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .wp-icon-bad  { background: rgba(220,53,69,0.2);  color: #e74c3c; }
+    .wp-icon-good { background: rgba(107,191,0,0.2);  color: var(--green); }
+
+    /* Big stat callout */
+    .wp-stat {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: rgba(107,191,0,0.06);
+      border: 1px solid rgba(107,191,0,0.15);
+      border-radius: 10px;
+    }
+    .wp-stat-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
       white-space: nowrap;
     }
-    .product-card-body { padding: 20px 24px; }
-    .product-spec { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-    .product-spec-sub { font-size: 12px; color: var(--text-light); margin-bottom: 14px; }
-    .product-desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 16px; }
-    .product-software {
-      display: flex; flex-wrap: wrap; gap: 4px;
+    .wp-stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
     }
-    .sw-tag {
-      font-size: 10px; background: rgba(128,255,0,0.08); color: var(--green-dark);
-      border: 1px solid rgba(128,255,0,0.2); padding: 2px 8px; border-radius: 10px; font-weight: 600;
-    }
-    .product-card-footer {
-      padding: 14px 24px; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .product-card-footer span { font-size: 12px; color: var(--text-light); }
-    .product-card-footer svg { width: 14px; height: 14px; color: var(--green-dark); }
+    .wp-stat-label strong { color: var(--white); display: block; font-size: 0.95rem; margin-bottom: 2px; }
 
-    /* ── SODIUM ── */
-    .sodium { background: var(--off-white); }
-    .sodium-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    .sodium-col h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; }
-    .sodium-col.challenges h3 { color: var(--red); }
-    .sodium-col.benefits h3 { color: #16a34a; }
-    .sodium-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 20px; border-radius: 10px; margin-bottom: 12px;
+    /* Right: image side */
+    .wp-right {
+      position: relative;
+      overflow: hidden;
     }
-    .sodium-item.challenge { background: rgba(231,76,60,0.06); border: 1px solid rgba(231,76,60,0.15); }
-    .sodium-item.benefit { background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.15); }
-    .sodium-item-icon {
-      width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px;
+    .wp-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 8s ease;
+    }
+    .why-panel.active .wp-right img { transform: scale(1.04); }
+    .wp-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(18,33,26,0.55) 0%, transparent 60%);
+    }
+
+    /* Bottom proof bar */
+    .why-proof-bar {
+      background: #0e1e16;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .why-proof-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .wp-proof-item {
+      padding: 36px 28px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .wp-proof-item:last-child { border-right: none; }
+    .wp-proof-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .wp-proof-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.5;
+    }
+    .why-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px var(--pad-x);
+      background: #12211a;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* =============================================
+       SECTION 3b: INTELLIGENT ENERGY PLATFORM
+    ============================================= */
+
+    /* ---- Hero intro band ---- */
+    .platform-intro-band {
+      background: linear-gradient(135deg, #0d1f0d 0%, #162e16 50%, #0f2318 100%);
+      padding: 90px var(--pad-x) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-intro-band::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse at center, rgba(107,191,0,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .platform-intro-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+    }
+    .platform-intro-text .section-label { color: var(--green); }
+    .platform-intro-text h2 { color: var(--white); font-size: 2.4rem; line-height: 1.15; margin-bottom: 20px; }
+    .platform-intro-text p  { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.7; margin-bottom: 32px; }
+    .platform-intro-text .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .platform-intro-band .btn-outline {
+      color: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.35);
+    }
+    .platform-intro-band .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.7);
+      transform: translateY(-1px);
+    }
+    .platform-intro-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .platform-intro-visual img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 28px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 80px rgba(107,191,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+    .platform-intro-visual::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 40px;
+      background: radial-gradient(circle at center, rgba(107,191,0,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    /* ---- Software pillars strip ---- */
+    .platform-pillars {
+      background: var(--white);
+      padding: 72px var(--pad-x);
+    }
+    .platform-pillars-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .platform-pillars-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .platform-pillars-header .section-label { color: var(--green); }
+    .platform-pillars-header h2 { color: var(--charcoal); margin-bottom: 12px; }
+    .platform-pillars-header p { color: var(--gray); max-width: 560px; margin: 0 auto; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(0,0,0,0.07);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .pillar-card {
+      background: var(--white);
+      padding: 40px 32px;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .pillar-card:hover { background: #f7fdf0; }
+    .pillar-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(107,191,0,0.15);
+      line-height: 1;
+      margin-bottom: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .pillar-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: rgba(107,191,0,0.12);
+      border: 1px solid rgba(107,191,0,0.25);
       display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
     }
-    .challenge .sodium-item-icon { background: rgba(231,76,60,0.1); }
-    .benefit .sodium-item-icon { background: rgba(22,163,74,0.1); }
-    .challenge .sodium-item-icon svg { color: var(--red); width: 18px; height: 18px; }
-    .benefit .sodium-item-icon svg { color: #16a34a; width: 18px; height: 18px; }
-    .sodium-item h4 { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-    .sodium-item p { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+    .pillar-icon svg { width: 22px; height: 22px; color: var(--green); }
+    .pillar-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .pillar-tagline {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
 
-    .sodium-photo {
-      border-radius: 12px; overflow: hidden; margin-top: 40px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    /* ---- EMS diagram full-bleed band ---- */
+    .platform-ems-band {
+      background: #f0f4f8;
+      padding: 80px var(--pad-x);
     }
-    .sodium-photo img { width: 100%; height: 260px; object-fit: cover; display: block; }
-    .sodium-photo-caption {
-      background: var(--charcoal); padding: 16px 20px;
-      display: flex; align-items: center; gap: 12px;
+    .platform-ems-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
     }
-    .sodium-photo-caption svg { width: 20px; height: 20px; color: var(--green); flex-shrink: 0; }
-    .sodium-photo-caption p { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .ems-text .section-label { color: var(--green); }
+    .ems-text h2 { color: var(--charcoal); font-size: 2rem; margin-bottom: 16px; }
+    .ems-text p  { color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+    .ems-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ems-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+    }
+    .ems-bullets li .bullet-icon {
+      width: 22px; height: 22px; min-width: 22px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .ems-bullets li .bullet-icon svg { width: 12px; height: 12px; color: #1a1a1a; }
+    .ems-diagram-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .ems-diagram-wrap img { width: 100%; display: block; }
 
-    /* ── FINAL CTA ── */
-    .final-cta {
-      background: var(--black);
-      text-align: center; padding: 100px 40px;
+    /* ---- Revenue streams — dark band ---- */
+    .platform-revenue-band {
+      background: linear-gradient(135deg, #0d1f0d 0%, #162e16 100%);
+      padding: 80px var(--pad-x);
+      position: relative;
+      overflow: hidden;
     }
-    .final-cta .section-label { color: var(--green); justify-content: center; display: flex; }
-    .final-cta h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
-      color: var(--white); margin-bottom: 20px; line-height: 1.2;
+    .platform-revenue-band::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(107,191,0,0.12) 0%, transparent 65%);
+      pointer-events: none;
     }
-    .final-cta h2 span { color: var(--green); }
-    .final-cta p { font-size: 1.1rem; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 44px; line-height: 1.7; }
-    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--green); color: var(--black);
-      padding: 16px 36px; border-radius: 4px;
-      font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
-      text-decoration: none; text-transform: uppercase; transition: all 0.2s;
+    .platform-revenue-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      position: relative;
     }
-    .btn-primary:hover { background: var(--green-dark); color: var(--white); }
-    .btn-outline {
-      background: transparent; color: var(--white);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 16px 36px; border-radius: 4px;
-      font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
-      text-decoration: none; text-transform: uppercase; transition: all 0.2s;
+    .revenue-header {
+      text-align: center;
+      margin-bottom: 48px;
     }
-    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .revenue-header .section-label { color: var(--green); }
+    .revenue-header h2 { color: var(--white); font-size: 2rem; margin-bottom: 12px; }
+    .revenue-header p  { color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto; }
+    .revenue-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .rev-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(107,191,0,0.2);
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .rev-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .rev-card:hover::before { transform: scaleX(1); }
+    .rev-card:hover {
+      background: rgba(107,191,0,0.08);
+      border-color: rgba(107,191,0,0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    .rev-card-icon {
+      width: 60px; height: 60px;
+      border-radius: 14px;
+      background: rgba(107,191,0,0.12);
+      border: 1.5px solid rgba(107,191,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .rev-card-icon svg { width: 26px; height: 26px; color: var(--green); }
+    .rev-card-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .rev-card h4 { color: var(--white); font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .rev-card p  { color: rgba(255,255,255,0.65); font-size: 0.83rem; line-height: 1.55; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 60px 40px 32px;
+    /* ---- ROI CTA band ---- */
+    .platform-roi-band {
+      background: var(--white);
+      padding: 80px var(--pad-x);
+    }
+    .platform-roi-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .platform-roi-inner .section-label { color: var(--green); }
+    .platform-roi-inner h2 { color: var(--charcoal); font-size: 2rem; margin-bottom: 16px; }
+    .platform-roi-inner p  { color: var(--gray); font-size: 1rem; line-height: 1.7; margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .roi-stat-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .roi-stat {
+      text-align: center;
+    }
+    .roi-stat-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .roi-stat-num span { color: var(--green); }
+    .roi-stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+    }
+    .platform-roi-inner .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ---- Product tiers (kept for reference, now below) ---- */
+    .platform-section {
+      background: var(--white);
+      padding: 0;
+    }
+    .platform-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .platform-intro-inner { grid-template-columns: 1fr; }
+      .platform-intro-visual { display: none; }
+      .platform-ems-inner { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .revenue-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .revenue-cards { grid-template-columns: 1fr; }
+      .roi-stat-row { gap: 28px; }
+    }
+    .btn-green {
+      background: var(--green);
+      color: var(--charcoal);
+      border-color: var(--green);
+      font-weight: 700;
+    }
+    .btn-green:hover {
+      background: #7dd900;
+      border-color: #7dd900;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(107,191,0,0.35);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.7);
+      transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .platform-tiers { grid-template-columns: 1fr; }
+      .platform-visual { grid-template-columns: 1fr; }
+      .revenue-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .revenue-cards { grid-template-columns: 1fr; }
+    }
+
+    /* =============================================
+       SECTION 4: PARTNERS
+    ============================================= */
+    .partners-section {
+      padding: 56px var(--pad-x);
+      background: var(--white);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .partners-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .partners-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+    }
+    .partners-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .partner-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.45;
+      filter: grayscale(100%);
+      transition: all 0.3s;
+      padding: 10px 20px;
+      border: 1.5px solid rgba(0,0,0,0.15);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .partner-chip:hover { opacity: 0.9; filter: grayscale(0%); border-color: var(--blue); color: var(--blue); }
+
+    /* =============================================
+       SECTION 5: FINAL CTA — Light background
+    ============================================= */
+    .cta-section {
+      padding: 96px var(--pad-x);
+      background: var(--white);
+    }
+    .cta-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .cta-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .cta-header h2 { margin-bottom: 14px; color: var(--charcoal); }
+    .cta-header p { font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+    .cta-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .cta-card {
+      background: var(--light);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 44px 40px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .cta-card:hover {
+      background: var(--white);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.09);
+      transform: translateY(-4px);
+      border-color: rgba(0,102,255,0.2);
+    }
+    .cta-card-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(0,102,255,0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .cta-card-icon svg { width: 28px; height: 28px; color: var(--blue); }
+    .cta-card h3 { color: var(--charcoal); font-size: 1.25rem; margin-bottom: 10px; }
+    .cta-card p { font-size: 0.9rem; margin-bottom: 28px; line-height: 1.6; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .footer {
+      background: #1a1a2e;
+      padding: 64px var(--pad-x) 32px;
     }
     .footer-inner { max-width: var(--max-w); margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand img { height: 32px; margin-bottom: 16px; mix-blend-mode: screen; }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 280px; }
-    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--green); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 24px; display: flex; align-items: center; justify-content: space-between;
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 28px;
     }
-    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
-    .footer-bottom a { color: rgba(255,255,255,0.3); text-decoration: none; }
-    .footer-bottom a:hover { color: var(--green); }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      height: 40px;
+    }
+    .footer-logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      max-width: 280px;
+      margin-bottom: 22px;
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.12); }
+    .footer-social svg { width: 15px; height: 15px; color: rgba(255,255,255,0.80); }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.80);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.60); }
+    .footer-made {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer-made strong { color: rgba(255,255,255,0.85); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.60);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.95); }
 
-    /* ── RESPONSIVE ── */
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
     @media (max-width: 1100px) {
-      .hero-value-props { grid-template-columns: repeat(2, 1fr); }
-      .hero-stats-inner { grid-template-columns: repeat(4, 1fr); }
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.07); }
       .stat-item:nth-child(4) { border-right: none; }
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .value-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .value-prop:nth-child(2) { border-right: none; }
+      .value-prop:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.07); }
+      .industry-cards { grid-template-columns: 1fr 1fr; }
+      .why-panel { grid-template-columns: 1fr; }
+      .wp-left { max-width: 100%; padding: 48px var(--pad-x); }
+      .wp-right { min-height: 300px; }
+      .why-proof-inner { grid-template-columns: repeat(2, 1fr); }
+      .wp-proof-item:nth-child(2) { border-right: none; }
+      .wp-proof-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.06); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .section { padding: 60px 20px; }
-      .hero-content { padding: 60px 20px 40px; }
-      .hero-stats-inner { grid-template-columns: repeat(4, 1fr); }
-      .industry-grid { grid-template-columns: 1fr; }
-      .platform-split { grid-template-columns: 1fr; gap: 40px; }
-      .engines-grid { grid-template-columns: 1fr; }
-      .revenue-grid { grid-template-columns: 1fr; }
-      .sodium-grid { grid-template-columns: 1fr; }
-      .products-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .sub-industries { grid-template-columns: repeat(2, 1fr); }
-      .sub-card { border-bottom: 1px solid var(--border); }
+      :root { --pad-x: 20px; }
+      .nav-links, .nav-cta-group { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero h1 { font-size: 2.4rem; }
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .value-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .industry-cards { grid-template-columns: 1fr; }
+      .why-tabs { overflow-x: auto; justify-content: flex-start; }
+      .why-tab { padding: 14px 20px; font-size: 0.8rem; }
+      .why-proof-inner { grid-template-columns: repeat(2, 1fr); }
+      .cta-cards { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .stats-strip-inner { grid-template-columns: 1fr 1fr; }
+      .value-bar-inner { grid-template-columns: 1fr 1fr; }
+      .advantage-bar { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#platform">Platform</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="https://coulombtechnology.com/about">About</a></li>
-    <li><a href="https://coulombtechnology.com/contact" class="nav-cta">Request Quote</a></li>
-  </ul>
-</nav>
+  <!-- =============================================
+       NAVIGATION
+  ============================================= -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <!-- Black logo for white nav -->
+      <a href="#" class="nav-logo" aria-label="Coulomb Technology">
+        <img src="images/coulomb-logo-black.jpg" alt="Coulomb Technology" />
+      </a>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      Sodium-Ion Technology
-    </div>
-    <h1>Energy Storage<br>You Can <span>Bank On</span></h1>
-    <p class="hero-sub">Sodium-ion battery technology engineered for mission-critical infrastructure — commercial, industrial, defense, and mobility applications.</p>
-    <div class="hero-value-props">
-      <div class="vp-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <strong>Enhanced Safety</strong>
-        <span>Zero thermal runaway risk</span>
+      <ul class="nav-links">
+        <li><a href="#">Industries <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">Products <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+
+      <div class="nav-cta-group">
+        <a href="#" class="nav-contact">Contact</a>
+        <a href="#cta" class="nav-cta">Request Consultation</a>
       </div>
-      <div class="vp-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/><circle cx="12" cy="12" r="10"/></svg>
-        <strong>Extreme Temp</strong>
-        <span>−40°C to +55°C operation</span>
-      </div>
-      <div class="vp-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M23 13v-2"/></svg>
-        <strong>Domestic Supply</strong>
-        <span>U.S. manufacturing pathway</span>
-      </div>
-      <div class="vp-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <strong>Lower TCO</strong>
-        <span>14% better economics vs. Li-ion</span>
+
+      <div class="nav-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
     </div>
-    <a href="#industries" class="hero-cta">
-      Find Your Solution
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+  </nav>
+
+  <!-- =============================================
+       HERO — VIDEO BACKGROUND
+  ============================================= -->
+  <section class="hero" id="hero">
+    <div class="hero-video-wrap">
+      <!-- Fallback image while video loads -->
+      <div class="hero-fallback"></div>
+      <video
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="images/coulomb_hero_montage.jpg"
+        style="width:100%;height:100%;object-fit:cover;display:block;"
+      >
+        <source src="images/hero-video.mp4" type="video/mp4" />
+        <source src="images/hero-video.webm" type="video/webm" />
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Sodium-Ion Battery Technology
+      </div>
+      <h1>Energy Storage<br/><em>You Can Bank On</em></h1>
+      <p class="hero-sub">Sodium-ion batteries engineered for mission-critical infrastructure, industrial fleets, and reliable power across every application.</p>
+      <div class="hero-actions">
+        <a href="#industries" class="btn btn-primary">Find Your Solution</a>
+        <a href="#why" class="btn btn-outline-white">Why Sodium-Ion?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       STATS STRIP — Key proof numbers
+  ============================================= -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div class="stat-item fade-up">
+        <div class="stat-number">14%</div>
+        <div class="stat-label">Lower 15-Year TCO</div>
+        <div class="stat-desc">vs. liquid-cooled lithium-ion</div>
+      </div>
+      <div class="stat-item fade-up fade-up-d1">
+        <div class="stat-number">−40°C</div>
+        <div class="stat-label">to +55°C Operation</div>
+        <div class="stat-desc">No HVAC required</div>
+      </div>
+      <div class="stat-item fade-up fade-up-d2">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Thermal Incidents</div>
+        <div class="stat-desc">Zero fires to date</div>
+      </div>
+      <div class="stat-item fade-up fade-up-d3">
+        <div class="stat-number">20yr</div>
+        <div class="stat-label">Projected Battery Life</div>
+        <div class="stat-desc">Verified duty-cycle testing</div>
+      </div>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stats-inner">
-      <div class="stat-item"><span class="stat-num">0</span><span class="stat-label">Thermal Incidents</span></div>
-      <div class="stat-item"><span class="stat-num">20yr</span><span class="stat-label">Design Life</span></div>
-      <div class="stat-item"><span class="stat-num">6,000+</span><span class="stat-label">Cycle Life</span></div>
-      <div class="stat-item"><span class="stat-num">14%</span><span class="stat-label">Lower TCO</span></div>
-      <div class="stat-item"><span class="stat-num">−40°C</span><span class="stat-label">Min Operating</span></div>
-      <div class="stat-item"><span class="stat-num">IP54</span><span class="stat-label">Ingress Protection</span></div>
-      <div class="stat-item"><span class="stat-num">UL</span><span class="stat-label">1973 &amp; 9540</span></div>
-      <div class="stat-item"><span class="stat-num">4yr</span><span class="stat-label">Avg Payback</span></div>
+
+  <!-- VALUE PROPS BAR -->
+  <div class="value-bar">
+    <div class="value-bar-inner">
+      <div class="value-prop">
+        <div class="vp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="vp-title">Enhanced Safety</div>
+          <div class="vp-desc">Zero thermal runaway risk</div>
+        </div>
+      </div>
+      <div class="value-prop">
+        <div class="vp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+        </div>
+        <div>
+          <div class="vp-title">Extreme Temperature</div>
+          <div class="vp-desc">−40°C to +55°C operation</div>
+        </div>
+      </div>
+      <div class="value-prop">
+        <div class="vp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <div class="vp-title">Domestic Supply Chain</div>
+          <div class="vp-desc">Made in USA pathway</div>
+        </div>
+      </div>
+      <div class="value-prop">
+        <div class="vp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div class="vp-title">Lower TCO</div>
+          <div class="vp-desc">Better lifetime economics</div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- INDUSTRIES -->
-<section class="section industries" id="industries">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Industries We Serve</span>
-      <h2 class="section-title">Solutions Across Every Scale</h2>
-      <p class="section-sub">From warehouse floors to military installations, Coulomb delivers mission-critical energy storage built for your environment.</p>
-    </div>
+  <!-- =============================================
+       SECTION 2: INDUSTRIES
+  ============================================= -->
+  <section id="industries">
+    <div class="industries-section">
+      <div class="section-header fade-up">
+        <div>
+          <div class="section-label">Who We Serve</div>
+          <h2>Solutions Across Every Scale</h2>
+          <p>From factory floors to forward operating bases, Coulomb's sodium-ion technology powers the operations that can't afford to stop.</p>
+        </div>
+        <a href="#" class="btn btn-outline">View All Industries</a>
+      </div>
 
-    <!-- Commercial & Industrial -->
-    <div class="industry-block">
-      <div class="industry-main-card">
-        <div class="industry-card-bg" style="background-image: url('images/industry_ci_warehouse.jpg');"></div>
-        <div class="industry-main-card-overlay"></div>
-        <div class="industry-main-card-content">
-          <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-            <div>
-              <span class="industry-tag">Commercial &amp; Industrial</span>
-              <h3>Power That Pays You Back</h3>
-              <p>Energy storage for manufacturing, distribution centers, data centers, and facilities requiring demand management, backup power, and grid revenue.</p>
+      <!-- Top 3 primary industry cards -->
+      <div class="industry-cards">
+        <div class="industry-card fade-up">
+          <div class="ic-img-wrap">
+            <img src="images/coulomb_ci_image.jpg" alt="Commercial and Industrial warehouse with electric forklifts" class="ic-img" loading="lazy" />
+          </div>
+          <div class="ic-body">
+            <div class="ic-tag">Commercial &amp; Industrial</div>
+            <h3>Motive &amp; Stationary Power for Industry</h3>
+            <p>Drop-in sodium-ion replacements for lead-acid in forklifts, AGVs, material handling fleets, and airport ground support equipment — plus stationary BESS for demand management and backup power.</p>
+            <p class="ic-meta"><strong>Markets:</strong> Manufacturing, Logistics, Data Centers, Healthcare, Agriculture, Telecom, Airport Ground Support</p>
+            <a href="commercial-industrial.html" class="ic-link">Explore C&amp;I Solutions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="industry-card fade-up fade-up-d1">
+          <div class="ic-img-wrap">
+            <img src="images/coulomb_defense_image.jpg" alt="Military forward operating base with large solar panel arrays" class="ic-img" loading="lazy" />
+          </div>
+          <div class="ic-body">
+            <div class="ic-tag">Defense &amp; Government</div>
+            <h3>Mission-Critical Power for Defense</h3>
+            <p>Sodium-ion batteries engineered for extreme environments, domestic supply chain compliance, and mission-critical reliability.</p>
+            <p class="ic-meta"><strong>Markets:</strong> Military, Emergency Services, Critical Infrastructure, Border Security</p>
+            <a href="defense-government.html" class="ic-link">Defense Solutions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <div class="industry-card fade-up fade-up-d2">
+          <div class="ic-img-wrap">
+            <img src="images/coulomb_motive_image.jpg" alt="Solar-charged fleet vehicles on resort campus" class="ic-img" loading="lazy" />
+          </div>
+          <div class="ic-body">
+            <div class="ic-tag">Motive &amp; Fleet</div>
+            <h3>Electrified Fleets for Every Campus</h3>
+            <p>Solar-charged sodium-ion batteries for golf courses, resort campuses, university security, and hospitality fleets. Longer range, zero maintenance, all-weather reliability.</p>
+            <p class="ic-meta"><strong>Markets:</strong> Golf Courses, Resorts, Universities, Security Patrol, Hospitality</p>
+            <a href="motive-fleet.html" class="ic-link">Fleet Solutions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- C&I Sub-Industry Grid -->
+      <div class="ci-sub-header fade-up">
+        <div class="section-label">C&amp;I Verticals We Serve</div>
+        <h3>Built for Every Demanding Environment</h3>
+        <p>High demand charges, temperature extremes, and 24/7 operations require a battery that never compromises. Coulomb's sodium-ion systems are engineered for each sector's unique challenges.</p>
+      </div>
+
+      <div class="ci-sub-grid">
+
+        <div class="ci-sub-card fade-up">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_manufacturing.jpg" alt="Manufacturing facility with battery energy storage" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
-            <a href="commercial-industrial.html" class="industry-block-cta" style="margin-left:40px;">
-              Explore C&amp;I
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <div>
+              <div class="ci-sub-tag">Manufacturing &amp; Industrial</div>
+              <h4>Peak Shaving &amp; Backup Power</h4>
+              <p>Eliminate demand charge spikes, ensure power quality, and maintain 24/7 operations through outages. Purpose-built for high-load industrial environments.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Peak shaving, backup power, power quality, demand management</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-sub-card fade-up fade-up-d1">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_datacenter.jpg" alt="Data center with critical backup power" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <div>
+              <div class="ci-sub-tag">Data Centers &amp; Cloud</div>
+              <h4>Critical Backup &amp; UPS Integration</h4>
+              <p>Tier III/IV uptime requirements demand zero-compromise backup. Sodium-ion delivers reliable UPS integration, grid services, and urban siting advantages.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Critical backup, UPS integration, grid services, urban siting</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-sub-card fade-up fade-up-d2">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_logistics.jpg" alt="Logistics warehouse with electric forklifts and cold storage" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div>
+              <div class="ci-sub-tag">Logistics &amp; Distribution</div>
+              <h4>Cold Storage &amp; Material Handling</h4>
+              <p>Warehouse temperature extremes and automated systems demand batteries that perform in cold storage and power electric forklifts and AGVs without degradation.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Cold storage, material handling, facility optimization, AGV power</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-sub-card fade-up">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_agriculture.jpg" alt="Agricultural operation with solar panels and irrigation" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12C12 7 7 3 2 3c0 5 4 9 10 9zM12 12c0-5 5-9 10-9-1 5-5 9-10 9"/></svg>
+            </div>
+            <div>
+              <div class="ci-sub-tag">Agriculture &amp; Food Processing</div>
+              <h4>Irrigation, Processing &amp; Cold Chain</h4>
+              <p>Variable loads, renewable integration, and grid reliability issues make sodium-ion ideal for powering irrigation pumps, processing facilities, and cold storage.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Irrigation pumps, processing, cold storage, renewable integration</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-sub-card fade-up fade-up-d1">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_healthcare.jpg" alt="Hospital campus with emergency backup power" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <div class="ci-sub-tag">Healthcare Facilities</div>
+              <h4>Life-Safety Backup &amp; Campus Microgrids</h4>
+              <p>Patient safety and regulatory compliance require the most reliable backup power available. Sodium-ion eliminates fire risk while meeting life-safety and refrigeration requirements.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Life-safety backup, refrigeration, critical systems, campus microgrids</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-sub-card fade-up fade-up-d2">
+          <div class="ci-sub-img-wrap">
+            <img src="images/ci_telecom.jpg" alt="Telecommunications tower with battery backup" loading="lazy" />
+          </div>
+          <div class="ci-sub-body">
+            <div class="ci-sub-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M10.54 16.1a6 6 0 0 1 2.92 0"/><circle cx="12" cy="20" r="1"/></svg>
+            </div>
+            <div>
+              <div class="ci-sub-tag">Telecommunications</div>
+              <h4>Tower Backup &amp; 5G Infrastructure</h4>
+              <p>Remote locations and climate resilience requirements make sodium-ion the ideal solution for tower backup, network reliability, and 5G infrastructure buildout.</p>
+              <div class="ci-sub-challenges"><strong>Applications:</strong> Tower backup, network reliability, 5G infrastructure, remote sites</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end ci-sub-grid -->
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3b: INTELLIGENT ENERGY PLATFORM
+  ============================================= -->
+
+  <!-- Band 1: Hero intro with app mockup -->
+  <section id="platform" class="platform-intro-band">
+    <div class="platform-intro-inner">
+      <div class="platform-intro-text fade-up">
+        <div class="section-label">Our Solutions</div>
+        <h2>Not Just a Battery.<br>An Intelligent Energy Platform.</h2>
+        <p>Coulomb's fully integrated systems combine sodium-ion storage with AI-driven energy management — automatically maximizing savings, generating revenue, and keeping your operations running no matter what the grid does.</p>
+        <div class="cta-btns">
+          <a href="#" class="btn btn-green">Explore Our Products →</a>
+          <a href="#" class="btn btn-outline">Request a System Design</a>
+        </div>
+      </div>
+      <div class="platform-intro-visual fade-up fade-up-d1">
+        <img src="images/app_mockup.jpg" alt="EnergiOS mobile app showing battery charge level, real-time energy flow, and monthly savings dashboard" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Band 2: Three software pillars (EnergiOS / Coulomb AI / GridIQ) -->
+  <section class="platform-pillars">
+    <div class="platform-pillars-inner">
+      <div class="platform-pillars-header fade-up">
+        <div class="section-label">Intelligent Software Stack</div>
+        <h2>Three Engines. One Seamless System.</h2>
+        <p>Every fully integrated Coulomb system ships with three proprietary software layers that work together to maximize the value of your energy storage investment.</p>
+      </div>
+      <div class="pillars-grid">
+
+        <div class="pillar-card fade-up">
+          <div class="pillar-num">01</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="pillar-name">EnergiOS™</div>
+          <div class="pillar-tagline">Energy Management System</div>
+          <p class="pillar-desc">The operating system for your energy assets. Real-time monitoring, automated dispatch, and full visibility into energy flows — accessible via web dashboard and mobile app for operators, property managers, and tenants.</p>
+        </div>
+
+        <div class="pillar-card fade-up fade-up-d1">
+          <div class="pillar-num">02</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="4" fill="currentColor" opacity="0.2"/><path d="M16 4l4 4-4 4"/></svg>
+          </div>
+          <div class="pillar-name">Coulomb AI™</div>
+          <div class="pillar-tagline">Predictive Optimization Engine</div>
+          <p class="pillar-desc">Machine learning that learns your load profile, predicts utility pricing, and automatically executes the optimal charge/discharge strategy — maximizing savings and revenue with zero manual intervention required.</p>
+        </div>
+
+        <div class="pillar-card fade-up fade-up-d2">
+          <div class="pillar-num">03</div>
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="pillar-name">GridIQ™</div>
+          <div class="pillar-tagline">Grid Services &amp; Revenue Platform</div>
+          <p class="pillar-desc">Connects your battery to demand response programs, capacity markets, frequency regulation, and virtual power plant networks — automatically enrolling and dispatching to earn revenue around the clock.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Band 3: EMS diagram split -->
+  <section class="platform-ems-band">
+    <div class="platform-ems-inner">
+      <div class="ems-text fade-up">
+        <div class="section-label">How It Works</div>
+        <h2>Your Battery Works While You Sleep.</h2>
+        <p>Coulomb AI™ continuously monitors solar generation, grid pricing, weather forecasts, and your facility's load profile — then automatically executes the best energy strategy every 15 minutes, 24/7.</p>
+        <ul class="ems-bullets">
+          <li>
+            <span class="bullet-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2 6 5 9 10 3"/></svg></span>
+            Charges when grid prices are at their lowest
+          </li>
+          <li>
+            <span class="bullet-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2 6 5 9 10 3"/></svg></span>
+            Discharges to avoid peak demand charges
+          </li>
+          <li>
+            <span class="bullet-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2 6 5 9 10 3"/></svg></span>
+            Responds to grid events to earn demand response payments
+          </li>
+          <li>
+            <span class="bullet-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2 6 5 9 10 3"/></svg></span>
+            Maintains full backup reserve for critical operations
+          </li>
+          <li>
+            <span class="bullet-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2 6 5 9 10 3"/></svg></span>
+            Integrates solar generation for maximum self-consumption
+          </li>
+        </ul>
+      </div>
+      <div class="ems-diagram-wrap fade-up fade-up-d1">
+        <img src="images/ems_diagram.jpg" alt="EnergiOS + Coulomb AI energy management system diagram" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Band 4: Revenue streams (dark) -->
+  <section class="platform-revenue-band">
+    <div class="platform-revenue-inner">
+      <div class="revenue-header fade-up">
+        <div class="section-label">Revenue &amp; Savings</div>
+        <h2>Four Ways Your System Pays You Back</h2>
+        <p>Coulomb AI™ evaluates every opportunity and automatically executes the optimal strategy — no manual intervention required.</p>
+      </div>
+      <div class="revenue-cards">
+        <div class="rev-card fade-up">
+          <div class="rev-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div class="rev-card-num">↑ 14%</div>
+          <h4>Energy Arbitrage</h4>
+          <p>Charge when grid prices are low. Power your facility when prices peak. Coulomb AI automates every cycle.</p>
+        </div>
+        <div class="rev-card fade-up fade-up-d1">
+          <div class="rev-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="rev-card-num">$0</div>
+          <h4>Demand Charge Reduction</h4>
+          <p>Flatten your demand curve during peak windows. Eliminate the largest line item on your commercial utility bill.</p>
+        </div>
+        <div class="rev-card fade-up fade-up-d2">
+          <div class="rev-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+          </div>
+          <div class="rev-card-num">+$</div>
+          <h4>Grid Services Revenue</h4>
+          <p>Earn payments for demand response, frequency regulation, and capacity market participation through GridIQ™.</p>
+        </div>
+        <div class="rev-card fade-up fade-up-d3">
+          <div class="rev-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="rev-card-num">VPP</div>
+          <h4>Virtual Power Plant</h4>
+          <p>Join a VPP to earn additional revenue during grid stress events — your battery works for you around the clock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Band 5: ROI CTA (clean white) -->
+  <section class="platform-roi-band">
+    <div class="platform-roi-inner fade-up">
+      <div class="section-label">ROI Calculator</div>
+      <h2>See What Your System Could Earn</h2>
+      <p>Use our ROI calculator to estimate your projected savings and revenue — with and without solar — based on your facility size, location, and utility rate structure.</p>
+      <div class="roi-stat-row">
+        <div class="roi-stat">
+          <div class="roi-stat-num"><span>14%</span></div>
+          <div class="roi-stat-label">Lower 15-Year TCO</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-stat-num"><span>4yr</span></div>
+          <div class="roi-stat-label">Typical Payback Period</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-stat-num"><span>20yr</span></div>
+          <div class="roi-stat-label">Projected Battery Life</div>
+        </div>
+      </div>
+      <div class="cta-btns">
+        <a href="#" class="btn btn-primary">Calculate Your ROI →</a>
+        <a href="#" class="btn btn-outline">Request a System Design</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3: WHY SODIUM-ION — Bold Tabbed Split
+  ============================================= -->
+  <section id="why" class="why-section">
+
+    <!-- Intro header -->
+    <div class="why-intro-bar fade-up">
+      <div class="section-label" style="color:var(--green);">Why Sodium-Ion?</div>
+      <h2>The Battery That Solves What Lithium Can't</h2>
+      <p>Three critical problems hold back lithium-ion in industrial and defense applications. Coulomb's sodium-ion chemistry eliminates all three.</p>
+    </div>
+
+    <!-- Tab navigation -->
+    <div class="why-tabs" id="whyTabs">
+      <div class="why-tab active" data-panel="0">
+        <span class="why-tab-num">1</span> Safety &amp; Fire Risk
+      </div>
+      <div class="why-tab" data-panel="1">
+        <span class="why-tab-num">2</span> Extreme Temperature
+      </div>
+      <div class="why-tab" data-panel="2">
+        <span class="why-tab-num">3</span> Supply Chain &amp; Cost
+      </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="why-panels">
+
+      <!-- Panel 1: Safety -->
+      <div class="why-panel active" id="whyPanel0">
+        <div class="wp-left">
+          <div class="wp-eyebrow" style="color:#e74c3c;">
+            <span class="wp-eyebrow-dot" style="background:#e74c3c;"></span>
+            The Lithium-Ion Problem
+          </div>
+          <h3>130+ Fires Per Month.<br/>Zero With Coulomb.</h3>
+          <p>Thermal runaway in lithium-ion batteries creates mounting liability, insurance scrutiny, and AHJ approval friction — especially in enclosed industrial and defense environments. Coulomb's sodium-ion chemistry is fundamentally non-flammable.</p>
+          <div class="wp-compare">
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              130+ Li-ion thermal incidents reported monthly industry-wide
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              Cannot be air-shipped — slows deployment timelines
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              Complex AHJ approvals, rising insurance premiums
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Coulomb: Zero thermal incidents to date
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Air-shippable — faster deployment, fewer restrictions
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Reduced thermal propagation risk = faster AHJ approvals
+            </div>
+          </div>
+          <div class="wp-stat">
+            <div class="wp-stat-num">0</div>
+            <div class="wp-stat-label"><strong>Thermal Incidents to Date</strong>Deployed in active defense and industrial applications</div>
+          </div>
+        </div>
+        <div class="wp-right">
+          <img src="images/coulomb_ci_image.jpg" alt="Industrial warehouse with electric forklifts" loading="lazy" />
+          <div class="wp-right-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Temperature -->
+      <div class="why-panel" id="whyPanel1">
+        <div class="wp-left">
+          <div class="wp-eyebrow" style="color:#f39c12;">
+            <span class="wp-eyebrow-dot" style="background:#f39c12;"></span>
+            The Lithium-Ion Problem
+          </div>
+          <h3>30% Power Loss in Cold.<br/>None With Coulomb.</h3>
+          <p>Lithium-ion batteries lose up to 30% capacity in cold climates and require expensive HVAC systems in hot environments — adding capital cost, energy overhead, and maintenance complexity to every deployment.</p>
+          <div class="wp-compare">
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              Up to 30% power loss in sub-zero temperatures
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              5% efficiency loss from active cooling loads
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              HVAC infrastructure required — high CapEx &amp; OpEx
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Coulomb: −40°C to +55°C with minimal derating
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              No HVAC required — eliminates a major cost center
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Ideal for cold storage, arctic deployments, desert bases
+            </div>
+          </div>
+          <div class="wp-stat">
+            <div class="wp-stat-num">−40°C</div>
+            <div class="wp-stat-label"><strong>to +55°C Operating Range</strong>No HVAC. No derating. No excuses.</div>
+          </div>
+        </div>
+        <div class="wp-right">
+          <img src="images/coulomb_defense_image.jpg" alt="Military forward operating base with large solar panel arrays" loading="lazy" />
+          <div class="wp-right-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Supply Chain -->
+      <div class="why-panel" id="whyPanel2">
+        <div class="wp-left">
+          <div class="wp-eyebrow" style="color:var(--green);">
+            <span class="wp-eyebrow-dot" style="background:var(--green);"></span>
+            The Lithium-Ion Problem
+          </div>
+          <h3>Geopolitical Risk.<br/>Eliminated With Sodium.</h3>
+          <p>Lithium supply chains are concentrated in a handful of countries, creating tariff exposure, long lead times, and DOD compliance barriers. Sodium is the fourth most abundant element on Earth — with the largest reserves in the USA.</p>
+          <div class="wp-compare">
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              45% tariff exposure on lithium imports
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              Concentrated global sourcing — geopolitical vulnerability
+            </div>
+            <div class="wp-row wp-row-bad">
+              <div class="wp-icon-bad">✕</div>
+              Long lead times, limited DOD/Federal compliance pathway
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Sodium: 1,000× more abundant than lithium
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              Largest sodium reserves in the United States
+            </div>
+            <div class="wp-row wp-row-good">
+              <div class="wp-icon-good">✓</div>
+              DOD/Federal compliance pathway — Made in America
+            </div>
+          </div>
+          <div class="wp-stat">
+            <div class="wp-stat-num">1000×</div>
+            <div class="wp-stat-label"><strong>More Abundant Than Lithium</strong>Largest reserves in the USA — no tariff exposure</div>
+          </div>
+        </div>
+        <div class="wp-right">
+          <img src="images/coulomb_motive_image.jpg" alt="Solar-powered fleet vehicles on campus" loading="lazy" />
+          <div class="wp-right-overlay"></div>
+        </div>
+      </div>
+
+    </div><!-- end why-panels -->
+
+    <!-- Proof numbers bar -->
+    <div class="why-proof-bar">
+      <div class="why-proof-inner">
+        <div class="wp-proof-item">
+          <div class="wp-proof-num">14%</div>
+          <div class="wp-proof-label">Lower 15-year TCO vs. liquid-cooled Li-ion</div>
+        </div>
+        <div class="wp-proof-item">
+          <div class="wp-proof-num">4yr</div>
+          <div class="wp-proof-label">Payback via reduced HVAC &amp; maintenance</div>
+        </div>
+        <div class="wp-proof-item">
+          <div class="wp-proof-num">20yr</div>
+          <div class="wp-proof-label">Projected battery life, verified testing</div>
+        </div>
+        <div class="wp-proof-item">
+          <div class="wp-proof-num">0</div>
+          <div class="wp-proof-label">Thermal incidents to date across all deployments</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-ctas">
+      <a href="#" class="btn btn-green">View Our Products →</a>
+      <a href="#cta" class="btn btn-outline-white">Contact Us to Learn More</a>
+    </div>
+
+  </section>
+
+  <!-- =============================================
+       SECTION 4: PARTNERS
+  ============================================= -->
+  <section class="partners-section">
+    <div class="partners-inner">
+      <div class="partners-eyebrow">Research Partners &amp; Supporters</div>
+      <div class="partners-logos">
+        <div class="partner-chip">Oak Ridge National Laboratory</div>
+        <div class="partner-chip">Argonne National Laboratory</div>
+        <div class="partner-chip">Rutgers University</div>
+        <div class="partner-chip">Columbia University</div>
+        <div class="partner-chip">Stony Brook University</div>
+        <div class="partner-chip">Cleantech Open</div>
+        <div class="partner-chip">Innovation Crossroads</div>
+        <div class="partner-chip">Spark Cleantech</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 5: FINAL CTA — White/Light background
+  ============================================= -->
+  <section class="cta-section" id="cta">
+    <div class="cta-inner">
+      <div class="cta-header fade-up">
+        <div class="section-label" style="text-align:center;">Get Started</div>
+        <h2>Find Your Energy Storage Solution</h2>
+        <p>Speak with a Coulomb engineer about your specific application, environment, and requirements.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card fade-up">
+          <div class="cta-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>For Business</h3>
+          <p>Discuss your critical infrastructure, industrial fleet, or facility energy storage needs with our engineering team.</p>
+          <a href="#" class="btn btn-primary">Request Consultation</a>
+        </div>
+        <div class="cta-card fade-up fade-up-d1">
+          <div class="cta-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Become a Partner</h3>
+          <p>Integrators, OEMs, and channel partners — explore how Coulomb's technology fits your product roadmap.</p>
+          <a href="#" class="btn btn-outline">Partner With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <!-- White logo for dark footer -->
+            <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+          </div>
+          <p class="footer-tagline">Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
             </a>
           </div>
         </div>
+
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">DC Battery Cabinets</a></li>
+            <li><a href="#">Motive / Traction Batteries</a></li>
+            <li><a href="#">Starter Batteries (SLI)</a></li>
+            <li><a href="#">BESS DC Block</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
+            <li><a href="defense-government.html">Defense &amp; Government</a></li>
+            <li><a href="motive-fleet.html">Motive &amp; Fleet</a></li>
+            <li><a href="#">Critical Infrastructure</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="sub-industries">
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h4>Data Centers</h4>
-          <p>Uninterruptible power and demand charge reduction for hyperscale and edge facilities.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">UPS Replacement</span>
-            <span class="app-tag">Demand Response</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h4>Retail &amp; Big Box</h4>
-          <p>Reduce peak demand charges and earn grid revenue across large retail footprints.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Arbitrage</span>
-            <span class="app-tag">Demand Charge</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h4>Healthcare</h4>
-          <p>Backup power and resilience for hospitals and medical facilities with zero-tolerance for outages.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Backup Power</span>
-            <span class="app-tag">Resilience</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          </div>
-          <h4>Manufacturing</h4>
-          <p>Power continuity and demand management for production lines and industrial facilities.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Power Continuity</span>
-            <span class="app-tag">VPP</span>
-          </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Coulomb Technology, Inc. All rights reserved.</div>
+        <div class="footer-made">🇺🇸 <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
         </div>
       </div>
     </div>
+  </footer>
 
-    <!-- Defense & Government -->
-    <div class="industry-block">
-      <div class="industry-main-card">
-        <div class="industry-card-bg" style="background-image: url('images/industry_defense_military.jpg');"></div>
-        <div class="industry-main-card-overlay"></div>
-        <div class="industry-main-card-content">
-          <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-            <div>
-              <span class="industry-tag">Defense &amp; Government</span>
-              <h3>Mission-Critical Reliability</h3>
-              <p>Energy independence for military installations and government infrastructure where reliability and domestic supply chain are non-negotiable.</p>
-            </div>
-            <a href="defense-government.html" class="industry-block-cta" style="margin-left:40px;">
-              Explore Defense
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sub-industries">
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4>Military Installations</h4>
-          <p>Microgrid and backup power for bases requiring energy independence and resilience.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Microgrid</span>
-            <span class="app-tag">Energy Independence</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          </div>
-          <h4>Federal Campuses</h4>
-          <p>Resilient power for government campuses, embassies, and critical facilities.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Backup Power</span>
-            <span class="app-tag">Grid Resilience</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h4>Emergency Operations</h4>
-          <p>Uninterruptible power for EOCs and emergency services during grid outages.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">EOC</span>
-            <span class="app-tag">First Responders</span>
-          </div>
-        </div>
-        <div class="sub-card">
-          <div class="sub-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <h4>Border &amp; Remote</h4>
-          <p>Off-grid and remote power for border security and forward operating locations.</p>
-          <div class="sub-card-apps">
-            <span class="app-tag">Off-Grid</span>
-            <span class="app-tag">Remote Power</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SMART TECHNOLOGY PLATFORM -->
-<section class="section platform" id="platform">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Integrated Intelligence</span>
-      <h2 class="section-title" style="color:var(--white);">Your Battery Works While<br>You Sleep</h2>
-      <p class="section-sub">Every Series-B, R, D, and L system ships as a complete, installed solution — PCS, EMS, mobile app, and AI — automatically earning revenue from the grid 24/7.</p>
-    </div>
-
-    <div class="platform-split">
-      <div class="platform-features">
-        <div class="platform-feature">
-          <div class="platform-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div class="platform-feature-text">
-            <h4>Demand Response Revenue</h4>
-            <p>Get paid by the grid operator for reducing load on demand. Your system responds automatically — no manual intervention required.</p>
-          </div>
-        </div>
-        <div class="platform-feature">
-          <div class="platform-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div class="platform-feature-text">
-            <h4>Energy Arbitrage</h4>
-            <p>Charge when electricity prices are low. Discharge to power your facility when prices are high. Coulomb AI™ handles every decision.</p>
-          </div>
-        </div>
-        <div class="platform-feature">
-          <div class="platform-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M23 13v-2"/></svg>
-          </div>
-          <div class="platform-feature-text">
-            <h4>Capacity &amp; Frequency Markets</h4>
-            <p>Enroll in capacity markets and frequency regulation programs. GridIQ™ automates enrollment, dispatch, and settlement.</p>
-          </div>
-        </div>
-        <div class="platform-feature">
-          <div class="platform-feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="platform-feature-text">
-            <h4>Multi-Tenant Access</h4>
-            <p>Property owners can give each tenant their own app access. Every business independently optimizes their utility bill.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="platform-app-visual">
-        <div class="app-mockup-wrap">
-          <img src="images/sr_smart_app.png" alt="Coulomb Mobile App" />
-          <div class="app-bubble bubble-savings">
-            <strong>$2,847</strong>
-            <span>Saved This Month</span>
-          </div>
-          <div class="app-bubble bubble-uptime">
-            <strong>98.7%</strong>
-            <span>System Uptime</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="engines-header">
-      <h3>Three Engines. One Intelligent System.</h3>
-      <p>Every integrated system runs on Coulomb's proprietary software stack — built for commercial scale.</p>
-    </div>
-    <div class="engines-grid">
-      <div class="engine-card">
-        <div class="engine-num">01</div>
-        <div class="engine-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-        </div>
-        <h4>EnergiOS™</h4>
-        <p>The core energy management operating system. Monitors, controls, and optimizes the entire system in real time — from cell level to grid connection.</p>
-        <ul class="engine-features">
-          <li>Real-time monitoring &amp; control</li>
-          <li>Predictive maintenance alerts</li>
-          <li>State-of-health tracking</li>
-        </ul>
-      </div>
-      <div class="engine-card">
-        <div class="engine-num">02</div>
-        <div class="engine-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h4>Coulomb AI™</h4>
-        <p>Predictive AI engine that forecasts energy prices, weather patterns, and facility load to maximize revenue and minimize cost — automatically.</p>
-        <ul class="engine-features">
-          <li>Price &amp; weather forecasting</li>
-          <li>Load prediction &amp; optimization</li>
-          <li>Revenue scenario modeling</li>
-        </ul>
-      </div>
-      <div class="engine-card">
-        <div class="engine-num">03</div>
-        <div class="engine-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h4>GridIQ™</h4>
-        <p>Grid services automation that enrolls and dispatches for demand response, frequency regulation, and capacity markets — without any manual work.</p>
-        <ul class="engine-features">
-          <li>Automated market enrollment</li>
-          <li>Demand response dispatch</li>
-          <li>Settlement &amp; reporting</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="revenue-streams">
-      <h4>Revenue Streams Your System Unlocks</h4>
-      <div class="revenue-grid">
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div>
-            <h5>DER / VPP Enrollment</h5>
-            <p>Get paid for participating in virtual power plant programs</p>
-          </div>
-        </div>
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div>
-            <h5>Frequency Regulation</h5>
-            <p>Earn payments for fast-response grid stabilization services</p>
-          </div>
-        </div>
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><path d="M23 13v-2"/></svg>
-          </div>
-          <div>
-            <h5>Capacity Market</h5>
-            <p>Receive capacity payments for committed peak-period availability</p>
-          </div>
-        </div>
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div>
-            <h5>Energy Arbitrage</h5>
-            <p>Buy low, sell high — automated by Coulomb AI™ every day</p>
-          </div>
-        </div>
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <div>
-            <h5>Demand Response</h5>
-            <p>Get paid for reducing load when the grid operator calls</p>
-          </div>
-        </div>
-        <div class="revenue-item">
-          <div class="revenue-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          </div>
-          <div>
-            <h5>Demand Charge Reduction</h5>
-            <p>Slash monthly utility bills by flattening peak demand spikes</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section products" id="products">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Product Lineup</span>
-      <h2 class="section-title">The Right System for Every Application</h2>
-      <p class="section-sub">Seven purpose-built sodium-ion energy storage systems — from starter batteries to long-duration grid storage.</p>
-    </div>
-    <div class="products-grid">
-      <a href="product-series-b.html" class="product-card">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-B</div>
-            <div class="product-name">Business</div>
-          </div>
-          <span class="product-badge">Full System</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">279 kWh</div>
-          <div class="product-spec-sub">821V / 140kW max rated / Air-cooled</div>
-          <p class="product-desc">Complete integrated BESS for commercial &amp; industrial facilities. Includes PCS, EMS, mobile app, and AI for automated revenue generation.</p>
-          <div class="product-software">
-            <span class="sw-tag">EnergiOS™</span>
-            <span class="sw-tag">Coulomb AI™</span>
-            <span class="sw-tag">GridIQ™</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>C&amp;I / Commercial</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </a>
-
-      <div class="product-card" style="cursor:default;">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-DC</div>
-            <div class="product-name">DC Block</div>
-          </div>
-          <span class="product-badge">OEM Block</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">279 kWh</div>
-          <div class="product-spec-sub">821V / 140kW max / 2.2–24hr duration</div>
-          <p class="product-desc">Air-cooled DC block for integrators and developers who supply their own PCS and controls. The raw building block of larger BESS projects.</p>
-          <div class="product-software">
-            <span class="sw-tag">OEM Integration</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Integrators / Developers</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <a href="product-series-r-residential.html" class="product-card">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-R</div>
-            <div class="product-name">Residential</div>
-          </div>
-          <span class="product-badge">Full System</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">10 kWh</div>
-          <div class="product-spec-sub">48V / Stackable / Indoor &amp; Outdoor</div>
-          <p class="product-desc">Home energy storage with full AI integration. Earn from the grid, cut utility bills, and stay powered during outages — automatically.</p>
-          <div class="product-software">
-            <span class="sw-tag">EnergiOS™</span>
-            <span class="sw-tag">Coulomb AI™</span>
-            <span class="sw-tag">GridIQ™</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Residential</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </a>
-
-      <div class="product-card" style="cursor:default;">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-D</div>
-            <div class="product-name">Data Center</div>
-          </div>
-          <span class="product-badge">Coming Soon</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">TBD</div>
-          <div class="product-spec-sub">Specs in development</div>
-          <p class="product-desc">Purpose-built for hyperscale and edge data centers. Designed to meet Tier III/IV uptime requirements with AI-optimized power management.</p>
-          <div class="product-software">
-            <span class="sw-tag">EnergiOS™</span>
-            <span class="sw-tag">Coulomb AI™</span>
-            <span class="sw-tag">GridIQ™</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Data Centers</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="product-card" style="cursor:default;">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-L</div>
-            <div class="product-name">Long-Duration</div>
-          </div>
-          <span class="product-badge">Coming Soon</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">Long-Duration</div>
-          <div class="product-spec-sub">Chlorine redox saltwater chemistry</div>
-          <p class="product-desc">Ultra-long duration storage using chlorine redox saltwater chemistry. Ideal for grid-scale projects requiring 8–100+ hour discharge durations.</p>
-          <div class="product-software">
-            <span class="sw-tag">EnergiOS™</span>
-            <span class="sw-tag">Coulomb AI™</span>
-            <span class="sw-tag">GridIQ™</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Grid / Utility</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="product-card" style="cursor:default;">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-M</div>
-            <div class="product-name">Mobility</div>
-          </div>
-          <span class="product-badge">Motive Power</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">40 kWh</div>
-          <div class="product-spec-sub">48V / Drop-in replacement</div>
-          <p class="product-desc">Motive power for forklifts, pallet jacks, AGVs, and industrial vehicles. Drop-in replacement for lead-acid with zero maintenance and longer runtime.</p>
-          <div class="product-software">
-            <span class="sw-tag">BMS Telematics</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Forklifts / AGV / Fleet</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-
-      <div class="product-card" style="cursor:default;">
-        <div class="product-card-header">
-          <div>
-            <div class="product-series">Series-S</div>
-            <div class="product-name">Starter</div>
-          </div>
-          <span class="product-badge">Drop-In</span>
-        </div>
-        <div class="product-card-body">
-          <div class="product-spec">10–100 Ah</div>
-          <div class="product-spec-sub">12–24V / Optional BMS &amp; telematics</div>
-          <p class="product-desc">Starter batteries for vehicles, equipment, and security systems. Optional BMS with telematics and predictive analytics for fleet management.</p>
-          <div class="product-software">
-            <span class="sw-tag">Optional BMS</span>
-            <span class="sw-tag">Predictive Analytics</span>
-          </div>
-        </div>
-        <div class="product-card-footer">
-          <span>Vehicles / Equipment / Security</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY SODIUM-ION -->
-<section class="section sodium" id="sodium">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">The Technology Advantage</span>
-      <h2 class="section-title">Why Sodium-Ion?</h2>
-      <p class="section-sub">Lithium-ion was designed for consumer electronics. Sodium-ion was engineered for the demands of commercial and industrial infrastructure.</p>
-    </div>
-    <div class="sodium-grid">
-      <div class="sodium-col challenges">
-        <h3>The Problem with Lithium-Ion</h3>
-        <div class="sodium-item challenge">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          </div>
-          <div>
-            <h4>Safety Risks</h4>
-            <p>Thermal runaway incidents complicate permitting, increase insurance costs, and create liability exposure for property owners and operators.</p>
-          </div>
-        </div>
-        <div class="sodium-item challenge">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-          </div>
-          <div>
-            <h4>Temperature Limitations</h4>
-            <p>Performance degrades significantly in extreme heat or cold, reducing reliability in outdoor and industrial environments.</p>
-          </div>
-        </div>
-        <div class="sodium-item challenge">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div>
-            <h4>Supply Chain Exposure</h4>
-            <p>Concentrated global sourcing of lithium, cobalt, and nickel creates procurement uncertainty and geopolitical risk.</p>
-          </div>
-        </div>
-      </div>
-      <div class="sodium-col benefits">
-        <h3>The Sodium-Ion Advantage</h3>
-        <div class="sodium-item benefit">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <h4>Enhanced Safety</h4>
-            <p>Reduced thermal propagation vs. lithium-ion enables safer installations in occupied buildings, warehouses, and urban environments.</p>
-          </div>
-        </div>
-        <div class="sodium-item benefit">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-          </div>
-          <div>
-            <h4>Extreme Temperature Range</h4>
-            <p>−40°C to +55°C operation with minimal derating. Performs reliably in cold storage, outdoor installations, and desert climates.</p>
-          </div>
-        </div>
-        <div class="sodium-item benefit">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          </div>
-          <div>
-            <h4>Domestic Supply Chain</h4>
-            <p>Sodium is abundant and domestically available. U.S. manufacturing pathway reduces geopolitical risk and qualifies for domestic content incentives.</p>
-          </div>
-        </div>
-        <div class="sodium-item benefit">
-          <div class="sodium-item-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div>
-            <h4>Lower Total Cost of Ownership</h4>
-            <p>14% better economics over 15 years vs. lithium-ion, with 20-year design life, 6,000+ cycle life, and lower insurance and permitting costs.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sodium-photo" style="margin-top:48px;">
-      <img src="images/hero_bess_installation.jpg" alt="Coulomb sodium-ion BESS installation" />
-      <div class="sodium-photo-caption">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <p>Sodium is 1,000× more abundant than lithium in the Earth's crust — making Coulomb's supply chain fundamentally more resilient than any lithium-based technology.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="section-inner">
-    <span class="section-label">Get Started</span>
-    <h2>Ready to Make Your<br>Battery <span>Work for You?</span></h2>
-    <p>Talk to a Coulomb energy specialist about the right system for your facility, fleet, or infrastructure project.</p>
-    <div class="cta-buttons">
-      <a href="https://coulombtechnology.com/contact" class="btn-primary">Request a Consultation</a>
-      <a href="#products" class="btn-outline">View All Products</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
-        <p>Sodium-ion energy storage engineered for commercial, industrial, defense, and mobility applications. Built for the demands of mission-critical infrastructure.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Products</h5>
-        <ul>
-          <li><a href="product-series-b.html">Series-B Business</a></li>
-          <li><a href="#">Series-DC DC Block</a></li>
-          <li><a href="product-series-r-residential.html">Series-R Residential</a></li>
-          <li><a href="#">Series-D Data Center</a></li>
-          <li><a href="#">Series-L Long-Duration</a></li>
-          <li><a href="#">Series-M Mobility</a></li>
-          <li><a href="#">Series-S Starter</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Industries</h5>
-        <ul>
-          <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
-          <li><a href="defense-government.html">Defense &amp; Government</a></li>
-          <li><a href="#">Motive &amp; Fleet</a></li>
-          <li><a href="#">Data Centers</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="https://coulombtechnology.com/about">About</a></li>
-          <li><a href="https://coulombtechnology.com/contact">Contact</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Use</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Coulomb Technology. All rights reserved.</p>
-      <p><a href="https://coulombtechnology.com">coulombtechnology.com</a></p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // Sticky nav shadow
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     });
-  });
 
-  // Nav scroll effect
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.4)' : 'none';
-  });
-</script>
+    // Scroll-triggered fade-up
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Force hero video playback (handles autoplay policy)
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+      heroVideo.muted = true;
+      const playPromise = heroVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay blocked — show poster image as fallback
+          heroVideo.style.display = 'none';
+          const fallback = document.querySelector('.hero-fallback');
+          if (fallback) fallback.style.opacity = '1';
+        });
+      }
+    }
+
+    // Why Sodium-Ion tab switching
+    const tabs = document.querySelectorAll('.why-tab');
+    const panels = document.querySelectorAll('.why-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.dataset.panel);
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        panels[idx].classList.add('active');
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
