@@ -4,429 +4,524 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coulomb Technology — Energy Storage You Can Bank On</title>
-  <meta name="description" content="Sodium-ion BESS engineered for commercial, defense, and residential applications. Zero thermal runaway. 20-year design life. Lower TCO than lithium-ion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --green: #39FF14;
-      --green-dark: #2dd10f;
+      --green: #82FF03;
+      --green-dark: #6be000;
       --black: #000000;
       --off-black: #0a0a0a;
       --dark: #111111;
       --mid-dark: #1a1a1a;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-500: #6B7280;
+      --gray-300: #D1D5DB;
+      --gray-100: #F3F4F6;
+      --gray-50: #F9FAFB;
       --white: #ffffff;
-      --light-gray: #f5f5f5;
-      --mid-gray: #e0e0e0;
-      --text-gray: #888888;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --nav-h: 72px;
-      --font: 'Helvetica Neue', Arial, sans-serif;
     }
+
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--white); color: var(--black); overflow-x: hidden; }
+    body { font-family: var(--font); color: var(--gray-900); background: var(--white); overflow-x: hidden; }
 
     /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       height: var(--nav-h);
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(12px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px;
-      border-bottom: 1px solid rgba(57,255,20,0.15);
+      padding: 0 48px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 38px; mix-blend-mode: screen; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--green); }
-    .nav-links .dropdown { position: relative; }
-    .nav-links .dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
-    .dropdown-menu {
-      display: none; position: absolute; top: calc(100% + 16px); left: -16px;
-      background: #111; border: 1px solid rgba(57,255,20,0.2);
-      border-radius: 8px; min-width: 200px; padding: 8px 0;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.6);
-    }
-    .dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 10px 20px; color: rgba(255,255,255,0.75); font-size: 13px; }
-    .dropdown-menu a:hover { color: var(--green); background: rgba(57,255,20,0.05); }
+    .nav-logo img { height: 36px; width: auto; display: block; mix-blend-mode: screen; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
     .nav-cta {
-      background: var(--green); color: var(--black) !important;
-      padding: 10px 22px; border-radius: 6px; font-weight: 700;
-      font-size: 13px; letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s;
+      background: var(--green); color: var(--black);
+      padding: 10px 22px; border-radius: 6px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
 
     /* ─── HERO ─── */
     .hero {
-      position: relative; height: 100vh; min-height: 680px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding-bottom: 80px; overflow: hidden;
+      position: relative;
+      height: 100vh; min-height: 680px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
     }
-    /* Slideshow */
-    .hero-slides { position: absolute; inset: 0; z-index: 0; }
+    .hero-slides { position: absolute; inset: 0; }
     .hero-slide {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.5s ease-in-out;
+      opacity: 0;
+      animation: heroFade 25s infinite;
     }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0,0,0,0.82) 0%,
-        rgba(0,0,0,0.65) 40%,
-        rgba(0,0,0,0.35) 70%,
-        rgba(0,0,0,0.2) 100%
-      );
-    }
-    /* Slide indicator dots */
-    .hero-dots {
-      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 8px; z-index: 10;
-    }
-    .hero-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.35); cursor: pointer; transition: background 0.3s;
-    }
-    .hero-dot.active { background: var(--green); }
-    /* Slide labels */
-    .hero-slide-label {
-      position: absolute; top: calc(var(--nav-h) + 24px); right: 40px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); z-index: 10;
-      opacity: 0; transition: opacity 0.5s;
-    }
-    .hero-slide-label.active { opacity: 1; }
+    .hero-slide:nth-child(1) { animation-delay: 0s; background-image: url('images/hero_slide1_bess_field.jpg'); animation-name: heroFadeFirst; }
+    .hero-slide:nth-child(2) { animation-delay: 5s; background-image: url('images/def_military_solar_base.jpg'); }
+    .hero-slide:nth-child(3) { animation-delay: 10s; background-image: url('images/mot_manufacturing_forklift.jpg'); }
+    .hero-slide:nth-child(4) { animation-delay: 15s; background-image: url('images/hero_slide5_ev_fleet.jpg'); }
+    .hero-slide:nth-child(5) { animation-delay: 20s; background-image: url('images/mot_security_campus_cart.jpg'); }
 
-    .hero-content { position: relative; z-index: 5; padding: 0 80px; max-width: 780px; }
+    @keyframes heroFadeFirst {
+      0%   { opacity: 1; }
+      20%  { opacity: 1; }
+      24%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    @keyframes heroFade {
+      0%   { opacity: 0; }
+      4%   { opacity: 1; }
+      20%  { opacity: 1; }
+      24%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      width: 100%; padding: 0 48px 80px;
+    }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(57,255,20,0.12); border: 1px solid rgba(57,255,20,0.35);
-      border-radius: 20px; padding: 6px 14px; margin-bottom: 28px;
+      background: rgba(130,255,3,0.15);
+      border: 1px solid rgba(130,255,3,0.4);
+      color: var(--green); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 28px;
     }
-    .hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
-    .hero-badge span { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
-    .hero h1 { font-size: clamp(42px, 6vw, 76px); font-weight: 800; line-height: 1.05; color: var(--white); margin-bottom: 20px; }
-    .hero h1 em { font-style: normal; color: var(--green); }
-    .hero-sub { font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.72); max-width: 540px; margin-bottom: 36px; }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero-badge span { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 900; line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+    .hero-headline em { color: var(--green); font-style: normal; }
+    .hero-sub {
+      font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.75);
+      max-width: 560px; line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
     .btn-primary {
-      background: var(--green); color: var(--black); padding: 14px 28px;
-      border-radius: 6px; font-weight: 700; font-size: 14px; letter-spacing: 0.03em;
-      text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block;
+      background: var(--green); color: var(--black);
+      padding: 14px 28px; border-radius: 6px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
     }
     .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
     .btn-outline {
-      background: transparent; color: var(--white); padding: 14px 28px;
-      border: 1.5px solid rgba(255,255,255,0.4); border-radius: 6px;
-      font-weight: 600; font-size: 14px; text-decoration: none;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s; display: inline-block;
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      padding: 14px 28px; border-radius: 6px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .btn-outline:hover { border-color: var(--white); color: var(--white); transform: translateY(-2px); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.08); }
 
-    /* Hero Stats — two rows */
+    /* Hero stats — two rows */
     .hero-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; border-top: 1px solid rgba(255,255,255,0.12);
-      padding-top: 28px; max-width: 680px;
+      display: grid; grid-template-columns: repeat(4, auto);
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 32px;
+      max-width: 900px;
     }
-    .hero-stat { padding-right: 24px; }
-    .hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.12); padding-left: 24px; padding-right: 24px; }
-    .hero-stat-value { font-size: 32px; font-weight: 800; color: var(--green); line-height: 1; }
-    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
-    /* Row 2 stats */
+    .hero-stat {
+      padding: 0 32px 0 0;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-stat:last-child { border-right: none; padding-right: 0; }
+    .hero-stat:not(:first-child) { padding-left: 32px; }
+    .stat-num {
+      font-size: 32px; font-weight: 800; color: var(--white);
+      line-height: 1; letter-spacing: -0.02em;
+    }
+    .stat-num span { color: var(--green); }
+    .stat-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
     .hero-stats-row2 {
-      display: flex; gap: 32px; margin-top: 16px;
-      padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08);
-      max-width: 680px;
+      display: flex; gap: 32px; flex-wrap: wrap;
+      padding-top: 20px;
+      max-width: 900px;
     }
-    .hero-stat2 { display: flex; align-items: center; gap: 8px; }
-    .hero-stat2-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .hero-stat2-text { font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.03em; }
-    .hero-stat2-text strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .hero-cert {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500;
+    }
+    .hero-cert svg { color: var(--green); flex-shrink: 0; }
 
-    /* ─── CERTIFICATIONS BAND ─── */
-    .cert-band {
-      background: var(--dark); border-top: 1px solid rgba(57,255,20,0.1);
-      border-bottom: 1px solid rgba(57,255,20,0.1);
-      padding: 18px 80px; display: flex; align-items: center; gap: 12px; overflow: hidden;
+    /* Slide dots */
+    .hero-dots {
+      position: absolute; bottom: 32px; right: 48px;
+      display: flex; gap: 8px; z-index: 3;
     }
-    .cert-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-gray); white-space: nowrap; margin-right: 8px; }
-    .cert-items { display: flex; gap: 10px; flex-wrap: wrap; }
-    .cert-item {
-      background: rgba(57,255,20,0.08); border: 1px solid rgba(57,255,20,0.2);
-      border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700;
-      color: rgba(255,255,255,0.7); letter-spacing: 0.05em; white-space: nowrap;
+    .hero-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: background 0.3s;
     }
+    .hero-dot.active { background: var(--green); width: 24px; border-radius: 3px; }
 
-    /* ─── SECTION UTILITIES ─── */
+    /* ─── SECTION SHARED ─── */
+    section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
     .section-label {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 20px;
     }
-    .section-label-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-    .section-label span { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); }
-    .section-title { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.1; }
-    .section-sub { font-size: 17px; line-height: 1.65; color: #555; max-width: 600px; margin-top: 14px; }
-    .section-sub-white { color: rgba(255,255,255,0.65); }
+    .section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--green); }
+    h2.section-title {
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+    }
+    h2.section-title.white { color: var(--white); }
+    .section-sub {
+      font-size: 18px; color: var(--gray-500); line-height: 1.6;
+      max-width: 600px;
+    }
+    .section-sub.white { color: rgba(255,255,255,0.6); }
 
-    /* ─── PRODUCTS SECTION ─── */
-    .products-section { padding: 100px 80px; background: var(--dark); }
-    .products-section .section-title { color: var(--white); }
-    .products-section .section-sub { color: rgba(255,255,255,0.55); }
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+    /* ─── PRODUCTS ─── */
+    .products-section { background: var(--white); }
+    .products-header { text-align: center; margin-bottom: 64px; }
+    .products-header .section-sub { margin: 0 auto; }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      border-radius: 16px; overflow: hidden;
+    }
     .product-card {
-      position: relative; overflow: hidden; aspect-ratio: 4/5;
-      cursor: pointer; group: true;
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
     }
-    .product-card-img {
+    .product-card img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s ease; display: block;
+      transition: transform 0.6s ease;
     }
-    .product-card:hover .product-card-img { transform: scale(1.05); }
+    .product-card:hover img { transform: scale(1.04); }
     .product-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
     }
-    .product-card-tag {
-      position: absolute; top: 20px; left: 20px;
-      background: rgba(57,255,20,0.15); border: 1px solid rgba(57,255,20,0.4);
-      border-radius: 4px; padding: 4px 10px; font-size: 10px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green);
+    .product-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px;
     }
-    .product-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
-    .product-card-name { font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 6px; }
-    .product-card-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
-    .product-card-specs { display: flex; gap: 16px; margin-bottom: 20px; }
+    .product-tag {
+      display: inline-block;
+      background: rgba(130,255,3,0.2); border: 1px solid rgba(130,255,3,0.4);
+      color: var(--green); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .product-name {
+      font-size: 28px; font-weight: 800; color: var(--white);
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .product-desc { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.5; margin-bottom: 20px; }
+    .product-specs { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
     .product-spec { text-align: center; }
-    .product-spec-val { font-size: 18px; font-weight: 800; color: var(--green); }
-    .product-spec-key { font-size: 9px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
-    .product-card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--green); font-size: 12px; font-weight: 700;
-      letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase;
+    .product-spec-val { font-size: 20px; font-weight: 800; color: var(--white); line-height: 1; }
+    .product-spec-unit { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.06em; }
+    .product-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); font-size: 13px; font-weight: 700;
+      text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase;
     }
-    .product-card-link::after { content: '→'; transition: transform 0.2s; }
-    .product-card:hover .product-card-link::after { transform: translateX(4px); }
+    .product-link svg { transition: transform 0.2s; }
+    .product-link:hover svg { transform: translateX(4px); }
 
-    /* ─── PLATFORM SECTION ─── */
-    .platform-section { padding: 100px 80px; background: var(--black); }
-    .platform-section .section-title { color: var(--white); }
-    .platform-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 60px; }
-    .platform-intro { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.55); }
-    .engines-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    /* ─── PLATFORM ─── */
+    .platform-section { background: var(--dark); }
+    .platform-header { margin-bottom: 64px; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; }
     .engine-card {
-      background: var(--mid-dark); padding: 40px 36px;
-      border-top: 3px solid transparent; transition: border-color 0.3s;
+      background: var(--mid-dark);
+      padding: 48px 40px;
+      transition: background 0.3s;
     }
-    .engine-card:hover { border-top-color: var(--green); }
-    .engine-num { font-size: 56px; font-weight: 900; color: rgba(57,255,20,0.12); line-height: 1; margin-bottom: 20px; }
-    .engine-icon { font-size: 28px; margin-bottom: 16px; }
-    .engine-name { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
-    .engine-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 20px; }
+    .engine-card:hover { background: #222; }
+    .engine-num {
+      font-size: 72px; font-weight: 900; color: rgba(130,255,3,0.12);
+      line-height: 1; letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+    .engine-icon {
+      width: 48px; height: 48px; margin-bottom: 20px;
+      color: var(--green);
+    }
+    .engine-name { font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .engine-desc { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 24px; }
     .engine-features { list-style: none; }
-    .engine-features li { font-size: 12px; color: rgba(255,255,255,0.45); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: flex-start; gap: 8px; }
-    .engine-features li::before { content: '•'; color: var(--green); flex-shrink: 0; margin-top: 1px; }
-    .platform-footer { margin-top: 40px; text-align: center; }
-    .platform-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 16px; }
-
-    /* ─── INDUSTRIES SECTION ─── */
-    .industries-section { padding: 100px 80px; background: var(--white); }
-    .industries-header { text-align: center; margin-bottom: 72px; }
-    .industries-header .section-sub { margin: 14px auto 0; }
-
-    /* Industry tabs */
-    .industry-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--mid-gray); margin-bottom: 0; }
-    .industry-tab {
-      flex: 1; padding: 20px 24px; cursor: pointer;
-      border-bottom: 3px solid transparent; margin-bottom: -2px;
-      transition: all 0.2s; text-align: center;
+    .engine-features li {
+      font-size: 13px; color: rgba(255,255,255,0.45);
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: flex-start; gap: 10px;
     }
-    .industry-tab.active { border-bottom-color: var(--green); }
-    .industry-tab-icon { font-size: 24px; margin-bottom: 8px; }
-    .industry-tab-name { font-size: 15px; font-weight: 700; color: #333; }
-    .industry-tab.active .industry-tab-name { color: var(--black); }
-    .industry-tab-sub { font-size: 12px; color: var(--text-gray); margin-top: 4px; }
+    .engine-features li::before { content: ''; display: block; width: 4px; height: 4px; background: var(--green); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .platform-footer { text-align: center; margin-top: 48px; }
+    .platform-note { font-size: 14px; color: rgba(255,255,255,0.35); margin-top: 16px; }
 
-    /* Industry panels */
+    /* ─── INDUSTRIES ─── */
+    .industries-section { background: var(--white); }
+    .industries-header { margin-bottom: 56px; }
+    .industry-tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--gray-300);
+      margin-bottom: 0;
+    }
+    .industry-tab {
+      padding: 16px 32px;
+      font-size: 15px; font-weight: 600; color: var(--gray-500);
+      cursor: pointer; border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .industry-tab svg { width: 20px; height: 20px; }
+    .industry-tab.active { color: var(--gray-900); border-bottom-color: var(--green); }
+    .industry-tab:hover:not(.active) { color: var(--gray-700); }
+
     .industry-panel { display: none; }
     .industry-panel.active { display: block; }
 
-    /* Industry hero banner */
     .industry-banner {
-      position: relative; height: 380px; overflow: hidden;
-      margin-bottom: 0;
+      position: relative; height: 480px; overflow: hidden;
+      border-radius: 0 0 0 0;
     }
-    .industry-banner-img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
+    .industry-banner img { width: 100%; height: 100%; object-fit: cover; }
     .industry-banner-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.1) 100%);
-      display: flex; align-items: center; padding: 0 60px;
+      background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
     }
-    .industry-banner-content { max-width: 560px; }
+    .industry-banner-content {
+      position: absolute; bottom: 0; left: 0;
+      padding: 48px 56px;
+      max-width: 600px;
+    }
     .industry-banner-tag {
-      display: inline-block; background: rgba(57,255,20,0.15); border: 1px solid rgba(57,255,20,0.4);
-      border-radius: 4px; padding: 4px 12px; font-size: 10px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+      display: inline-block;
+      background: var(--green); color: var(--black);
+      font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 4px; margin-bottom: 16px;
     }
-    .industry-banner-title { font-size: 38px; font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
-    .industry-banner-desc { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px; }
-    .industry-banner-link {
+    .industry-banner-title {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 800;
+      color: var(--white); line-height: 1.15; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .industry-banner-desc { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 28px; }
+    .btn-green-outline {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--green); color: var(--black); padding: 12px 24px;
-      border-radius: 6px; font-weight: 700; font-size: 13px; text-decoration: none;
-      transition: background 0.2s;
+      border: 1.5px solid var(--green); color: var(--green);
+      padding: 12px 24px; border-radius: 6px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
     }
-    .industry-banner-link:hover { background: var(--green-dark); }
+    .btn-green-outline:hover { background: var(--green); color: var(--black); }
 
-    /* Sub-industry grid */
-    .sub-industry-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-      border-top: 1px solid var(--mid-gray);
+    /* Sub-industry cards */
+    .sub-industries {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
     }
     .sub-card {
-      border-right: 1px solid var(--mid-gray);
-      overflow: hidden; transition: box-shadow 0.2s;
+      background: var(--white);
+      overflow: hidden;
+      transition: background 0.2s;
     }
-    .sub-card:last-child { border-right: none; }
-    .sub-card:hover { box-shadow: inset 0 -3px 0 var(--green); }
-    .sub-card-img-wrap { position: relative; height: 180px; overflow: hidden; }
-    .sub-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .sub-card:hover .sub-card-img { transform: scale(1.05); }
-    .sub-card-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6) 100%);
-    }
-    .sub-card-body { padding: 24px 24px 28px; }
-    .sub-card-name { font-size: 16px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
-    .sub-card-desc { font-size: 13px; color: #555; line-height: 1.55; margin-bottom: 16px; }
-    .sub-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .sub-card:hover { background: var(--gray-50); }
+    .sub-card-img { position: relative; height: 200px; overflow: hidden; }
+    .sub-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .sub-card:hover .sub-card-img img { transform: scale(1.04); }
+    .sub-card-body { padding: 24px; }
+    .sub-card-name { font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+    .sub-card-desc { font-size: 13px; color: var(--gray-500); line-height: 1.55; margin-bottom: 16px; }
+    .sub-card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
     .sub-tag {
-      background: var(--light-gray); border-radius: 3px; padding: 3px 8px;
-      font-size: 10px; font-weight: 600; color: #555; letter-spacing: 0.04em;
+      font-size: 11px; font-weight: 600; color: var(--gray-700);
+      background: var(--gray-100); padding: 3px 8px; border-radius: 4px;
     }
-    .sub-card-apps { font-size: 11px; color: var(--text-gray); }
-    .sub-card-apps strong { color: var(--black); font-weight: 700; display: block; margin-bottom: 4px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .sub-card-apps { font-size: 12px; color: var(--gray-500); }
+    .sub-card-apps strong { color: var(--gray-700); font-weight: 600; }
 
-    /* ─── SODIUM SECTION ─── */
-    .sodium-section { padding: 100px 80px; background: var(--light-gray); }
-    .sodium-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+    /* ─── SODIUM ─── */
+    .sodium-section { background: var(--gray-50); }
+    .sodium-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
     .sodium-visual { position: relative; }
-    .sodium-img { width: 100%; border-radius: 8px; display: block; }
+    .sodium-visual img {
+      width: 100%; border-radius: 12px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.15);
+    }
     .sodium-badge {
       position: absolute; bottom: -20px; right: -20px;
-      background: var(--black); border: 2px solid var(--green);
-      border-radius: 8px; padding: 20px 24px; text-align: center;
+      background: var(--green); color: var(--black);
+      width: 120px; height: 120px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-weight: 900; box-shadow: 0 8px 32px rgba(130,255,3,0.4);
     }
-    .sodium-badge-val { font-size: 36px; font-weight: 900; color: var(--green); }
-    .sodium-badge-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; }
-    .sodium-points { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
-    .sodium-point { }
-    .sodium-point-icon { font-size: 24px; margin-bottom: 10px; }
-    .sodium-point-title { font-size: 15px; font-weight: 800; color: var(--black); margin-bottom: 6px; }
-    .sodium-point-desc { font-size: 13px; color: #555; line-height: 1.55; }
-
-    /* ─── APP SECTION ─── */
-    .app-section { padding: 100px 80px; background: var(--black); }
-    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
-    .app-features { display: flex; flex-direction: column; gap: 28px; }
-    .app-feature { display: flex; gap: 18px; align-items: flex-start; }
-    .app-feature-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(57,255,20,0.1); border: 1px solid rgba(57,255,20,0.25);
+    .sodium-badge-num { font-size: 28px; line-height: 1; }
+    .sodium-badge-label { font-size: 10px; font-weight: 700; text-align: center; line-height: 1.3; }
+    .sodium-benefits {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 40px;
+    }
+    .benefit {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .benefit-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(130,255,3,0.1); border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+      color: var(--green);
     }
-    .app-feature-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
-    .app-feature-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.55; }
-    .app-store-btns { display: flex; gap: 12px; margin-top: 36px; }
-    .app-store-btn {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px; padding: 12px 20px; text-decoration: none; transition: background 0.2s;
-    }
-    .app-store-btn:hover { background: rgba(255,255,255,0.12); }
-    .app-store-btn-icon { font-size: 22px; }
-    .app-store-btn-text { }
-    .app-store-btn-sub { font-size: 10px; color: rgba(255,255,255,0.5); display: block; }
-    .app-store-btn-name { font-size: 14px; font-weight: 700; color: var(--white); display: block; }
-    .app-visual { position: relative; }
-    .app-img { width: 100%; border-radius: 16px; display: block; box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
-    .app-stat-bubble {
-      position: absolute; background: var(--white); border-radius: 10px;
-      padding: 12px 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .app-stat-bubble.top-right { top: 20px; right: -20px; }
-    .app-stat-bubble.bottom-left { bottom: 60px; left: -20px; }
-    .app-stat-bubble-val { font-size: 20px; font-weight: 900; color: var(--black); }
-    .app-stat-bubble-label { font-size: 10px; color: #888; margin-top: 2px; }
+    .benefit-title { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .benefit-desc { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
 
-    /* ─── CTA SECTION ─── */
-    .cta-section { padding: 100px 80px; background: var(--white); text-align: center; }
-    .cta-section .section-title { font-size: clamp(28px, 4vw, 48px); }
-    .cta-section .section-sub { margin: 16px auto 40px; }
+    /* ─── APP ─── */
+    .app-section { background: var(--black); }
+    .app-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .app-features { }
+    .app-feature {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .app-feature:first-child { padding-top: 0; }
+    .app-feature-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(130,255,3,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green);
+    }
+    .app-feature-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .app-feature-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.55; }
+    .app-store-btns { display: flex; gap: 12px; margin-top: 40px; }
+    .app-store-btn {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white); text-decoration: none;
+      padding: 12px 20px; border-radius: 10px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .app-store-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); }
+    .app-store-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .app-store-btn-text { display: flex; flex-direction: column; }
+    .app-store-btn-label { font-size: 10px; color: rgba(255,255,255,0.5); }
+    .app-store-btn-name { font-size: 14px; font-weight: 700; }
+    .app-visual { position: relative; display: flex; justify-content: center; }
+    .app-visual img { width: 100%; max-width: 480px; border-radius: 16px; }
+    .app-stat-bubble {
+      position: absolute;
+      background: var(--white); border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .app-stat-bubble.top-left { top: 10%; left: -20px; }
+    .app-stat-bubble.bottom-right { bottom: 15%; right: -20px; }
+    .app-stat-val { font-size: 18px; font-weight: 800; color: var(--gray-900); }
+    .app-stat-lbl { font-size: 11px; color: var(--gray-500); }
+
+    /* ─── CTA ─── */
+    .cta-section { background: var(--white); text-align: center; padding: 120px 0; }
+    .cta-section h2 { font-size: clamp(36px, 4vw, 52px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 20px; }
+    .cta-section p { font-size: 18px; color: var(--gray-500); max-width: 560px; margin: 0 auto 40px; line-height: 1.6; }
     .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn-dark {
-      background: var(--black); color: var(--white); padding: 16px 32px;
-      border-radius: 6px; font-weight: 700; font-size: 15px; text-decoration: none;
-      transition: background 0.2s, transform 0.15s; display: inline-block;
+      background: var(--gray-900); color: var(--white);
+      padding: 14px 28px; border-radius: 6px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: background 0.2s;
     }
-    .btn-dark:hover { background: #222; transform: translateY(-2px); }
-    .btn-outline-dark {
-      background: transparent; color: var(--black); padding: 16px 32px;
-      border: 1.5px solid #ccc; border-radius: 6px; font-weight: 600;
-      font-size: 15px; text-decoration: none; transition: border-color 0.2s, transform 0.15s; display: inline-block;
+    .btn-dark:hover { background: var(--gray-700); }
+    .btn-light-outline {
+      background: transparent; color: var(--gray-700);
+      border: 1.5px solid var(--gray-300);
+      padding: 14px 28px; border-radius: 6px;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .btn-outline-dark:hover { border-color: var(--black); transform: translateY(-2px); }
+    .btn-light-outline:hover { border-color: var(--gray-700); color: var(--gray-900); }
 
     /* ─── FOOTER ─── */
-    footer { background: var(--black); padding: 60px 80px 32px; border-top: 1px solid rgba(57,255,20,0.1); }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand img { height: 36px; mix-blend-mode: screen; margin-bottom: 16px; display: block; }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; max-width: 280px; }
-    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
-    .footer-social a {
-      width: 34px; height: 34px; border-radius: 6px;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.5); font-size: 14px; text-decoration: none; transition: all 0.2s;
+    footer { background: var(--black); padding: 64px 0 40px; }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      margin-bottom: 48px;
     }
-    .footer-social a:hover { background: rgba(57,255,20,0.1); border-color: rgba(57,255,20,0.3); color: var(--green); }
-    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--green); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
-    .footer-bottom-links { display: flex; gap: 20px; }
-    .footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.25); text-decoration: none; }
-    .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
+    .footer-brand img { height: 32px; mix-blend-mode: screen; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.6; max-width: 280px; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 12px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a { font-size: 13px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 1100px) {
-      .hero-content { padding: 0 40px; }
-      .products-grid { grid-template-columns: 1fr 1fr; }
-      .sub-industry-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero-content { padding: 0 24px; max-width: 100%; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .cert-band { padding: 16px 24px; }
-      .products-section, .platform-section, .industries-section, .sodium-section, .app-section, .cta-section { padding: 60px 24px; }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav { padding: 0 24px; }
+      .container { padding: 0 24px; }
+      .hero-content { padding: 0 24px 64px; }
+      .hero-stats { grid-template-columns: repeat(2, auto); gap: 24px 0; }
+      .hero-stat:nth-child(2) { border-right: none; }
+      .hero-stat:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.15); padding-left: 0; }
       .products-grid { grid-template-columns: 1fr; }
-      .engines-grid { grid-template-columns: 1fr; }
-      .platform-header { grid-template-columns: 1fr; gap: 24px; }
-      .sodium-grid, .app-grid { grid-template-columns: 1fr; gap: 40px; }
-      .sub-industry-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer { padding: 40px 24px 24px; }
+      .product-card { aspect-ratio: 16/9; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .sub-industries { grid-template-columns: repeat(2, 1fr); }
+      .sodium-inner { grid-template-columns: 1fr; gap: 48px; }
+      .app-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-headline { font-size: 40px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .industry-tabs { overflow-x: auto; }
+      .sub-industries { grid-template-columns: 1fr; }
+      .sodium-benefits { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -434,58 +529,32 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="/">
+  <a href="index.html" class="nav-logo">
     <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology">
   </a>
-  <ul class="nav-links">
-    <li class="dropdown">
-      <a href="#">Industries ▾</a>
-      <div class="dropdown-menu">
-        <a href="commercial-industrial.html">Commercial &amp; Industrial</a>
-        <a href="defense-government.html">Defense &amp; Government</a>
-        <a href="#">Motive &amp; Fleet</a>
-      </div>
-    </li>
-    <li class="dropdown">
-      <a href="#">Products ▾</a>
-      <div class="dropdown-menu">
-        <a href="product-series-b.html">Series-B (Business BESS)</a>
-        <a href="#">Series-DC (279kWh DC Block)</a>
-        <a href="product-series-r-residential.html">Series-R (48V Residential)</a>
-        <a href="#">Series-M (Motive)</a>
-        <a href="#">Series-S (Starter)</a>
-      </div>
-    </li>
-    <li><a href="#">Technology</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#" class="nav-cta">Request Quote</a></li>
-  </ul>
+  <div class="nav-links">
+    <a href="#">Industries</a>
+    <a href="#">Products</a>
+    <a href="#">Technology</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#" class="nav-cta">Request Quote</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-slides" id="heroSlides">
-    <div class="hero-slide active" style="background-image:url('images/hero_slide1_bess_field.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/hero_slide2_bess_aerial.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/hero_slide3_industrial_bess.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/hero_slide4_military_solar.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('images/hero_slide5_ev_fleet.jpg')"></div>
+  <div class="hero-slides">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
   </div>
-
-  <!-- Slide labels -->
-  <div class="hero-slide-label active" id="label0">Commercial &amp; Industrial</div>
-  <div class="hero-slide-label" id="label1">Utility Scale</div>
-  <div class="hero-slide-label" id="label2">Industrial Resilience</div>
-  <div class="hero-slide-label" id="label3">Defense &amp; Government</div>
-  <div class="hero-slide-label" id="label4">Motive &amp; Fleet</div>
-
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      <span>Sodium-Ion BESS — Zero Thermal Runaway</span>
-    </div>
-    <h1>Energy Storage<br><em>You Can Bank On.</em></h1>
+    <div class="hero-badge"><span></span>Sodium-Ion BESS — Zero Thermal Runaway</div>
+    <h1 class="hero-headline">Energy Storage<br><em>You Can Bank On.</em></h1>
     <p class="hero-sub">Sodium-ion battery systems engineered for commercial, defense, and residential applications — safer, longer-lasting, and lower total cost of ownership than lithium-ion.</p>
     <div class="hero-btns">
       <a href="product-series-b.html" class="btn-primary">Explore Series-B BESS</a>
@@ -495,713 +564,576 @@
     <!-- Stats Row 1 -->
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-value">0</div>
-        <div class="hero-stat-label">Thermal Runaway Incidents</div>
+        <div class="stat-num"><span>0</span></div>
+        <div class="stat-label">Thermal Runaway Incidents</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">20yr</div>
-        <div class="hero-stat-label">Design Life Target</div>
+        <div class="stat-num">20<span>yr</span></div>
+        <div class="stat-label">Design Life Target</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">6,000+</div>
-        <div class="hero-stat-label">Cycle Life</div>
+        <div class="stat-num">6,000<span>+</span></div>
+        <div class="stat-label">Cycle Life</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">14%</div>
-        <div class="hero-stat-label">Lower TCO vs Li-Ion</div>
+        <div class="stat-num">14<span>%</span></div>
+        <div class="stat-label">Lower TCO vs Li-Ion</div>
       </div>
     </div>
 
     <!-- Stats Row 2 -->
     <div class="hero-stats-row2">
-      <div class="hero-stat2">
-        <div class="hero-stat2-dot"></div>
-        <div class="hero-stat2-text"><strong>−40°C to +55°C</strong> Operating Range</div>
+      <div class="hero-cert">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        −40°C to +55°C Operating Range
       </div>
-      <div class="hero-stat2">
-        <div class="hero-stat2-dot"></div>
-        <div class="hero-stat2-text"><strong>IP54</strong> Outdoor Rated</div>
+      <div class="hero-cert">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        IP54 Outdoor Rated
       </div>
-      <div class="hero-stat2">
-        <div class="hero-stat2-dot"></div>
-        <div class="hero-stat2-text"><strong>UL 1973 / UL 9540</strong> Certified</div>
+      <div class="hero-cert">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        UL 1973 / UL 9540 Certified
       </div>
-      <div class="hero-stat2">
-        <div class="hero-stat2-dot"></div>
-        <div class="hero-stat2-text"><strong>4yr</strong> Typical Payback Period</div>
+      <div class="hero-cert">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        4yr Typical Payback Period
       </div>
     </div>
   </div>
-
-  <!-- Slide dots -->
-  <div class="hero-dots" id="heroDots">
-    <div class="hero-dot active" onclick="goToSlide(0)"></div>
-    <div class="hero-dot" onclick="goToSlide(1)"></div>
-    <div class="hero-dot" onclick="goToSlide(2)"></div>
-    <div class="hero-dot" onclick="goToSlide(3)"></div>
-    <div class="hero-dot" onclick="goToSlide(4)"></div>
+  <div class="hero-dots">
+    <div class="hero-dot active"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot"></div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS BAND -->
-<div class="cert-band">
-  <span class="cert-label">Certifications</span>
-  <div class="cert-items">
-    <span class="cert-item">UL 1973</span>
-    <span class="cert-item">UL 9540</span>
-    <span class="cert-item">UL 9540A</span>
-    <span class="cert-item">UN38.3</span>
-    <span class="cert-item">IEC 62619</span>
-    <span class="cert-item">IP54 Outdoor</span>
-    <span class="cert-item">MIL-STD-810 Compatible</span>
-    <span class="cert-item">FCC Part 15</span>
-  </div>
-</div>
-
-<!-- PRODUCTS SECTION -->
+<!-- PRODUCTS -->
 <section class="products-section">
-  <div class="section-label">
-    <div class="section-label-dot"></div>
-    <span>Product Series</span>
-  </div>
-  <h2 class="section-title" style="color:var(--white)">The Right System for Every Application</h2>
-  <p class="section-sub section-sub-white">From 48V residential to multi-MWh commercial deployments — one chemistry, one platform, every scale.</p>
-  <div class="products-grid">
-    <!-- Series-B -->
-    <div class="product-card">
-      <img class="product-card-img" src="images/hero_bess_installation.jpg" alt="Series-B BESS">
-      <div class="product-card-overlay"></div>
-      <div class="product-card-tag">Commercial</div>
-      <div class="product-card-body">
-        <div class="product-card-name">Series-B</div>
-        <div class="product-card-desc">279 kWh outdoor-rated commercial BESS. The flagship system for C&I, defense, and government deployments.</div>
-        <div class="product-card-specs">
-          <div class="product-spec"><div class="product-spec-val">279</div><div class="product-spec-key">kWh</div></div>
-          <div class="product-spec"><div class="product-spec-val">100</div><div class="product-spec-key">kW AC</div></div>
-          <div class="product-spec"><div class="product-spec-val">IP54</div><div class="product-spec-key">Outdoor</div></div>
-          <div class="product-spec"><div class="product-spec-val">20yr</div><div class="product-spec-key">Design Life</div></div>
-        </div>
-        <a href="product-series-b.html" class="product-card-link">View Series-B</a>
-      </div>
+  <div class="container">
+    <div class="products-header">
+      <div class="section-label">Product Series</div>
+      <h2 class="section-title">The Right System for Every Application</h2>
+      <p class="section-sub">From 48V residential to multi-MWh commercial deployments — one chemistry, one platform, every scale.</p>
     </div>
-    <!-- Series-DC -->
-    <div class="product-card">
-      <img class="product-card-img" src="images/hero_slide1_bess_field.jpg" alt="Series-DC">
-      <div class="product-card-overlay"></div>
-      <div class="product-card-tag">Utility / C&I</div>
-      <div class="product-card-body">
-        <div class="product-card-name">Series-DC</div>
-        <div class="product-card-desc">279 kWh DC-coupled block for utility-scale and large C&I deployments. Maximum energy density, lowest cost per kWh.</div>
-        <div class="product-card-specs">
-          <div class="product-spec"><div class="product-spec-val">279</div><div class="product-spec-key">kWh</div></div>
-          <div class="product-spec"><div class="product-spec-val">DC</div><div class="product-spec-key">Coupled</div></div>
-          <div class="product-spec"><div class="product-spec-val">6,000+</div><div class="product-spec-key">Cycles</div></div>
+    <div class="products-grid">
+      <!-- Series-B -->
+      <div class="product-card">
+        <img src="images/hero_slide1_bess_field.jpg" alt="Series-B Commercial BESS">
+        <div class="product-card-overlay"></div>
+        <div class="product-card-content">
+          <div class="product-tag">Commercial</div>
+          <div class="product-name">Series-B</div>
+          <div class="product-desc">279 kWh outdoor-rated commercial BESS. The flagship system for C&amp;I, defense, and government deployments.</div>
+          <div class="product-specs">
+            <div class="product-spec"><div class="product-spec-val">279</div><div class="product-spec-unit">kWh</div></div>
+            <div class="product-spec"><div class="product-spec-val">100</div><div class="product-spec-unit">kW AC</div></div>
+            <div class="product-spec"><div class="product-spec-val">IP54</div><div class="product-spec-unit">Outdoor</div></div>
+            <div class="product-spec"><div class="product-spec-val">20yr</div><div class="product-spec-unit">Design Life</div></div>
+          </div>
+          <a href="product-series-b.html" class="product-link">View Series-B <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <a href="#" class="product-card-link">Coming Soon</a>
       </div>
-    </div>
-    <!-- Series-R -->
-    <div class="product-card">
-      <img class="product-card-img" src="images/sr_hero_home_solar.jpg" alt="Series-R Residential">
-      <div class="product-card-overlay"></div>
-      <div class="product-card-tag">Residential</div>
-      <div class="product-card-body">
-        <div class="product-card-name">Series-R</div>
-        <div class="product-card-desc">48V residential energy storage for homeowners who want solar backup, energy independence, and zero utility bills.</div>
-        <div class="product-card-specs">
-          <div class="product-spec"><div class="product-spec-val">48V</div><div class="product-spec-key">System</div></div>
-          <div class="product-spec"><div class="product-spec-val">10–30</div><div class="product-spec-key">kWh</div></div>
-          <div class="product-spec"><div class="product-spec-val">Wall</div><div class="product-spec-key">Mounted</div></div>
+      <!-- Series-DC -->
+      <div class="product-card">
+        <img src="images/hero_slide2_bess_aerial.jpg" alt="Series-DC Utility BESS">
+        <div class="product-card-overlay"></div>
+        <div class="product-card-content">
+          <div class="product-tag">Utility / C&amp;I</div>
+          <div class="product-name">Series-DC</div>
+          <div class="product-desc">279 kWh DC-coupled block for utility-scale and large C&amp;I deployments. Maximum energy density, lowest cost per kWh.</div>
+          <div class="product-specs">
+            <div class="product-spec"><div class="product-spec-val">279</div><div class="product-spec-unit">kWh</div></div>
+            <div class="product-spec"><div class="product-spec-val">DC</div><div class="product-spec-unit">Coupled</div></div>
+            <div class="product-spec"><div class="product-spec-val">6,000+</div><div class="product-spec-unit">Cycles</div></div>
+          </div>
+          <a href="#" class="product-link">Coming Soon <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <a href="product-series-r-residential.html" class="product-card-link">View Series-R</a>
+      </div>
+      <!-- Series-R -->
+      <div class="product-card">
+        <img src="images/hero_slide3_industrial_bess.jpg" alt="Series-R Residential">
+        <div class="product-card-overlay"></div>
+        <div class="product-card-content">
+          <div class="product-tag">Residential</div>
+          <div class="product-name">Series-R</div>
+          <div class="product-desc">48V residential energy storage for homeowners who want solar backup, energy independence, and zero utility bills.</div>
+          <div class="product-specs">
+            <div class="product-spec"><div class="product-spec-val">48V</div><div class="product-spec-unit">System</div></div>
+            <div class="product-spec"><div class="product-spec-val">10–30</div><div class="product-spec-unit">kWh</div></div>
+            <div class="product-spec"><div class="product-spec-val">Wall</div><div class="product-spec-unit">Mounted</div></div>
+          </div>
+          <a href="product-series-r-residential.html" class="product-link">View Series-R <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PLATFORM SECTION -->
+<!-- PLATFORM -->
 <section class="platform-section">
-  <div class="platform-header">
-    <div>
-      <div class="section-label">
-        <div class="section-label-dot"></div>
-        <span>Integrated Software Platform</span>
+  <div class="container">
+    <div class="platform-header">
+      <div class="section-label" style="color:var(--green)">Integrated Software Platform</div>
+      <h2 class="section-title white">Three Engines.<br>One Intelligent System.</h2>
+      <p class="section-sub white">Every Coulomb system ships with EnergiOS™, Coulomb AI™, and GridIQ™ — a fully integrated software stack that manages, optimizes, and monetizes your energy assets from day one.</p>
+    </div>
+    <div class="platform-grid">
+      <!-- EnergiOS -->
+      <div class="engine-card">
+        <div class="engine-num">01</div>
+        <svg class="engine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          <path d="M7 8h.01M7 12h.01M11 8h6M11 12h6"/>
+        </svg>
+        <div class="engine-name">EnergiOS™</div>
+        <div class="engine-desc">The operating system for your energy assets. Real-time monitoring, remote diagnostics, and predictive maintenance across your entire fleet.</div>
+        <ul class="engine-features">
+          <li>Real-time SOC, SOH, and power flow monitoring</li>
+          <li>Remote firmware updates and diagnostics</li>
+          <li>Predictive maintenance alerts</li>
+          <li>Multi-site fleet management dashboard</li>
+          <li>Modbus TCP / SCADA integration</li>
+        </ul>
       </div>
-      <h2 class="section-title" style="color:var(--white)">Three Engines.<br>One Intelligent System.</h2>
+      <!-- Coulomb AI -->
+      <div class="engine-card">
+        <div class="engine-num">02</div>
+        <svg class="engine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2a4 4 0 0 1 4 4v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2V6a4 4 0 0 1 4-4z"/>
+          <circle cx="12" cy="14" r="2"/><path d="M12 12v-2"/>
+        </svg>
+        <div class="engine-name">Coulomb AI™</div>
+        <div class="engine-desc">Machine learning that learns your energy patterns and autonomously optimizes dispatch, peak shaving, and demand charge reduction.</div>
+        <ul class="engine-features">
+          <li>Autonomous peak shaving and demand charge reduction</li>
+          <li>Weather-aware solar + storage dispatch</li>
+          <li>Load forecasting and pattern recognition</li>
+          <li>Continuous self-optimization — no manual tuning</li>
+          <li>Anomaly detection and safety monitoring</li>
+        </ul>
+      </div>
+      <!-- GridIQ -->
+      <div class="engine-card">
+        <div class="engine-num">03</div>
+        <svg class="engine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <div class="engine-name">GridIQ™</div>
+        <div class="engine-desc">Grid services intelligence that turns your BESS into a revenue-generating asset — frequency regulation, demand response, and VPP participation.</div>
+        <ul class="engine-features">
+          <li>Frequency regulation and ancillary services</li>
+          <li>Demand response program enrollment</li>
+          <li>Virtual power plant (VPP) aggregation</li>
+          <li>Real-time grid price arbitrage</li>
+          <li>Utility interconnection management</li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <p class="platform-intro">Every Coulomb system ships with EnergiOS™, Coulomb AI™, and GridIQ™ — a fully integrated software stack that manages, optimizes, and monetizes your energy assets from day one.</p>
+    <div class="platform-footer">
+      <a href="#" class="btn-primary">Explore the Platform</a>
+      <p class="platform-note">Included with every Coulomb system — no subscription required.</p>
     </div>
-  </div>
-  <div class="engines-grid">
-    <div class="engine-card">
-      <div class="engine-num">01</div>
-      <div class="engine-icon">🖥</div>
-      <div class="engine-name">EnergiOS™</div>
-      <div class="engine-desc">The operating system for your energy assets. Real-time monitoring, remote diagnostics, and predictive maintenance across your entire fleet.</div>
-      <ul class="engine-features">
-        <li>Real-time SOC, SOH, and power flow monitoring</li>
-        <li>Remote firmware updates and diagnostics</li>
-        <li>Predictive maintenance alerts</li>
-        <li>Multi-site fleet management dashboard</li>
-        <li>Modbus TCP / SCADA integration</li>
-      </ul>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">02</div>
-      <div class="engine-icon">🤖</div>
-      <div class="engine-name">Coulomb AI™</div>
-      <div class="engine-desc">Machine learning that learns your energy patterns and autonomously optimizes dispatch, peak shaving, and demand charge reduction.</div>
-      <ul class="engine-features">
-        <li>Autonomous peak shaving and demand charge reduction</li>
-        <li>Weather-aware solar + storage dispatch</li>
-        <li>Load forecasting and pattern recognition</li>
-        <li>Continuous self-optimization — no manual tuning</li>
-        <li>Anomaly detection and safety monitoring</li>
-      </ul>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">03</div>
-      <div class="engine-icon">⚡</div>
-      <div class="engine-name">GridIQ™</div>
-      <div class="engine-desc">Grid services intelligence that turns your BESS into a revenue-generating asset — frequency regulation, demand response, and VPP participation.</div>
-      <ul class="engine-features">
-        <li>Frequency regulation and ancillary services</li>
-        <li>Demand response program enrollment</li>
-        <li>Virtual power plant (VPP) aggregation</li>
-        <li>Real-time grid price arbitrage</li>
-        <li>Utility interconnection management</li>
-      </ul>
-    </div>
-  </div>
-  <div class="platform-footer">
-    <a href="#" class="btn-primary">Explore the Platform</a>
-    <p class="platform-note">Included with every Coulomb system — no subscription required.</p>
   </div>
 </section>
 
-<!-- INDUSTRIES SECTION -->
+<!-- INDUSTRIES -->
 <section class="industries-section">
-  <div class="industries-header">
-    <div class="section-label" style="justify-content:center">
-      <div class="section-label-dot"></div>
-      <span>Industries</span>
+  <div class="container">
+    <div class="industries-header">
+      <div class="section-label">Industries</div>
+      <h2 class="section-title">Built for the Applications That Matter Most</h2>
+      <p class="section-sub">Sodium-ion BESS purpose-engineered for the unique demands of each vertical — from peak shaving in C&amp;I to mission-critical resilience in defense.</p>
     </div>
-    <h2 class="section-title">Built for the Applications That Matter Most</h2>
-    <p class="section-sub">Sodium-ion BESS purpose-engineered for the unique demands of each vertical — from peak shaving in C&I to mission-critical resilience in defense.</p>
   </div>
 
   <!-- Tabs -->
-  <div class="industry-tabs">
-    <div class="industry-tab active" onclick="switchIndustry('ci', this)">
-      <div class="industry-tab-icon">🏢</div>
-      <div class="industry-tab-name">Commercial &amp; Industrial</div>
-      <div class="industry-tab-sub">Peak shaving, demand charge reduction, grid services</div>
-    </div>
-    <div class="industry-tab" onclick="switchIndustry('def', this)">
-      <div class="industry-tab-icon">🛡</div>
-      <div class="industry-tab-name">Defense &amp; Government</div>
-      <div class="industry-tab-sub">Mission-critical resilience, microgrid, secure power</div>
-    </div>
-    <div class="industry-tab" onclick="switchIndustry('mot', this)">
-      <div class="industry-tab-icon">🚛</div>
-      <div class="industry-tab-name">Motive &amp; Fleet</div>
-      <div class="industry-tab-sub">Forklifts, AGVs, EV fleet charging, port logistics</div>
+  <div class="container">
+    <div class="industry-tabs">
+      <div class="industry-tab active" onclick="switchTab('ci', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        Commercial &amp; Industrial
+      </div>
+      <div class="industry-tab" onclick="switchTab('def', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Defense &amp; Government
+      </div>
+      <div class="industry-tab" onclick="switchTab('mot', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Motive &amp; Fleet
+      </div>
     </div>
   </div>
 
   <!-- C&I Panel -->
-  <div class="industry-panel active" id="panel-ci">
+  <div id="panel-ci" class="industry-panel active">
     <div class="industry-banner">
-      <img class="industry-banner-img" src="images/ci_hero_datacenter.jpg" alt="Commercial & Industrial">
-      <div class="industry-banner-overlay">
-        <div class="industry-banner-content">
-          <div class="industry-banner-tag">Commercial &amp; Industrial</div>
-          <h3 class="industry-banner-title">Eliminate Demand Charges.<br>Generate Grid Revenue.</h3>
-          <p class="industry-banner-desc">Sodium-ion BESS purpose-built for data centers, retail, healthcare, and manufacturing — with zero thermal runaway risk and a 20-year design life.</p>
-          <a href="commercial-industrial.html" class="industry-banner-link">Explore C&I Solutions →</a>
-        </div>
+      <img src="images/ci_hero_datacenter.jpg" alt="Commercial & Industrial BESS">
+      <div class="industry-banner-overlay"></div>
+      <div class="industry-banner-content">
+        <div class="industry-banner-tag">Commercial &amp; Industrial</div>
+        <h3 class="industry-banner-title">Eliminate Demand Charges.<br>Generate Grid Revenue.</h3>
+        <p class="industry-banner-desc">Sodium-ion BESS purpose-built for data centers, retail, healthcare, and manufacturing — with zero thermal runaway risk and a 20-year design life.</p>
+        <a href="commercial-industrial.html" class="btn-green-outline">Explore C&amp;I Solutions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
-    <div class="sub-industry-grid">
+    <div class="sub-industries">
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/ci_sub_datacenter.jpg" alt="Data Centers">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/ci_sub_datacenter.jpg" alt="Data Centers"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Data Centers</div>
           <div class="sub-card-desc">UPS replacement and peak shaving for hyperscale and colocation facilities. Zero downtime, zero thermal risk near sensitive equipment.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">UPS Replacement</span>
-            <span class="sub-tag">Peak Shaving</span>
-            <span class="sub-tag">Backup Power</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Hyperscale, colocation, edge compute, cloud infrastructure
-          </div>
+          <div class="sub-card-tags"><span class="sub-tag">UPS Replacement</span><span class="sub-tag">Peak Shaving</span><span class="sub-tag">Backup Power</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Hyperscale, colocation, edge compute, cloud infrastructure</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/ci_sub_retail.jpg" alt="Retail">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/ci_sub_retail.jpg" alt="Retail & Big Box"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Retail &amp; Big Box</div>
           <div class="sub-card-desc">Demand charge reduction and solar integration for high-footprint retail locations with predictable load profiles and high utility bills.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Demand Reduction</span>
-            <span class="sub-tag">Solar Integration</span>
-            <span class="sub-tag">Grid Services</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Big box retail, grocery, shopping centers, strip malls
-          </div>
+          <div class="sub-card-tags"><span class="sub-tag">Demand Reduction</span><span class="sub-tag">Solar Integration</span><span class="sub-tag">Grid Services</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Big box retail, grocery, shopping centers, strip malls</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/ci_sub_hospital.jpg" alt="Healthcare">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/ci_sub_hospital.jpg" alt="Healthcare"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Healthcare</div>
           <div class="sub-card-desc">Critical backup power for hospitals and medical facilities. Meets NFPA 110 requirements without fire suppression systems or HVAC.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Critical Backup</span>
-            <span class="sub-tag">NFPA 110</span>
-            <span class="sub-tag">No Fire Suppression</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Hospitals, medical centers, urgent care, labs
-          </div>
+          <div class="sub-card-tags"><span class="sub-tag">Critical Backup</span><span class="sub-tag">NFPA 110</span><span class="sub-tag">No Fire Suppression</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Hospitals, medical centers, urgent care, labs</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/ci_sub_manufacturing.jpg" alt="Manufacturing">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/ci_sub_manufacturing.jpg" alt="Manufacturing"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Manufacturing</div>
           <div class="sub-card-desc">Industrial-grade energy storage for factories and production facilities with high demand charges and process-critical uptime requirements.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Demand Charges</span>
-            <span class="sub-tag">Process Uptime</span>
-            <span class="sub-tag">Solar + Storage</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Factories, warehouses, food processing, automotive
-          </div>
+          <div class="sub-card-tags"><span class="sub-tag">Demand Charges</span><span class="sub-tag">Process Uptime</span><span class="sub-tag">Solar + Storage</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Factories, warehouses, food processing, automotive</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Defense Panel -->
-  <div class="industry-panel" id="panel-def">
+  <div id="panel-def" class="industry-panel">
     <div class="industry-banner">
-      <img class="industry-banner-img" src="images/def_hero_military_solar.jpg" alt="Defense & Government">
-      <div class="industry-banner-overlay">
-        <div class="industry-banner-content">
-          <div class="industry-banner-tag">Defense &amp; Government</div>
-          <h3 class="industry-banner-title">Mission-Critical Resilience.<br>Zero Compromise.</h3>
-          <p class="industry-banner-desc">Sodium-ion BESS engineered for the harshest environments — MIL-STD-810 compatible, −40°C to +55°C operation, and zero thermal runaway risk near personnel and assets.</p>
-          <a href="defense-government.html" class="industry-banner-link">Explore Defense Solutions →</a>
-        </div>
+      <img src="images/def_military_solar_base.jpg" alt="Defense & Government BESS">
+      <div class="industry-banner-overlay"></div>
+      <div class="industry-banner-content">
+        <div class="industry-banner-tag">Defense &amp; Government</div>
+        <h3 class="industry-banner-title">Mission-Critical Resilience.<br>Zero Compromise.</h3>
+        <p class="industry-banner-desc">Sodium-ion BESS engineered for military installations, federal facilities, and government campuses — MIL-STD-810 compatible, −40°C rated, zero thermal runaway.</p>
+        <a href="defense-government.html" class="btn-green-outline">Explore Defense Solutions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
-    <div class="sub-industry-grid">
+    <div class="sub-industries">
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/def_sub_military.jpg" alt="Military Installations">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/def_sub_military.jpg" alt="Military Installations"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Military Installations</div>
-          <div class="sub-card-desc">Microgrid resilience for forward operating bases and domestic installations. MIL-STD-810 compatible, extreme temperature rated.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Microgrid</span>
-            <span class="sub-tag">MIL-STD-810</span>
-            <span class="sub-tag">Off-Grid</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            FOBs, domestic bases, training facilities, depots
-          </div>
+          <div class="sub-card-desc">Microgrid-ready BESS for forward operating bases and domestic installations. Reduces fuel logistics and ensures energy independence.</div>
+          <div class="sub-card-tags"><span class="sub-tag">Microgrid</span><span class="sub-tag">Fuel Reduction</span><span class="sub-tag">MIL-STD-810</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Army bases, air force bases, naval stations, FOBs</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/def_sub_datacenter.jpg" alt="Federal Data Centers">
-          <div class="sub-card-img-overlay"></div>
+        <div class="sub-card-img"><img src="images/mot_security_campus_cart.jpg" alt="Campus Security"></div>
+        <div class="sub-card-body">
+          <div class="sub-card-name">Government Campus Security</div>
+          <div class="sub-card-desc">Reliable power for campus security fleets, surveillance systems, and access control — with zero thermal runaway risk near personnel.</div>
+          <div class="sub-card-tags"><span class="sub-tag">Security Fleets</span><span class="sub-tag">Surveillance</span><span class="sub-tag">Access Control</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Federal campuses, courthouses, embassies, national labs</div>
         </div>
+      </div>
+      <div class="sub-card">
+        <div class="sub-card-img"><img src="images/def_sub_datacenter.jpg" alt="Federal Data Centers"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Federal Data Centers</div>
-          <div class="sub-card-desc">FedRAMP-ready energy resilience for classified and unclassified federal computing infrastructure with zero-risk power continuity.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">FedRAMP</span>
-            <span class="sub-tag">Classified</span>
-            <span class="sub-tag">UPS Backup</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            DoD data centers, intelligence facilities, federal cloud
-          </div>
+          <div class="sub-card-desc">Classified and unclassified data center backup power with no fire suppression requirement — safe near sensitive computing infrastructure.</div>
+          <div class="sub-card-tags"><span class="sub-tag">UPS Backup</span><span class="sub-tag">No Fire Suppression</span><span class="sub-tag">FISMA</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> DoD data centers, intelligence facilities, SCIF environments</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/def_sub_embassy.jpg" alt="Embassies">
-          <div class="sub-card-img-overlay"></div>
-        </div>
-        <div class="sub-card-body">
-          <div class="sub-card-name">Embassies &amp; Consulates</div>
-          <div class="sub-card-desc">Secure, uninterruptible power for diplomatic facilities in grid-unstable regions worldwide. No fuel logistics required.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Secure Power</span>
-            <span class="sub-tag">Grid-Unstable</span>
-            <span class="sub-tag">No Fuel</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Embassies, consulates, diplomatic compounds
-          </div>
-        </div>
-      </div>
-      <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/def_sub_eoc.jpg" alt="Emergency Operations">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/def_sub_eoc.jpg" alt="Emergency Operations"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Emergency Operations</div>
-          <div class="sub-card-desc">Continuity-of-operations power for EOCs, 911 centers, and critical public safety infrastructure during grid outages.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">COOP</span>
-            <span class="sub-tag">Public Safety</span>
-            <span class="sub-tag">Grid Outage</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            EOCs, 911 centers, fire/police HQ, municipal
-          </div>
+          <div class="sub-card-desc">Critical backup power for emergency operations centers and continuity of government facilities — designed for extended outage scenarios.</div>
+          <div class="sub-card-tags"><span class="sub-tag">EOC Backup</span><span class="sub-tag">COOP</span><span class="sub-tag">Extended Runtime</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> EOCs, FEMA facilities, state emergency management, COG</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Motive Panel -->
-  <div class="industry-panel" id="panel-mot">
+  <div id="panel-mot" class="industry-panel">
     <div class="industry-banner">
-      <img class="industry-banner-img" src="images/mot_sub_port.jpg" alt="Motive & Fleet">
-      <div class="industry-banner-overlay">
-        <div class="industry-banner-content">
-          <div class="industry-banner-tag">Motive &amp; Fleet</div>
-          <h3 class="industry-banner-title">Drop-In Lead-Acid Replacement.<br>Zero Maintenance.</h3>
-          <p class="industry-banner-desc">Sodium-ion power for forklifts, AGVs, and electric fleet charging — safer, longer-lasting, and lower cost than lead-acid or lithium-ion alternatives.</p>
-          <a href="#" class="industry-banner-link">Explore Motive Solutions →</a>
-        </div>
+      <img src="images/mot_manufacturing_forklift.jpg" alt="Motive & Fleet BESS">
+      <div class="industry-banner-overlay"></div>
+      <div class="industry-banner-content">
+        <div class="industry-banner-tag">Motive &amp; Fleet</div>
+        <h3 class="industry-banner-title">Power Every Vehicle.<br>Charge Every Fleet.</h3>
+        <p class="industry-banner-desc">Sodium-ion BESS for motive power applications — forklifts, AGVs, campus security fleets, and EV charging infrastructure with zero thermal runaway risk.</p>
+        <a href="#" class="btn-green-outline">Explore Motive Solutions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
-    <div class="sub-industry-grid">
+    <div class="sub-industries">
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/mot_sub_forklift.jpg" alt="Forklifts & AGVs">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/mot_manufacturing_forklift.jpg" alt="Forklifts & AGVs"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Forklifts &amp; AGVs</div>
-          <div class="sub-card-desc">Drop-in replacement for lead-acid batteries in Class I–III forklifts and autonomous guided vehicles. No watering, no acid spills.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Lead-Acid Replacement</span>
-            <span class="sub-tag">Class I–III</span>
-            <span class="sub-tag">AGV</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Distribution centers, cold storage, manufacturing, 3PL
-          </div>
+          <div class="sub-card-desc">Drop-in sodium-ion replacement for lead-acid forklift batteries. Opportunity charging, no watering, no acid spills, longer shift life.</div>
+          <div class="sub-card-tags"><span class="sub-tag">Drop-In Replacement</span><span class="sub-tag">Opportunity Charging</span><span class="sub-tag">No Maintenance</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Warehouses, distribution centers, manufacturing, cold storage</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/mot_sub_fleet.jpg" alt="Fleet Charging">
-          <div class="sub-card-img-overlay"></div>
-        </div>
+        <div class="sub-card-img"><img src="images/mot_security_campus_cart.jpg" alt="Campus Security Fleets"></div>
         <div class="sub-card-body">
-          <div class="sub-card-name">Fleet Charging</div>
-          <div class="sub-card-desc">Behind-the-meter storage for EV fleet depots — eliminate demand charges and reduce charging infrastructure costs by up to 40%.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Demand Reduction</span>
-            <span class="sub-tag">EV Depot</span>
-            <span class="sub-tag">Behind-the-Meter</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            EV bus depots, last-mile delivery, municipal fleets
-          </div>
+          <div class="sub-card-name">Campus Security Fleets</div>
+          <div class="sub-card-desc">Reliable, long-range electric power for campus patrol vehicles and security carts — safe near people, buildings, and sensitive assets.</div>
+          <div class="sub-card-tags"><span class="sub-tag">Long Range</span><span class="sub-tag">Fast Charge</span><span class="sub-tag">Zero Emissions</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Universities, corporate campuses, airports, hospitals</div>
         </div>
       </div>
       <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/mot_sub_port.jpg" alt="Port & Logistics">
-          <div class="sub-card-img-overlay"></div>
+        <div class="sub-card-img"><img src="images/hero_slide5_ev_fleet.jpg" alt="EV Fleet Charging"></div>
+        <div class="sub-card-body">
+          <div class="sub-card-name">EV Fleet Charging</div>
+          <div class="sub-card-desc">Behind-the-meter BESS that eliminates demand charge spikes from fleet charging — store cheap overnight power, dispatch during peak charging windows.</div>
+          <div class="sub-card-tags"><span class="sub-tag">Demand Management</span><span class="sub-tag">DCFC Support</span><span class="sub-tag">Fleet Optimization</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Bus depots, delivery fleets, ride-share, municipal EV fleets</div>
         </div>
+      </div>
+      <div class="sub-card">
+        <div class="sub-card-img"><img src="images/def_uc1_installation_microgrid.jpg" alt="Port & Logistics"></div>
         <div class="sub-card-body">
           <div class="sub-card-name">Port &amp; Logistics</div>
-          <div class="sub-card-desc">High-cycle energy storage for port equipment, yard trucks, and logistics automation in demanding, high-utilization environments.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">High Cycle</span>
-            <span class="sub-tag">Port Equipment</span>
-            <span class="sub-tag">Automation</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Container ports, yard trucks, cranes, AGV systems
-          </div>
-        </div>
-      </div>
-      <div class="sub-card">
-        <div class="sub-card-img-wrap">
-          <img class="sub-card-img" src="images/mot_sub_solar.jpg" alt="Solar + Storage">
-          <div class="sub-card-img-overlay"></div>
-        </div>
-        <div class="sub-card-body">
-          <div class="sub-card-name">Solar + Storage</div>
-          <div class="sub-card-desc">Integrated solar-plus-storage systems for off-grid industrial sites and remote operations with no grid access or unreliable utility power.</div>
-          <div class="sub-card-tags">
-            <span class="sub-tag">Off-Grid</span>
-            <span class="sub-tag">Solar Integration</span>
-            <span class="sub-tag">Remote Sites</span>
-          </div>
-          <div class="sub-card-apps">
-            <strong>Applications</strong>
-            Remote industrial, telecom towers, agricultural, mining
-          </div>
+          <div class="sub-card-desc">High-cycle BESS for port equipment, automated guided vehicles, and logistics hubs with continuous 24/7 operations and extreme duty cycles.</div>
+          <div class="sub-card-tags"><span class="sub-tag">High Cycle</span><span class="sub-tag">24/7 Operations</span><span class="sub-tag">AGV Power</span></div>
+          <div class="sub-card-apps"><strong>Applications:</strong> Container ports, rail yards, distribution hubs, intermodal</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SODIUM SECTION -->
+<!-- SODIUM -->
 <section class="sodium-section">
-  <div class="section-label">
-    <div class="section-label-dot"></div>
-    <span>Why Sodium-Ion</span>
-  </div>
-  <h2 class="section-title">The Battery Chemistry That Changes Everything</h2>
-  <div class="sodium-grid">
-    <div class="sodium-visual">
-      <img class="sodium-img" src="images/home_sodium_scale.jpg" alt="Sodium-ion chemistry">
-      <div class="sodium-badge">
-        <div class="sodium-badge-val">1,000×</div>
-        <div class="sodium-badge-label">More Abundant Than Lithium</div>
-      </div>
-    </div>
-    <div>
-      <p style="font-size:16px;line-height:1.7;color:#444;margin-bottom:32px;">Sodium is 1,000× more abundant than lithium. Our NFPP (sodium iron phosphate pyrophosphate) chemistry delivers superior safety, extreme temperature performance, and a 20-year design life — at a lower total cost of ownership than any lithium-ion alternative.</p>
-      <p style="font-size:16px;line-height:1.7;color:#444;margin-bottom:40px;">No thermal runaway. No fire suppression required. No HVAC. No supply chain dependency on lithium, cobalt, or nickel. Just reliable, bankable energy storage.</p>
-      <div class="sodium-points">
-        <div class="sodium-point">
-          <div class="sodium-point-icon">🔥</div>
-          <div class="sodium-point-title">Zero Thermal Runaway</div>
-          <div class="sodium-point-desc">NFPP chemistry is inherently non-flammable. No thermal runaway risk — ever. Safe near people, assets, and sensitive infrastructure.</div>
-        </div>
-        <div class="sodium-point">
-          <div class="sodium-point-icon">🌡</div>
-          <div class="sodium-point-title">−40°C to +55°C</div>
-          <div class="sodium-point-desc">Full performance across the complete military and industrial temperature range — no derating, no HVAC required.</div>
-        </div>
-        <div class="sodium-point">
-          <div class="sodium-point-icon">⏱</div>
-          <div class="sodium-point-title">20-Year Design Life</div>
-          <div class="sodium-point-desc">6,000+ cycle life at 80% DoD. Designed to outlast the solar assets it's paired with — reducing replacement costs.</div>
-        </div>
-        <div class="sodium-point">
-          <div class="sodium-point-icon">💰</div>
-          <div class="sodium-point-title">14% Lower TCO</div>
-          <div class="sodium-point-desc">Lower acquisition cost, zero maintenance, no fuel logistics, and a 20-year life combine for the lowest TCO in the market.</div>
+  <div class="container">
+    <div class="sodium-inner">
+      <div class="sodium-visual">
+        <img src="images/home_sodium_scale.jpg" alt="Sodium-Ion Battery Chemistry">
+        <div class="sodium-badge">
+          <div class="sodium-badge-num">1,000×</div>
+          <div class="sodium-badge-label">More Abundant Than Lithium</div>
         </div>
       </div>
-      <a href="#" class="btn-dark" style="margin-top:36px;display:inline-block;">Learn About Our Technology</a>
+      <div class="sodium-text">
+        <div class="section-label">Why Sodium-Ion</div>
+        <h2 class="section-title">The Battery Chemistry That Changes Everything</h2>
+        <p style="font-size:17px;color:var(--gray-500);line-height:1.7;margin-bottom:12px;">Sodium is 1,000× more abundant than lithium. Our NFPP (sodium iron phosphate pyrophosphate) chemistry delivers superior safety, extreme temperature performance, and a 20-year design life — at a lower total cost of ownership than any lithium-ion alternative.</p>
+        <p style="font-size:17px;color:var(--gray-500);line-height:1.7;margin-bottom:40px;">No thermal runaway. No fire suppression required. No HVAC. No supply chain dependency on lithium, cobalt, or nickel. Just reliable, bankable energy storage.</p>
+        <div class="sodium-benefits">
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2c-4 6-4 10 0 14 4-4 4-8 0-14z"/><path d="M12 16v6"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">Zero Thermal Runaway</div>
+              <div class="benefit-desc">NFPP chemistry is inherently non-flammable. No thermal runaway risk — ever. Safe near people, assets, and sensitive infrastructure.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">−40°C to +55°C</div>
+              <div class="benefit-desc">Full performance across the complete military and industrial temperature range — no derating, no HVAC required.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">20-Year Design Life</div>
+              <div class="benefit-desc">6,000+ cycle life at 80% DoD. Designed to outlast the solar assets it's paired with — reducing replacement costs.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">14% Lower TCO</div>
+              <div class="benefit-desc">Lower acquisition cost, zero maintenance, no fuel logistics, and a 20-year life combine for the lowest TCO in the market.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn-dark" style="margin-top:40px;display:inline-block;">Learn About Our Technology</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- APP SECTION -->
+<!-- APP -->
 <section class="app-section">
-  <div class="section-label">
-    <div class="section-label-dot"></div>
-    <span>Mobile App</span>
-  </div>
-  <h2 class="section-title" style="color:var(--white)">Your Energy Assets,<br>In Your Pocket.</h2>
-  <div class="app-grid">
-    <div>
-      <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,0.55);margin-bottom:36px;">The Coulomb mobile app gives you real-time visibility and control over every system in your fleet — from a single home battery to a 50-site commercial portfolio.</p>
+  <div class="container">
+    <div class="app-inner">
       <div class="app-features">
+        <div class="section-label" style="color:var(--green)">Mobile App</div>
+        <h2 class="section-title white" style="margin-bottom:12px;">Your Energy Assets,<br>In Your Pocket.</h2>
+        <p class="section-sub white" style="margin-bottom:40px;">The Coulomb mobile app gives you real-time visibility and control over every system in your fleet — from a single home battery to a 50-site commercial portfolio.</p>
         <div class="app-feature">
-          <div class="app-feature-icon">📊</div>
+          <div class="app-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
           <div>
             <div class="app-feature-title">Live System Monitoring</div>
             <div class="app-feature-desc">Real-time state of charge, power flow, and grid status for every system — updated every 5 seconds.</div>
           </div>
         </div>
         <div class="app-feature">
-          <div class="app-feature-icon">💵</div>
+          <div class="app-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
           <div>
             <div class="app-feature-title">Revenue &amp; Savings Dashboard</div>
             <div class="app-feature-desc">Track demand charge savings, grid service revenue, and cumulative ROI across your entire portfolio.</div>
           </div>
         </div>
         <div class="app-feature">
-          <div class="app-feature-icon">🔔</div>
+          <div class="app-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
           <div>
             <div class="app-feature-title">Instant Alerts &amp; Diagnostics</div>
             <div class="app-feature-desc">Push notifications for system events, maintenance reminders, and anomaly detection — before issues become problems.</div>
           </div>
         </div>
         <div class="app-feature">
-          <div class="app-feature-icon">🎛</div>
+          <div class="app-feature-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          </div>
           <div>
             <div class="app-feature-title">Remote Control</div>
             <div class="app-feature-desc">Adjust charge/discharge schedules, set operating modes, and push firmware updates from anywhere in the world.</div>
           </div>
         </div>
+        <div class="app-store-btns">
+          <a href="#" class="app-store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="app-store-btn-text"><span class="app-store-btn-label">Download on the</span><span class="app-store-btn-name">App Store</span></div>
+          </a>
+          <a href="#" class="app-store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.28-2.7-2.7-10.89 9.78zm16.7-9.4L17.1 12.5l2.78-2.78 1.6.92c.91.53.91 1.39 0 1.92l-1.6.8zM2.1.24C1.8.41 1.6.76 1.6 1.24v21.52c0 .48.2.83.5 1l12.3-11.76L2.1.24zm14.7 8.4L4.2.36l10.9 9.78 1.7-1.5z"/></svg>
+            <div class="app-store-btn-text"><span class="app-store-btn-label">Get it on</span><span class="app-store-btn-name">Google Play</span></div>
+          </a>
+        </div>
       </div>
-      <div class="app-store-btns">
-        <a href="#" class="app-store-btn">
-          <div class="app-store-btn-icon">🍎</div>
-          <div class="app-store-btn-text">
-            <span class="app-store-btn-sub">Download on the</span>
-            <span class="app-store-btn-name">App Store</span>
-          </div>
-        </a>
-        <a href="#" class="app-store-btn">
-          <div class="app-store-btn-icon">▶</div>
-          <div class="app-store-btn-text">
-            <span class="app-store-btn-sub">Get it on</span>
-            <span class="app-store-btn-name">Google Play</span>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="app-visual">
-      <img class="app-img" src="images/sr_smart_app.png" alt="Coulomb App">
-      <div class="app-stat-bubble top-right">
-        <div class="app-stat-bubble-val" style="color:#39FF14">$2,847</div>
-        <div class="app-stat-bubble-label">Saved This Month</div>
-      </div>
-      <div class="app-stat-bubble bottom-left">
-        <div class="app-stat-bubble-val">98.7%</div>
-        <div class="app-stat-bubble-label">System Uptime</div>
+      <div class="app-visual">
+        <img src="images/sr_smart_app.png" alt="Coulomb Mobile App">
+        <div class="app-stat-bubble top-left">
+          <div class="app-stat-val">$2,847</div>
+          <div class="app-stat-lbl">Saved This Month</div>
+        </div>
+        <div class="app-stat-bubble bottom-right">
+          <div class="app-stat-val">98.7%</div>
+          <div class="app-stat-lbl">System Uptime</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA SECTION -->
+<!-- CTA -->
 <section class="cta-section">
-  <div class="section-label" style="justify-content:center">
-    <div class="section-label-dot"></div>
-    <span>Get Started</span>
-  </div>
-  <h2 class="section-title">Ready to Eliminate Your Energy Risk?</h2>
-  <p class="section-sub">Our energy storage specialists will design a sodium-ion BESS solution tailored to your load profile, site constraints, and financial goals.</p>
-  <div class="cta-btns">
-    <a href="#" class="btn-primary" style="font-size:15px;padding:16px 32px;">Request a Quote</a>
-    <a href="#" class="btn-outline-dark">Explore Products</a>
+  <div class="container">
+    <div class="section-label" style="justify-content:center;">Get Started</div>
+    <h2>Ready to Eliminate Your Energy Risk?</h2>
+    <p>Our energy storage specialists will design a sodium-ion BESS solution tailored to your load profile, site constraints, and financial goals.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-primary">Request a Quote</a>
+      <a href="#" class="btn-light-outline">Explore Products</a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology">
-      <p>Sodium-ion battery energy storage systems engineered for commercial, defense, and residential applications. Zero thermal runaway. 20-year design life.</p>
-      <div class="footer-social">
-        <a href="#" title="LinkedIn">in</a>
-        <a href="#" title="Twitter">𝕏</a>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology">
+        <p>Sodium-ion energy storage engineered for commercial, defense, and residential applications. Zero thermal runaway. 20-year design life.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="product-series-b.html">Series-B (Business BESS)</a>
+        <a href="#">Series-DC (279kWh DC Block)</a>
+        <a href="product-series-r-residential.html">Series-R (48V Residential)</a>
+        <a href="#">Series-M (Motive)</a>
+        <a href="#">Series-S (Starter)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="commercial-industrial.html">Commercial &amp; Industrial</a>
+        <a href="defense-government.html">Defense &amp; Government</a>
+        <a href="#">Motive &amp; Fleet</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Technology</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Products</h4>
-      <ul>
-        <li><a href="product-series-b.html">Series-B (Business BESS)</a></li>
-        <li><a href="#">Series-DC (279kWh DC Block)</a></li>
-        <li><a href="product-series-r-residential.html">Series-R (48V Residential)</a></li>
-        <li><a href="#">Series-M (Motive)</a></li>
-        <li><a href="#">Series-S (Starter)</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Industries</h4>
-      <ul>
-        <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
-        <li><a href="defense-government.html">Defense &amp; Government</a></li>
-        <li><a href="#">Motive &amp; Fleet</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Technology</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Coulomb Technology Inc. All rights reserved.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
+    <div class="footer-bottom">
+      <p>© 2025 Coulomb Technology, Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // ─── HERO SLIDESHOW ───
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.hero-dot');
-  const labels = document.querySelectorAll('.hero-slide-label');
-  let slideTimer;
-
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    labels[currentSlide].classList.remove('active');
-    currentSlide = n;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-    labels[currentSlide].classList.add('active');
-    clearInterval(slideTimer);
-    slideTimer = setInterval(nextSlide, 5000);
-  }
-
-  function nextSlide() {
-    goToSlide((currentSlide + 1) % slides.length);
-  }
-
-  slideTimer = setInterval(nextSlide, 5000);
-
-  // ─── INDUSTRY TABS ───
-  function switchIndustry(id, tab) {
+  // Industry tab switching
+  function switchTab(id, el) {
     document.querySelectorAll('.industry-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.industry-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
+    el.classList.add('active');
     document.getElementById('panel-' + id).classList.add('active');
   }
+
+  // Hero slideshow dot sync
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const slideCount = slides.length;
+  const slideDuration = 5000;
+  let currentSlide = 0;
+
+  function updateDots() {
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    currentSlide = (currentSlide + 1) % slideCount;
+  }
+  setInterval(updateDots, slideDuration);
 </script>
 
 </body>
