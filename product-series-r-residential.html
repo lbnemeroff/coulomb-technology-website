@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series-R 48V Residential Energy Storage — Coulomb Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:#6BBF00; --green-dk:#4d8c00; --black:#111111; --black-mid:#181818; --black-lt:#222222;
+      --white:#FFFFFF; --off-white:#f5f7fa; --blue:#0066FF; --gray:#6B6B6B;
+      --max-w:1400px; --pad-x:40px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', Arial, sans-serif; color: #1a1a1a; background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.05; }
+    h2 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 700; line-height: 1.18; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; line-height: 1.25; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .btn { display: inline-block; padding: 14px 32px; font-family: 'Inter', Arial, sans-serif; font-size: 0.95rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.25s ease; border: 2px solid transparent; }
+    .btn-green { background: var(--green); color: #000; border-color: var(--green); font-weight: 700; }
+    .btn-green:hover { background: var(--green-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,191,0,0.35); }
+    .btn-outline-dark { background: transparent; color: #1a1a1a; border-color: rgba(26,26,26,0.35); }
+    .btn-outline-dark:hover { border-color: #1a1a1a; background: rgba(26,26,26,0.05); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s} .d4{transition-delay:0.4s}
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
+    .eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .eyebrow-center { justify-content: center; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.12); }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); display: flex; align-items: center; height: 72px; gap: 48px; }
+    .nav-logo img { height: 44px; width: auto; display: block; mix-blend-mode: multiply; }
+    .nav-links { display: flex; list-style: none; gap: 32px; margin-left: auto; }
+    .nav-links a { text-decoration: none; color: #1a1a1a; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-arrow { font-size: 0.65rem; opacity: 0.5; }
+    .nav-cta-group { display: flex; align-items: center; gap: 16px; }
+    .nav-contact { text-decoration: none; color: #1a1a1a; font-size: 0.9rem; font-weight: 500; }
+    .nav-contact:hover { color: var(--green); }
+    .nav-cta { background: var(--blue); color: var(--white); padding: 10px 22px; border-radius: 4px; text-decoration: none; font-size: 0.88rem; font-weight: 600; transition: all 0.25s; }
+    .nav-cta:hover { background: #0052cc; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.07); min-width: 220px; padding: 8px 0; z-index: 100; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a { display: block; padding: 10px 18px; font-size: 0.88rem; color: #1a1a1a; text-decoration: none; transition: background 0.15s; }
+    .nav-dropdown-menu a:hover { background: var(--off-white); color: var(--green); }
+    .menu-divider { height: 1px; background: rgba(0,0,0,0.06); margin: 6px 0; }
+
+    /* BREADCRUMB */
+    .breadcrumb { background: var(--off-white); border-bottom: 1px solid rgba(0,0,0,0.06); padding: 12px 0; margin-top: 72px; }
+    .breadcrumb-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .breadcrumb-inner a, .breadcrumb-inner span { font-size: 0.82rem; color: var(--gray); text-decoration: none; }
+    .breadcrumb-inner a:hover { color: var(--green); }
+    .breadcrumb-inner .sep { margin: 0 8px; opacity: 0.4; }
+    .breadcrumb-inner .current { color: #1a1a1a; font-weight: 500; }
+
+    /* HERO — White split layout */
+    .product-hero { background: var(--white); padding: 64px 0 80px; }
+    .hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-left { }
+    .hero-series-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(107,191,0,0.1); border: 1px solid rgba(107,191,0,0.3); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 24px; }
+    .hero-series-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .hero-left h1 { color: #1a1a1a; margin-bottom: 10px; }
+    .hero-tagline { font-size: 1.25rem; font-weight: 500; color: var(--gray); margin-bottom: 24px; }
+    .hero-desc { font-size: 1.05rem; color: #555; line-height: 1.72; margin-bottom: 36px; }
+    .hero-specs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; padding: 24px; background: var(--off-white); border-radius: 14px; }
+    .hero-spec { text-align: center; }
+    .hero-spec-val { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .hero-spec-lbl { font-size: 0.7rem; font-weight: 600; color: var(--gray); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-right { position: relative; }
+    .hero-product-img { width: 100%; border-radius: 20px; display: block; box-shadow: 0 24px 64px rgba(0,0,0,0.12); }
+    .hero-warranty-badge { position: absolute; bottom: 24px; right: 24px; background: var(--black); color: var(--white); border-radius: 12px; padding: 14px 18px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .warranty-num { font-size: 1.8rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .warranty-lbl { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+    /* INCLUDED */
+    .included { background: var(--off-white); padding: 80px 0; }
+    .included-hdr { text-align: center; margin-bottom: 48px; }
+    .included-hdr h2 { margin-bottom: 10px; }
+    .included-hdr p { max-width: 520px; margin: 0 auto; color: var(--gray); font-size: 1.05rem; }
+    .included-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .inc-card { background: var(--white); border-radius: 14px; padding: 28px 22px; text-align: center; border-top: 3px solid var(--green); transition: transform 0.25s, box-shadow 0.25s; }
+    .inc-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .inc-icon { width: 56px; height: 56px; background: rgba(107,191,0,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .inc-icon svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .inc-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .inc-card p { font-size: 0.84rem; color: var(--gray); line-height: 1.6; }
+
+    /* BENEFITS */
+    .benefits { background: var(--black); padding: 80px 0; }
+    .benefits-hdr { text-align: center; margin-bottom: 56px; }
+    .benefits-hdr h2 { color: var(--white); margin-bottom: 12px; }
+    .benefits-hdr p { color: rgba(255,255,255,0.65); max-width: 540px; margin: 0 auto; font-size: 1.05rem; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .benefit-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 28px; transition: border-color 0.3s, background 0.3s; }
+    .benefit-card:hover { border-color: rgba(107,191,0,0.35); background: rgba(107,191,0,0.04); }
+    .benefit-num { font-size: 2.8rem; font-weight: 900; color: rgba(107,191,0,0.25); line-height: 1; margin-bottom: 16px; }
+    .benefit-icon { width: 48px; height: 48px; background: rgba(107,191,0,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .benefit-icon svg { width: 22px; height: 22px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .benefit-card h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 10px; }
+    .benefit-card p { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.68; }
+
+    /* HOW IT WORKS */
+    .how-it-works { background: var(--white); padding: 80px 0; }
+    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .how-left h2 { margin-bottom: 16px; }
+    .how-left p { font-size: 1.05rem; color: #555; line-height: 1.72; margin-bottom: 32px; }
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-step { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .how-step:last-child { border-bottom: none; }
+    .step-num { width: 40px; height: 40px; background: var(--green); color: #000; font-size: 1rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body h4 { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+    .step-body p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+    .how-right { position: relative; }
+    .how-right img { width: 100%; border-radius: 20px; display: block; box-shadow: 0 20px 56px rgba(0,0,0,0.12); }
+
+    /* APP */
+    .app-section { background: var(--black-mid); padding: 80px 0; }
+    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .app-left h2 { color: var(--white); margin-bottom: 16px; }
+    .app-left p { color: rgba(255,255,255,0.72); font-size: 1.05rem; line-height: 1.72; margin-bottom: 32px; }
+    .app-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .app-feat { display: flex; align-items: flex-start; gap: 12px; }
+    .app-feat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 6px; }
+    .app-feat-text { font-size: 0.88rem; color: rgba(255,255,255,0.82); line-height: 1.55; }
+    .app-right img { width: 100%; max-width: 480px; border-radius: 20px; display: block; margin: 0 auto; box-shadow: 0 20px 56px rgba(0,0,0,0.4); }
+
+    /* SPECS */
+    .specs { background: var(--white); padding: 80px 0; }
+    .specs-hdr { text-align: center; margin-bottom: 48px; }
+    .specs-hdr h2 { margin-bottom: 10px; }
+    .specs-hdr p { max-width: 520px; margin: 0 auto; color: var(--gray); font-size: 1.05rem; }
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .spec-table { background: var(--off-white); border-radius: 16px; overflow: hidden; }
+    .spec-table-title { background: var(--black); color: var(--white); padding: 16px 24px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .spec-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-row:nth-child(even) { background: rgba(0,0,0,0.02); }
+    .spec-key { font-size: 0.88rem; color: var(--gray); font-weight: 500; }
+    .spec-val { font-size: 0.88rem; font-weight: 700; color: #1a1a1a; text-align: right; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--off-white); padding: 80px 0; text-align: center; }
+    .final-cta h2 { margin-bottom: 16px; }
+    .final-cta p { font-size: 1.1rem; max-width: 560px; margin: 0 auto 40px; color: var(--gray); }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: var(--white); padding: 64px 0 32px; }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo img { height: 40px; width: auto; margin-bottom: 16px; display: block; mix-blend-mode: screen; }
+    .footer-tagline { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); transition: all 0.2s; text-decoration: none; }
+    .footer-social a:hover { background: var(--green); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .footer-made { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .footer-made strong { color: rgba(255,255,255,0.8); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-legal a:hover { color: var(--white); }
+
+    @media (max-width: 1024px) {
+      :root { --pad-x: 24px; }
+      .hero-split, .how-grid, .app-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-right { order: -1; }
+      .included-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      :root { --pad-x: 20px; }
+      .hero-specs-row { grid-template-columns: 1fr 1fr; }
+      .included-grid, .benefits-grid { grid-template-columns: 1fr; }
+      .app-features { grid-template-columns: 1fr; }
+      .hero-btns, .cta-btns { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" /></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown"><a href="#">Industries <span class="nav-arrow">&#9660;</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="commercial-industrial.html">Commercial &amp; Industrial</a>
+          <a href="defense-government.html">Defense &amp; Government</a>
+          <a href="motive-fleet.html">Motive &amp; Fleet</a>
+        </div>
+      </li>
+      <li class="nav-dropdown"><a href="#">Products <span class="nav-arrow">&#9660;</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="product-series-b.html">Series-B (Business BESS)</a>
+          <a href="#">Series-DC (279kWh DC Block)</a>
+          <div class="menu-divider"></div>
+          <a href="product-series-r-residential.html">Series-R (48V Residential)</a>
+          <a href="#">Series-M (Motive)</a>
+          <a href="#">Series-S (Starter)</a>
+        </div>
+      </li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-cta-group">
+      <a href="#" class="nav-contact">Contact</a>
+      <a href="#" class="nav-cta">Request Quote</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a><span class="sep">›</span><span>Products</span><span class="sep">›</span><span class="current">Series-R Residential</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="product-hero">
+  <div class="container">
+    <div class="hero-split">
+      <div class="hero-left fade-up">
+        <div class="hero-series-badge">Series-R — 48V Residential</div>
+        <h1>Energy Independence<br>Starts at Home.</h1>
+        <p class="hero-tagline">The sodium-ion home battery that never catches fire.</p>
+        <p class="hero-desc">The Series-R is a wall-mounted 48V sodium-ion home energy storage system designed to pair with solar panels, eliminate utility bills, and provide whole-home backup power — with zero thermal runaway risk and a 20-year design life.</p>
+        <div class="hero-specs-row">
+          <div class="hero-spec"><div class="hero-spec-val">48V</div><div class="hero-spec-lbl">System Voltage</div></div>
+          <div class="hero-spec"><div class="hero-spec-val">10–30</div><div class="hero-spec-lbl">kWh Capacity</div></div>
+          <div class="hero-spec"><div class="hero-spec-val">6,000+</div><div class="hero-spec-lbl">Cycle Life</div></div>
+          <div class="hero-spec"><div class="hero-spec-val">20yr</div><div class="hero-spec-lbl">Design Life</div></div>
+        </div>
+        <div class="hero-btns">
+          <a href="#" class="btn btn-green">Find an Installer</a>
+          <a href="#" class="btn btn-outline-dark">Download Spec Sheet</a>
+        </div>
+      </div>
+      <div class="hero-right fade-up d2">
+        <img src="images/sr_hero_home_solar.jpg" alt="Home with solar panels and Series-R battery" class="hero-product-img" />
+        <div class="hero-warranty-badge">
+          <div class="warranty-num">10yr</div>
+          <div class="warranty-lbl">Warranty</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="included">
+  <div class="container">
+    <div class="included-hdr fade-up">
+      <p class="eyebrow eyebrow-center">What's Included</p>
+      <h2>Everything You Need for Energy Independence</h2>
+      <p>The Series-R ships as a complete system — battery module, BMS, inverter integration, and the EnergiOS™ app. One box. One installer. Done.</p>
+    </div>
+    <div class="included-grid">
+      <div class="inc-card fade-up d1">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <h4>48V Sodium-Ion Battery Module</h4>
+        <p>Wall-mounted NFPP sodium-ion cells with integrated BMS. Available in 10, 20, or 30 kWh configurations.</p>
+      </div>
+      <div class="inc-card fade-up d2">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h4>Smart BMS &amp; Inverter Interface</h4>
+        <p>CAN bus / RS485 interface compatible with all major residential inverters — SolarEdge, Enphase, SMA, Fronius, and more.</p>
+      </div>
+      <div class="inc-card fade-up d3">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h4>EnergiOS™ Mobile App</h4>
+        <p>Real-time monitoring, solar production tracking, backup status, and utility bill savings dashboard — iOS and Android.</p>
+      </div>
+      <div class="inc-card fade-up d4">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>10-Year Product Warranty</h4>
+        <p>Backed by a 10-year product warranty and 6,000-cycle performance guarantee. Zero thermal runaway — ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="container">
+    <div class="benefits-hdr fade-up">
+      <p class="eyebrow eyebrow-center" style="color:rgba(107,191,0,0.9);">Why Series-R</p>
+      <h2 style="color:var(--white);">The Home Battery That's Actually Safe</h2>
+      <p>Lithium-ion home batteries have caused house fires. The Series-R uses sodium-ion NFPP chemistry — inherently non-flammable, no thermal runaway possible.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up d1">
+        <div class="benefit-num">01</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Zero Thermal Runaway</h3>
+        <p>NFPP sodium-ion chemistry is inherently non-flammable. No fire risk, no toxic gas emissions, safe to install in garages, basements, and living spaces.</p>
+      </div>
+      <div class="benefit-card fade-up d2">
+        <div class="benefit-num">02</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>20-Year Design Life</h3>
+        <p>6,000+ cycles at 80% depth of discharge. Designed to outlast your solar panels — no replacement needed for the life of your home system.</p>
+      </div>
+      <div class="benefit-card fade-up d3">
+        <div class="benefit-num">03</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Eliminate Utility Bills</h3>
+        <p>Store excess solar during the day, power your home at night. With time-of-use rate optimization, most homeowners see 80–100% utility bill reduction.</p>
+      </div>
+      <div class="benefit-card fade-up d1">
+        <div class="benefit-num">04</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Whole-Home Backup</h3>
+        <p>Seamless automatic switchover during grid outages. Keep your lights, refrigerator, medical devices, and EV charger running — no generator needed.</p>
+      </div>
+      <div class="benefit-card fade-up d2">
+        <div class="benefit-num">05</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h3>Smart App Control</h3>
+        <p>EnergiOS™ app gives you real-time visibility into solar production, battery state, grid usage, and estimated utility savings — all from your phone.</p>
+      </div>
+      <div class="benefit-card fade-up d3">
+        <div class="benefit-num">06</div>
+        <div class="benefit-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>Universal Inverter Compatibility</h3>
+        <p>CAN bus / RS485 compatible with SolarEdge, Enphase, SMA, Fronius, Growatt, and all major residential inverter brands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="how-grid">
+      <div class="how-left fade-up">
+        <p class="eyebrow">How It Works</p>
+        <h2>Solar In. Battery Stored. Home Powered.</h2>
+        <p>The Series-R integrates seamlessly with your existing or new solar system — storing excess solar energy during the day and dispatching it at night or during outages.</p>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Solar Panels Generate Power</h4>
+              <p>Your rooftop solar panels generate DC electricity throughout the day — more than your home typically uses during peak sun hours.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Series-R Stores the Excess</h4>
+              <p>Excess solar energy that would otherwise be exported to the grid (often at low rates) is stored in the Series-R battery instead.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>EnergiOS™ Optimizes Dispatch</h4>
+              <p>The app's AI engine decides when to use battery power vs. grid power — maximizing savings based on your utility's time-of-use rates.</p>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Automatic Backup During Outages</h4>
+              <p>When the grid goes down, the Series-R switches to backup mode in milliseconds — keeping your home powered without interruption.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="how-right fade-up d2">
+        <img src="images/sr_neighborhood_solar.jpg" alt="Neighborhood with solar panels" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP SECTION -->
+<section class="app-section">
+  <div class="container">
+    <div class="app-grid">
+      <div class="app-left fade-up">
+        <p class="eyebrow" style="color:rgba(107,191,0,0.9);">EnergiOS™ Mobile App</p>
+        <h2>Your Home Energy System in Your Pocket</h2>
+        <p>The EnergiOS™ app gives you complete visibility and control over your solar + battery system — real-time data, savings tracking, and smart automation, all from your phone.</p>
+        <div class="app-features">
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Real-time solar production monitoring</div></div>
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Battery state of charge &amp; health</div></div>
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Utility bill savings tracker</div></div>
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Grid outage alerts &amp; backup status</div></div>
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Time-of-use rate optimization</div></div>
+          <div class="app-feat"><div class="app-feat-dot"></div><div class="app-feat-text">Remote diagnostics &amp; support</div></div>
+        </div>
+      </div>
+      <div class="app-right fade-up d2">
+        <img src="images/sr_smart_app.png" alt="EnergiOS mobile app" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="specs">
+  <div class="container">
+    <div class="specs-hdr fade-up">
+      <p class="eyebrow eyebrow-center">Technical Specifications</p>
+      <h2>Series-R Technical Specifications</h2>
+      <p>Complete electrical and physical specifications for the 48V Series-R residential energy storage system.</p>
+    </div>
+    <div class="specs-grid fade-up">
+      <div class="spec-table">
+        <div class="spec-table-title">Electrical Specifications</div>
+        <div class="spec-row"><span class="spec-key">Chemistry</span><span class="spec-val">Sodium-Ion NFPP</span></div>
+        <div class="spec-row"><span class="spec-key">Nominal Voltage</span><span class="spec-val">48V DC</span></div>
+        <div class="spec-row"><span class="spec-key">Usable Capacity</span><span class="spec-val">10 / 20 / 30 kWh</span></div>
+        <div class="spec-row"><span class="spec-key">Continuous Discharge Power</span><span class="spec-val">5 / 10 / 15 kW</span></div>
+        <div class="spec-row"><span class="spec-key">Peak Discharge Power (10s)</span><span class="spec-val">8 / 16 / 24 kW</span></div>
+        <div class="spec-row"><span class="spec-key">Round-Trip Efficiency</span><span class="spec-val">&gt;92%</span></div>
+        <div class="spec-row"><span class="spec-key">Depth of Discharge</span><span class="spec-val">80% (rated)</span></div>
+        <div class="spec-row"><span class="spec-key">Cycle Life</span><span class="spec-val">6,000+ cycles @ 80% DoD</span></div>
+        <div class="spec-row"><span class="spec-key">Calendar Life</span><span class="spec-val">20 years (design target)</span></div>
+        <div class="spec-row"><span class="spec-key">Communication</span><span class="spec-val">CAN bus, RS485, Wi-Fi</span></div>
+        <div class="spec-row"><span class="spec-key">Inverter Compatibility</span><span class="spec-val">SolarEdge, Enphase, SMA, Fronius, Growatt</span></div>
+      </div>
+      <div class="spec-table">
+        <div class="spec-table-title">Physical &amp; Environmental</div>
+        <div class="spec-row"><span class="spec-key">Form Factor</span><span class="spec-val">Wall-mounted module</span></div>
+        <div class="spec-row"><span class="spec-key">Dimensions (10kWh)</span><span class="spec-val">680 × 480 × 200 mm</span></div>
+        <div class="spec-row"><span class="spec-key">Weight (10kWh)</span><span class="spec-val">68 kg</span></div>
+        <div class="spec-row"><span class="spec-key">Installation</span><span class="spec-val">Indoor / Garage / Basement</span></div>
+        <div class="spec-row"><span class="spec-key">Operating Temperature</span><span class="spec-val">−20°C to +55°C</span></div>
+        <div class="spec-row"><span class="spec-key">Storage Temperature</span><span class="spec-val">−40°C to +60°C</span></div>
+        <div class="spec-row"><span class="spec-key">Ingress Protection</span><span class="spec-val">IP55</span></div>
+        <div class="spec-row"><span class="spec-key">Thermal Runaway Risk</span><span class="spec-val">Zero — NFPP chemistry</span></div>
+        <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val">10 years product warranty</span></div>
+        <div class="spec-row"><span class="spec-key">Certifications</span><span class="spec-val">UL 9540, UL 1973, UN38.3</span></div>
+        <div class="spec-row"><span class="spec-key">Country of Origin</span><span class="spec-val">United States</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <p class="eyebrow eyebrow-center">Get Started</p>
+    <h2>Ready for Energy Independence?</h2>
+    <p>Find a certified Series-R installer near you, or download the full spec sheet to share with your solar contractor.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-green">Find an Installer</a>
+      <a href="#" class="btn btn-outline-dark">Download Spec Sheet</a>
+      <a href="#" class="btn btn-outline-dark">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" /></div>
+        <p class="footer-tagline">Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="product-series-b.html">Series-B (Business BESS)</a></li>
+          <li><a href="#">Series-DC (279kWh DC Block)</a></li>
+          <li><a href="product-series-r-residential.html">Series-R (48V Residential)</a></li>
+          <li><a href="#">Series-M (Motive)</a></li>
+          <li><a href="#">Series-S (Starter)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
+          <li><a href="defense-government.html">Defense &amp; Government</a></li>
+          <li><a href="motive-fleet.html">Motive &amp; Fleet</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Coulomb Technology, Inc. All rights reserved.</div>
+      <div class="footer-made">🇺🇸 <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</div>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

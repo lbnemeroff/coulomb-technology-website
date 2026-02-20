@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series-B 279 kWh Business BESS — Coulomb Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* =============================================
+       COULOMB TECHNOLOGY — SERIES-B PRODUCT PAGE
+       Design: Dark navy base, green as true accent
+       No green-on-green. No generic white/grey alternation.
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:    #6BBF00;
+      --green-dk: #4d8c00;
+      --navy:     #111111;
+      --navy-mid: #181818;
+      --navy-lt:  #222222;
+      --white:    #FFFFFF;
+      --off-white:#f5f7fa;
+      --blue:     #0066FF;
+      --gray:     #6B6B6B;
+      --text-lt:  rgba(255,255,255,0.88);
+      --text-mid: rgba(255,255,255,0.60);
+      --max-w:    1400px;
+      --pad-x:    40px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1a1a1a;
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-primary:hover { background: #0052cc; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,102,255,0.35); }
+    .btn-green { background: var(--green); color: var(--white); border-color: var(--green); }
+    .btn-green:hover { background: var(--green-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,191,0,0.35); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .btn-outline-dark { background: transparent; color: #1a1a1a; border-color: rgba(26,26,26,0.35); }
+    .btn-outline-dark:hover { border-color: #1a1a1a; background: rgba(26,26,26,0.05); }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.12); }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x);
+      display: flex; align-items: center; height: 72px; gap: 48px;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; list-style: none; gap: 32px; margin-left: auto; }
+    .nav-links a { text-decoration: none; color: #1a1a1a; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-arrow { font-size: 0.65rem; opacity: 0.5; margin-left: 2px; }
+    .nav-cta-group { display: flex; align-items: center; gap: 16px; }
+    .nav-contact { text-decoration: none; color: #1a1a1a; font-size: 0.9rem; font-weight: 500; }
+    .nav-contact:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--blue); color: var(--white); padding: 10px 22px;
+      border-radius: 4px; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: #1a1a1a; border-radius: 2px; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--off-white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 12px 0;
+      margin-top: 72px;
+    }
+    .breadcrumb-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .breadcrumb-inner a, .breadcrumb-inner span {
+      font-size: 0.82rem; color: var(--gray); text-decoration: none;
+    }
+    .breadcrumb-inner a:hover { color: var(--green); }
+    .breadcrumb-inner .sep { margin: 0 8px; opacity: 0.4; }
+    .breadcrumb-inner .current { color: #1a1a1a; font-weight: 500; }
+
+    /* =============================================
+       SECTION 1 — HERO (white split layout)
+    ============================================= */
+    .hero {
+      background: var(--white);
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      overflow: hidden;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px var(--pad-x) 80px 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(107,191,0,0.10);
+      border: 1px solid rgba(107,191,0,0.3);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+    .hero-badge svg { width: 14px; height: 14px; fill: var(--green); }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: normal; color: var(--green); }
+    .hero-tagline {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-tagline span { color: var(--green); margin: 0 6px; }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .hero-spec-item {
+      background: var(--off-white);
+      padding: 18px 20px;
+      transition: background 0.2s;
+    }
+    .hero-spec-item:hover { background: rgba(107,191,0,0.07); }
+    .hero-spec-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+    .hero-spec-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .hero-spec-value em { font-style: normal; color: var(--green); }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Right column — product photo */
+    .hero-bg {
+      position: relative;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(107,191,0,0.08) 0%, transparent 65%);
+    }
+    .hero-bg img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      max-height: 76vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 24px 64px rgba(0,0,0,0.18));
+      transition: transform 6s ease;
+    }
+    .hero-bg:hover img { transform: scale(1.025); }
+    .hero-warranty {
+      position: absolute;
+      bottom: 36px;
+      right: 36px;
+      z-index: 2;
+      background: var(--green);
+      color: var(--white);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      box-shadow: 0 8px 32px rgba(107,191,0,0.4);
+    }
+    .hero-warranty .yr { font-size: 2rem; line-height: 1; }
+    .hero-warranty .label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+
+    /* =============================================
+       SECTION 2 — WHAT'S INCLUDED (off-white)
+    ============================================= */
+    .included-section {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+    .included-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f1923;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .included-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .included-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .included-item:last-child { border-bottom: none; }
+    .included-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: var(--white);
+      border: 1.5px solid rgba(107,191,0,0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .included-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 1.8; }
+    .included-text h4 { font-size: 0.95rem; font-weight: 700; color: #0f1923; margin-bottom: 3px; }
+    .included-text p { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+    .included-photo {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+    }
+    .included-photo img { width: 100%; height: 520px; object-fit: cover; display: block; }
+    .included-photo-badge {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: rgba(26,43,60,0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(107,191,0,0.3);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .included-photo-badge strong { color: var(--green); display: block; font-size: 1.1rem; }
+
+    /* =============================================
+       SECTION 3 — SOFTWARE PLATFORM (black)
+    ============================================= */
+    .platform-section {
+      background: #111111;
+      padding: 80px 0 0;
+      overflow: hidden;
+    }
+    .platform-header {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x) 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+    .platform-header .section-eyebrow { color: var(--green); }
+    .platform-header .section-title { color: var(--white); margin-bottom: 0; }
+    .platform-header p { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; }
+
+    /* Three engine cards */
+    .engines-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .engine-card {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .engine-card:hover { background: #222222; border-color: rgba(107,191,0,0.3); }
+    .engine-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      border-radius: 12px 12px 0 0;
+    }
+    .engine-num {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-variant-numeric: tabular-nums;
+    }
+    .engine-icon {
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid rgba(107,191,0,0.35);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .engine-icon svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 1.8; }
+    .engine-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .engine-name em { font-style: normal; color: var(--green); }
+    .engine-subtitle {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+    }
+    .engine-desc {
+      font-size: 0.92rem;
+      color: var(--text-lt);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .engine-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .engine-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+    .engine-features li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      min-width: 5px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    /* App + How It Works band */
+    .platform-app-band {
+      background: var(--navy-mid);
+      padding: 80px 0;
+    }
+    .platform-app-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .app-content .section-eyebrow { color: var(--green); }
+    .app-content .section-title { color: var(--white); margin-bottom: 20px; }
+    .app-content p { color: var(--text-lt); font-size: 1rem; line-height: 1.7; margin-bottom: 32px; }
+    .app-features { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
+    .app-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      color: var(--text-lt);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .app-features li .check {
+      width: 22px; height: 22px; min-width: 22px;
+      background: rgba(107,191,0,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .app-features li .check svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2.5; }
+    .app-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-visual img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 16px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    /* =============================================
+       SECTION 4 — REVENUE STREAMS (off-white)
+    ============================================= */
+    .revenue-section {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+    .revenue-header {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .revenue-header .section-title { color: #0f1923; }
+    .revenue-header .section-desc { max-width: 600px; margin: 0 auto; }
+
+    .revenue-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .revenue-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 28px;
+      border: 1px solid rgba(0,0,0,0.07);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .revenue-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .revenue-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .revenue-card:hover::after { transform: scaleX(1); }
+    .revenue-icon {
+      width: 52px; height: 52px;
+      background: rgba(107,191,0,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .revenue-icon svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 1.8; }
+    .revenue-stat {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0f1923;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .revenue-stat em { font-style: normal; color: var(--green); }
+    .revenue-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f1923;
+      margin-bottom: 12px;
+    }
+    .revenue-desc {
+      font-size: 0.87rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       SECTION 5 — SPECS (white, clean table)
+    ============================================= */
+    .specs-section {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    .specs-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+    .specs-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .specs-header .section-title { color: #0f1923; }
+    .specs-header p { color: var(--gray); font-size: 1rem; line-height: 1.7; }
+    .specs-header .cert-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .cert-pill {
+      background: var(--off-white);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #0f1923;
+    }
+
+    .specs-table-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table caption {
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      padding-bottom: 12px;
+    }
+    .specs-table tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .specs-table tr:last-child { border-bottom: none; }
+    .specs-table td {
+      padding: 14px 0;
+      font-size: 0.9rem;
+      vertical-align: top;
+    }
+    .specs-table td:first-child {
+      color: var(--gray);
+      font-weight: 500;
+      width: 50%;
+      padding-right: 16px;
+    }
+    .specs-table td:last-child {
+      color: #0f1923;
+      font-weight: 600;
+    }
+    .specs-table td.highlight { color: var(--green); }
+
+    /* =============================================
+       SECTION 6 — APPLICATIONS (navy, 2 rows)
+    ============================================= */
+    .apps-section {
+      background: var(--navy);
+      padding: 100px 0;
+    }
+    .apps-header {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      margin-bottom: 64px;
+    }
+    .apps-header .section-eyebrow { color: var(--green); }
+    .apps-header .section-title { color: var(--white); max-width: 600px; }
+
+    .apps-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+    }
+    .app-card {
+      position: relative;
+      overflow: hidden;
+      height: 400px;
+      cursor: pointer;
+    }
+    .app-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.65);
+    }
+    .app-card:hover img { transform: scale(1.04); filter: brightness(0.75); }
+    .app-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 36px 36px 32px;
+      background: linear-gradient(to top, rgba(26,43,60,0.95) 0%, transparent 100%);
+    }
+    .app-card-tag {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    .app-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .app-card p {
+      font-size: 0.88rem;
+      color: var(--text-lt);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+    .app-card-arrow {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 40px; height: 40px;
+      background: rgba(107,191,0,0.15);
+      border: 1px solid rgba(107,191,0,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+    }
+    .app-card:hover .app-card-arrow { opacity: 1; transform: translateY(0); }
+    .app-card-arrow svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* =============================================
+       SECTION 7 — FINAL CTA (off-white)
+    ============================================= */
+    .cta-section {
+      background: var(--off-white);
+      padding: 100px 0;
+    }
+    .cta-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .cta-content .section-title { color: #0f1923; margin-bottom: 16px; }
+    .cta-content p { color: var(--gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: 36px; }
+    .cta-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cta-stat {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-top: 3px solid var(--green);
+    }
+    .cta-stat-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #0f1923;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cta-stat-num em { font-style: normal; color: var(--green); }
+    .cta-stat-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #111111;
+      color: var(--white);
+      padding: 64px 0 32px;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo img { height: 40px; width: auto; margin-bottom: 16px; display: block; mix-blend-mode: screen; }
+    .footer-tagline { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { background: var(--green); color: var(--white); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .footer-made { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .footer-made strong { color: rgba(255,255,255,0.8); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-legal a:hover { color: var(--white); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+    .fade-up-d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-bg { min-height: 420px; padding: 40px; }
+      .hero-content { padding: 64px var(--pad-x) 48px; max-width: 100%; }
+      .included-inner, .platform-header, .platform-app-inner, .specs-header, .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+      .engines-grid { grid-template-columns: 1fr; }
+      .revenue-grid { grid-template-columns: repeat(2, 1fr); }
+      .apps-grid { grid-template-columns: 1fr; }
+      .specs-table-wrap { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      :root { --pad-x: 20px; }
+      .hero-specs-grid { grid-template-columns: repeat(2, 1fr); }
+      .revenue-grid { grid-template-columns: 1fr; }
+      .cta-stats { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .nav-links, .nav-cta-group { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Coulomb Technology">
+        <img src="images/coulomb-logo-black.jpg" alt="Coulomb Technology" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">Industries <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">Products <span class="nav-arrow">▼</span></a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <div class="nav-cta-group">
+        <a href="#" class="nav-contact">Contact</a>
+        <a href="#cta" class="nav-cta">Request Quote</a>
+      </div>
+      <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="#">Products</a>
+      <span class="sep">›</span>
+      <span class="current">Series-B 279 kWh Business BESS</span>
+    </div>
+  </div>
+
+  <!-- =============================================
+       SECTION 1 — HERO
+  ============================================= -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Series-B &nbsp;|&nbsp; Commercial BESS
+      </div>
+
+      <h1>279 kWh.<br><em>Fully Intelligent.</em><br>Turn-Key.</h1>
+
+      <p class="hero-tagline">
+        Sodium-Ion NFPP
+        <span>|</span> 821V
+        <span>|</span> 140 kW Max
+        <span>|</span> 2.2–10 Hr Duration
+      </p>
+
+      <p class="hero-desc">
+        The only commercial BESS that ships with a fully integrated AI energy platform. 
+        EnergiOS™, Coulomb AI™, and GridIQ™ are built in — not bolted on — so your battery 
+        generates revenue from day one.
+      </p>
+
+      <div class="hero-specs-grid">
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Nameplate</div>
+          <div class="hero-spec-value"><em>279</em> kWh</div>
+        </div>
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Usable (85% DOD)</div>
+          <div class="hero-spec-value">229 kWh</div>
+        </div>
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Max Power</div>
+          <div class="hero-spec-value">140 kW</div>
+        </div>
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Voltage Range</div>
+          <div class="hero-spec-value">634–994 VDC</div>
+        </div>
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Temp Range</div>
+          <div class="hero-spec-value"><em>−40°C</em> to +55°C</div>
+        </div>
+        <div class="hero-spec-item">
+          <div class="hero-spec-label">Duration</div>
+          <div class="hero-spec-value">2.2–10 hrs</div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#cta" class="btn btn-green">Request a Quote</a>
+        <a href="#" class="btn btn-outline-dark">Download Spec Sheet</a>
+      </div>
+    </div>
+
+    <div class="hero-bg">
+      <img src="images/prod_seriesb_hero.jpg" alt="Series-B 279 kWh BESS Cabinet" />
+      <div class="hero-warranty">
+        <span class="yr">5yr</span>
+        <span class="label">Warranty</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 2 — WHAT'S INCLUDED
+  ============================================= -->
+  <section class="included-section">
+    <div class="included-inner">
+      <div class="fade-up">
+        <p class="section-eyebrow">Complete System</p>
+        <h2 class="section-title">Everything in One Cabinet. Nothing Left to Integrate.</h2>
+        <p class="section-desc">
+          The Series-B ships as a single outdoor-rated system. No third-party EMS. No separate PCS procurement. 
+          No compatibility guesswork. One vendor. One warranty. One point of contact.
+        </p>
+
+        <ul class="included-list">
+          <li class="included-item">
+            <div class="included-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            </div>
+            <div class="included-text">
+              <h4>Sodium-Ion NFPP Battery Modules</h4>
+              <p>Prismatic cell configuration in IP54 outdoor enclosure — 279 kWh nameplate, 229 kWh usable at 85% DOD</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <div class="included-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg>
+            </div>
+            <div class="included-text">
+              <h4>Battery Management System (BMS)</h4>
+              <p>US BMS with Modbus TCP — continuous cell-level monitoring, protection, and state-of-charge reporting</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <div class="included-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="included-text">
+              <h4>EnergiOS™ + Coulomb AI™ + GridIQ™</h4>
+              <p>Full software stack pre-installed — real-time EMS, AI revenue optimization, and grid services dispatch</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <div class="included-icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="included-text">
+              <h4>Mobile App + Multi-Tenant Portal</h4>
+              <p>Property owners and individual tenants each get their own dashboard for real-time monitoring and bill optimization</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <div class="included-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="included-text">
+              <h4>Auxiliary Safety Systems</h4>
+              <p>Fire suppression, gas detection, and venting — IP54 outdoor cabinet rated for all-weather deployment</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="included-photo fade-up fade-up-d1">
+        <img src="images/prod_seriesb_outdoor.jpg" alt="Series-B installed outdoors at a commercial facility" />
+        <div class="included-photo-badge">
+          <strong>IP54 Rated</strong>
+          All-weather outdoor deployment
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 3 — SOFTWARE PLATFORM
+  ============================================= -->
+  <section class="platform-section">
+
+    <div class="platform-header">
+      <div>
+        <p class="section-eyebrow">Integrated Software Platform</p>
+        <h2 class="section-title">Three Engines.<br>One Intelligent System.</h2>
+      </div>
+      <div>
+        <p>EnergiOS™, Coulomb AI™, and GridIQ™ ship pre-installed on every Series-B — no third-party EMS, no integration fees, no separate licensing. Your battery is revenue-ready from day one.</p>
+      </div>
+    </div>
+
+    <div class="engines-grid">
+      <div class="engine-card fade-up">
+        <span class="engine-num">01</span>
+        <div class="engine-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="engine-name">EnergiOS™</div>
+        <div class="engine-subtitle">Energy Management System</div>
+        <p class="engine-desc">
+          The operating system for your energy assets. Monitors, controls, and optimizes every aspect of your 
+          battery in real time — from cell-level BMS data to grid tariff signals.
+        </p>
+        <ul class="engine-features">
+          <li>Real-time energy flow monitoring and control</li>
+          <li>Multi-tenant dashboard with per-tenant controls</li>
+          <li>Grid tariff integration and rate optimization</li>
+          <li>Remote diagnostics and over-the-air updates</li>
+          <li>SCADA / Modbus TCP integration ready</li>
+        </ul>
+      </div>
+
+      <div class="engine-card fade-up fade-up-d1">
+        <span class="engine-num">02</span>
+        <div class="engine-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="3"/></svg>
+        </div>
+        <div class="engine-name">Coulomb AI™</div>
+        <div class="engine-subtitle">Predictive Revenue Optimization</div>
+        <p class="engine-desc">
+          The intelligence layer that makes your battery work while you sleep. Continuously evaluates and predicts 
+          the optimal energy scenario — every 15 minutes, 24/7 — to maximize payments and savings.
+        </p>
+        <ul class="engine-features">
+          <li>Predictive load forecasting and price signal analysis</li>
+          <li>Automated arbitrage — charge low, discharge high</li>
+          <li>Demand charge reduction scheduling</li>
+          <li>Grid services dispatch optimization</li>
+          <li>VPP aggregation and dispatch coordination</li>
+        </ul>
+      </div>
+
+      <div class="engine-card fade-up fade-up-d2">
+        <span class="engine-num">03</span>
+        <div class="engine-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg>
+        </div>
+        <div class="engine-name">GridIQ™</div>
+        <div class="engine-subtitle">Grid Services Intelligence</div>
+        <p class="engine-desc">
+          Your direct connection to grid revenue markets. Handles enrollment, dispatch, and settlement for all 
+          available grid services programs — turning your battery into a revenue-generating DER.
+        </p>
+        <ul class="engine-features">
+          <li>Demand Response (DR) program enrollment and dispatch</li>
+          <li>Capacity market participation and bidding</li>
+          <li>Frequency regulation (FFR / PFR) response</li>
+          <li>Virtual Power Plant (VPP) aggregation</li>
+          <li>Automated settlement and revenue reporting</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- App + How It Works -->
+    <div class="platform-app-band">
+      <div class="platform-app-inner">
+        <div class="app-content fade-up">
+          <p class="section-eyebrow">Mobile App &amp; Tenant Portal</p>
+          <h2 class="section-title">Full Visibility.<br>Complete Control.</h2>
+          <p>
+            The EnergiOS™ mobile app gives property owners, operators, and individual tenants real-time visibility 
+            into energy flows, battery status, and revenue earned — all from a single intuitive dashboard. 
+            Give each tenant on your property their own access to optimize their utility bill independently.
+          </p>
+          <ul class="app-features">
+            <li>
+              <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Live battery SOC, power flow, grid status, and solar generation in one view
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              See exactly how much your system has earned from arbitrage, DR, and grid services
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Per-tenant access — each business on your property controls their own energy optimization
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Push notifications for system events, maintenance reminders, and performance anomalies
+            </li>
+          </ul>
+          <a href="#cta" class="btn btn-green">Request a Demo</a>
+        </div>
+        <div class="app-visual fade-up fade-up-d1">
+          <img src="images/app_mockup.jpg" alt="EnergiOS mobile app dashboard" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 4 — REVENUE STREAMS
+  ============================================= -->
+  <section class="revenue-section">
+    <div class="revenue-header fade-up">
+      <p class="section-eyebrow">Revenue Streams</p>
+      <h2 class="section-title">Four Ways Your Battery Pays You Back</h2>
+      <p class="section-desc">
+        The Series-B doesn't just store energy — it actively generates revenue and reduces costs across four 
+        independent income streams, simultaneously optimized by Coulomb AI™.
+      </p>
+    </div>
+
+    <div class="revenue-grid">
+      <div class="revenue-card fade-up">
+        <div class="revenue-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="revenue-stat"><em>↑</em>14%</div>
+        <div class="revenue-name">Energy Arbitrage</div>
+        <p class="revenue-desc">Charge during off-peak low-rate hours. Discharge during peak high-rate hours. Coulomb AI™ automates this 24/7 to maximize rate spread capture.</p>
+      </div>
+
+      <div class="revenue-card fade-up fade-up-d1">
+        <div class="revenue-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="revenue-stat"><em>$0</em></div>
+        <div class="revenue-name">Demand Charge Reduction</div>
+        <p class="revenue-desc">Eliminate peak demand charges — often the largest line item on a commercial utility bill — by discharging during peak consumption windows.</p>
+      </div>
+
+      <div class="revenue-card fade-up fade-up-d2">
+        <div class="revenue-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="revenue-stat"><em>+</em>$</div>
+        <div class="revenue-name">Grid Services Revenue</div>
+        <p class="revenue-desc">Get paid by the grid operator for providing demand response, capacity market participation, and frequency regulation through GridIQ™.</p>
+      </div>
+
+      <div class="revenue-card fade-up fade-up-d3">
+        <div class="revenue-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="revenue-stat">VPP</div>
+        <div class="revenue-name">Virtual Power Plant</div>
+        <p class="revenue-desc">Enroll in a VPP aggregation program and earn revenue by allowing the grid operator to dispatch your battery as part of a coordinated DER fleet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 5 — TECHNICAL SPECS
+  ============================================= -->
+  <section class="specs-section">
+    <div class="specs-inner">
+      <div class="specs-header fade-up">
+        <div>
+          <p class="section-eyebrow">Technical Specifications</p>
+          <h2 class="section-title">Built to Spec. Engineered to Last.</h2>
+        </div>
+        <div>
+          <p>
+            The Series-B is designed for 20-year commercial deployments. Every specification is engineered 
+            for real-world conditions — not laboratory ideals. Air-cooled operation across extreme temperature 
+            ranges means no HVAC infrastructure and no moving parts to maintain.
+          </p>
+          <div class="cert-row">
+            <span class="cert-pill">UL 1973</span>
+            <span class="cert-pill">UL 9540</span>
+            <span class="cert-pill">UL 9540A</span>
+            <span class="cert-pill">UN38.3</span>
+            <span class="cert-pill">IP54</span>
+            <span class="cert-pill">IEC 62619</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="specs-table-wrap fade-up">
+        <table class="specs-table">
+          <caption>Electrical Specifications</caption>
+          <tbody>
+            <tr><td>Nameplate Capacity</td><td class="highlight">279 kWh</td></tr>
+            <tr><td>Usable Energy (85% DOD)</td><td>229 kWh</td></tr>
+            <tr><td>Max Rated Power</td><td>140 kW</td></tr>
+            <tr><td>Nominal Voltage</td><td>821 VDC</td></tr>
+            <tr><td>Voltage Range</td><td>634–994 VDC</td></tr>
+            <tr><td>Max Charge Current</td><td>170 A</td></tr>
+            <tr><td>Max Discharge Current</td><td>170 A</td></tr>
+            <tr><td>Duration Range</td><td class="highlight">2.2–10 Hours</td></tr>
+            <tr><td>Round-Trip Efficiency</td><td>&gt;90%</td></tr>
+            <tr><td>Cycle Life</td><td class="highlight">6,000+ cycles</td></tr>
+            <tr><td>Calendar Life</td><td>20 years (design target)</td></tr>
+            <tr><td>Self-Discharge</td><td>&lt;3% per month</td></tr>
+          </tbody>
+        </table>
+
+        <table class="specs-table">
+          <caption>Physical &amp; Environmental</caption>
+          <tbody>
+            <tr><td>Operating Temperature</td><td class="highlight">−40°C to +55°C</td></tr>
+            <tr><td>Storage Temperature</td><td>−40°C to +60°C</td></tr>
+            <tr><td>Cooling Method</td><td>Air-cooled (no HVAC)</td></tr>
+            <tr><td>Enclosure Rating</td><td class="highlight">IP54 Outdoor</td></tr>
+            <tr><td>Dimensions (W×D×H)</td><td>2,000×1,500×2,300 mm</td></tr>
+            <tr><td>Weight</td><td>~3,200 kg</td></tr>
+            <tr><td>Communication</td><td>Modbus TCP / SCADA</td></tr>
+            <tr><td>Grid Connection</td><td>Via external PCS</td></tr>
+            <tr><td>Chemistry</td><td>Sodium-Ion NFPP</td></tr>
+            <tr><td>Cell Format</td><td>Prismatic</td></tr>
+            <tr><td>Thermal Risk</td><td class="highlight">Zero runaway incidents</td></tr>
+            <tr><td>Warranty</td><td>5 years system</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 6 — APPLICATIONS
+  ============================================= -->
+  <section class="apps-section">
+    <div class="apps-header fade-up">
+      <p class="section-eyebrow">Applications</p>
+      <h2 class="section-title">Where the Series-B Performs</h2>
+    </div>
+
+    <div class="apps-grid">
+      <div class="app-card fade-up">
+        <img src="images/uc_peak_demand.jpg" alt="Peak Demand Management" />
+        <div class="app-card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="app-card-content">
+          <span class="app-card-tag">C&amp;I / Retail</span>
+          <h3>Peak Demand &amp; Arbitrage</h3>
+          <p>Eliminate demand charges and capture rate spread arbitrage at big-box retail, industrial facilities, and multi-tenant commercial properties.</p>
+        </div>
+      </div>
+
+      <div class="app-card fade-up fade-up-d1">
+        <img src="images/uc_critical_backup.jpg" alt="Critical Backup Power" />
+        <div class="app-card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="app-card-content">
+          <span class="app-card-tag">Data Centers / Healthcare</span>
+          <h3>Critical Backup &amp; UPS</h3>
+          <p>Replace traditional UPS and diesel backup with a zero-maintenance sodium-ion system — no thermal runaway risk, no HVAC, no fuel logistics.</p>
+        </div>
+      </div>
+
+      <div class="app-card fade-up fade-up-d2">
+        <img src="images/uc_renewable.jpg" alt="Solar + Storage" />
+        <div class="app-card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="app-card-content">
+          <span class="app-card-tag">Solar + Storage</span>
+          <h3>Renewable Integration</h3>
+          <p>Pair with solar to maximize self-consumption, eliminate export curtailment, and participate in grid services programs — all managed autonomously by GridIQ™.</p>
+        </div>
+      </div>
+
+      <div class="app-card fade-up fade-up-d3">
+        <img src="images/prod_seriesb_campus.jpg" alt="Campus Microgrid" />
+        <div class="app-card-arrow">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="app-card-content">
+          <span class="app-card-tag">Campus / Microgrid</span>
+          <h3>Campus Microgrids</h3>
+          <p>Deploy multiple Series-B units in parallel to build a campus-scale microgrid — universities, hospitals, and industrial parks with multi-MWh storage needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       SECTION 7 — FINAL CTA
+  ============================================= -->
+  <section class="cta-section" id="cta">
+    <div class="cta-inner">
+      <div class="cta-content fade-up">
+        <p class="section-eyebrow">Get Started</p>
+        <h2 class="section-title">Ready to See What Your System Could Earn?</h2>
+        <p>
+          Our team will design a system sized for your facility, model the projected revenue and savings, 
+          and walk you through the full economics — at no cost and no obligation.
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-green">Request a System Design</a>
+          <a href="#" class="btn btn-outline-dark">Schedule a Demo</a>
+          <a href="#" class="btn btn-outline-dark">Download Spec Sheet</a>
+        </div>
+      </div>
+
+      <div class="cta-stats fade-up fade-up-d1">
+        <div class="cta-stat">
+          <div class="cta-stat-num"><em>14</em>%</div>
+          <div class="cta-stat-label">Lower 15-Year TCO vs. LFP</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num"><em>4</em>yr</div>
+          <div class="cta-stat-label">Typical Payback Period</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num"><em>20</em>yr</div>
+          <div class="cta-stat-label">Battery Life Design Target</div>
+        </div>
+        <div class="cta-stat">
+          <div class="cta-stat-num"><em>0</em></div>
+          <div class="cta-stat-label">Thermal Incidents to Date</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+          </div>
+          <p class="footer-tagline">Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="product-series-b.html">Series-B (Business BESS)</a></li>
+            <li><a href="#">Series-DC (279kWh DC Block)</a></li>
+            <li><a href="product-series-r-residential.html">Series-R (48V Residential)</a></li>
+            <li><a href="#">Series-M (Motive)</a></li>
+            <li><a href="#">Series-S (Starter)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="commercial-industrial.html">Commercial &amp; Industrial</a></li>
+            <li><a href="defense-government.html">Defense &amp; Government</a></li>
+            <li><a href="motive-fleet.html">Motive &amp; Fleet</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Coulomb Technology, Inc. All rights reserved.</div>
+        <div class="footer-made">🇺🇸 <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Intersection observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

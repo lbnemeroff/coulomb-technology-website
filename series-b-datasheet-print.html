@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Series-B 279 kWh Business BESS — Coulomb Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:  #6BBF00;
+      --navy:   #1a2b3c;
+      --white:  #FFFFFF;
+      --off:    #f5f7fa;
+      --gray:   #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+    }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 10pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      position: relative;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 297mm;
+      page-break-after: always;
+    }
+    .cover-left {
+      background: var(--navy);
+      padding: 52px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(10);
+    }
+    .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(107,191,0,0.15);
+      border: 1px solid rgba(107,191,0,0.4);
+      color: var(--green);
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .cover-badge::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+    .cover-left h1 {
+      font-size: 30pt;
+      font-weight: 900;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .cover-left h1 em { font-style: normal; color: var(--green); }
+    .cover-tagline {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .cover-desc {
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.65;
+      max-width: 280px;
+      margin-bottom: 32px;
+    }
+    .cover-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .cs-item {
+      background: rgba(255,255,255,0.05);
+      padding: 14px 12px;
+    }
+    .cs-label { font-size: 6pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 3px; }
+    .cs-val { font-size: 11pt; font-weight: 700; color: #fff; }
+    .cs-val em { font-style: normal; color: var(--green); }
+    .cover-footer-info { font-size: 7pt; color: rgba(255,255,255,0.35); }
+    .cover-footer-info strong { color: rgba(255,255,255,0.6); }
+
+    .cover-right {
+      background: var(--off);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(107,191,0,0.1) 0%, transparent 65%);
+    }
+    .cover-right img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+      max-height: 240mm;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 48px rgba(0,0,0,0.2));
+    }
+    .cover-warranty {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      z-index: 2;
+      background: var(--green);
+      color: #fff;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+    .cover-warranty .yr { font-size: 18pt; line-height: 1; }
+    .cover-warranty .wl { font-size: 5.5pt; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      padding: 20px 44px 0;
+      margin-bottom: 6px;
+    }
+    .eyebrow {
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+    }
+    .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .section-header h2 { font-size: 16pt; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+    .section-header p { font-size: 9pt; color: var(--gray); line-height: 1.6; max-width: 480px; }
+
+    /* ── WHAT'S INCLUDED ── */
+    .included-page {
+      padding: 36px 44px;
+      page-break-after: always;
+    }
+    .included-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-top: 20px;
+    }
+    .included-list { list-style: none; }
+    .included-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .included-item:last-child { border-bottom: none; }
+    .inc-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(107,191,0,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .inc-icon svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .inc-text h4 { font-size: 9pt; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+    .inc-text p { font-size: 8pt; color: var(--gray); line-height: 1.5; }
+    .included-photo { position: relative; border-radius: 10px; overflow: hidden; }
+    .included-photo img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; display: block; }
+    .ip-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(26,43,60,0.88);
+      color: #fff;
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .ip-badge strong { color: var(--green); display: block; font-size: 8pt; }
+
+    /* ── SOFTWARE PLATFORM ── */
+    .platform-page {
+      padding: 36px 44px;
+      page-break-after: always;
+    }
+    .engines-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .engine-card {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 20px 18px;
+    }
+    .engine-num { font-size: 7pt; font-weight: 800; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; display: block; margin-bottom: 10px; }
+    .engine-icon { width: 32px; height: 32px; background: rgba(107,191,0,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .engine-icon svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .engine-name { font-size: 11pt; font-weight: 800; color: #fff; margin-bottom: 2px; }
+    .engine-sub { font-size: 7pt; font-weight: 600; color: var(--green); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+    .engine-desc { font-size: 8pt; color: rgba(255,255,255,0.72); line-height: 1.55; margin-bottom: 10px; }
+    .engine-features { list-style: none; }
+    .engine-features li {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.65);
+      padding: 3px 0;
+      padding-left: 12px;
+      position: relative;
+      line-height: 1.45;
+    }
+    .engine-features li::before { content: ''; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+
+    /* App features strip */
+    .app-strip {
+      margin-top: 16px;
+      background: var(--off);
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
+    }
+    .app-strip-title { grid-column: 1 / -1; font-size: 9pt; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .app-feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 8pt;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+    .app-feat::before { content: '✓'; color: var(--green); font-weight: 800; font-size: 8pt; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── REVENUE STREAMS ── */
+    .revenue-page {
+      padding: 36px 44px;
+      page-break-after: always;
+    }
+    .revenue-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .rev-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 14px;
+      border-top: 3px solid var(--green);
+    }
+    .rev-icon { width: 28px; height: 28px; background: rgba(107,191,0,0.1); border-radius: 7px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .rev-icon svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rev-stat { font-size: 18pt; font-weight: 900; color: #1a1a1a; line-height: 1; margin-bottom: 4px; }
+    .rev-stat em { font-style: normal; color: var(--green); }
+    .rev-name { font-size: 8.5pt; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .rev-desc { font-size: 7.5pt; color: var(--gray); line-height: 1.5; }
+
+    /* ── SPECS ── */
+    .specs-page {
+      padding: 36px 44px;
+      page-break-after: always;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table caption {
+      font-size: 7.5pt;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: left;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+    .specs-table tr { border-bottom: 1px solid var(--border); }
+    .specs-table td { padding: 7px 8px; font-size: 8.5pt; }
+    .specs-table td:first-child { color: var(--gray); font-weight: 500; }
+    .specs-table td:last-child { font-weight: 700; color: #1a1a1a; text-align: right; }
+    .specs-table td.hl { color: var(--green) !important; }
+    .cert-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+    .cert-pill { background: var(--off); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 7pt; font-weight: 700; color: #1a1a1a; }
+
+    /* ── APPLICATIONS ── */
+    .apps-page {
+      padding: 36px 44px;
+      page-break-after: always;
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .app-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    .app-card img { width: 100%; height: 100px; object-fit: cover; display: block; }
+    .app-card-body { padding: 12px 14px; }
+    .app-tag { font-size: 6.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; display: block; }
+    .app-card-body h3 { font-size: 9.5pt; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .app-card-body p { font-size: 7.5pt; color: var(--gray); line-height: 1.5; }
+
+    /* ── KEY METRICS ── */
+    .metrics-strip {
+      background: var(--navy);
+      margin: 0 44px;
+      border-radius: 12px;
+      padding: 22px 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .metric-item { text-align: center; }
+    .metric-num { font-size: 20pt; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .metric-num em { font-style: normal; color: var(--green); }
+    .metric-lbl { font-size: 6.5pt; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+
+    /* ── BACK COVER ── */
+    .back-cover {
+      background: var(--navy);
+      min-height: 80mm;
+      padding: 36px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .bc-left img { height: 32px; filter: brightness(10); margin-bottom: 10px; }
+    .bc-left p { font-size: 8pt; color: rgba(255,255,255,0.55); max-width: 280px; line-height: 1.6; }
+    .bc-right { text-align: right; }
+    .bc-right p { font-size: 7.5pt; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .bc-right strong { color: rgba(255,255,255,0.75); }
+    .bc-copy { font-size: 7pt; color: rgba(255,255,255,0.3); margin-top: 10px; }
+
+    /* ── PRINT RULES ── */
+    @media print {
+      body { margin: 0; }
+      .page { width: 100%; }
+      .cover, .included-page, .platform-page, .revenue-page, .specs-page, .apps-page { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════════
+       PAGE 1 — COVER
+  ══════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="cover-logo">
+        <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+      </div>
+      <div class="cover-body">
+        <div class="cover-badge">Series-B &nbsp;|&nbsp; Commercial BESS</div>
+        <h1>279 kWh.<br><em>Fully<br>Intelligent.</em><br>Turn-Key.</h1>
+        <p class="cover-tagline">Sodium-Ion NFPP &nbsp;|&nbsp; 821V &nbsp;|&nbsp; 140 kW &nbsp;|&nbsp; 2.2–10 Hr</p>
+        <p class="cover-desc">The only commercial BESS that ships with a fully integrated AI energy platform. EnergiOS™, Coulomb AI™, and GridIQ™ are built in — not bolted on — so your battery generates revenue from day one.</p>
+        <div class="cover-specs">
+          <div class="cs-item">
+            <div class="cs-label">Nameplate</div>
+            <div class="cs-val"><em>279</em> kWh</div>
+          </div>
+          <div class="cs-item">
+            <div class="cs-label">Usable (85% DOD)</div>
+            <div class="cs-val">229 kWh</div>
+          </div>
+          <div class="cs-item">
+            <div class="cs-label">Max Power</div>
+            <div class="cs-val">140 kW</div>
+          </div>
+          <div class="cs-item">
+            <div class="cs-label">Voltage Range</div>
+            <div class="cs-val">634–994 VDC</div>
+          </div>
+          <div class="cs-item">
+            <div class="cs-label">Temp Range</div>
+            <div class="cs-val"><em>−40°C</em> to +55°C</div>
+          </div>
+          <div class="cs-item">
+            <div class="cs-label">Duration</div>
+            <div class="cs-val">2.2–10 hrs</div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-footer-info">
+        <strong>Coulomb Technology, Inc.</strong> &nbsp;·&nbsp; coulombtechnology.com<br>
+        Product Data Sheet &nbsp;·&nbsp; Rev 2026.1
+      </div>
+    </div>
+    <div class="cover-right">
+      <img src="images/prod_seriesb_hero.jpg" alt="Series-B 279 kWh BESS Cabinet" />
+      <div class="cover-warranty">
+        <span class="yr">5yr</span>
+        <span class="wl">Warranty</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 2 — WHAT'S INCLUDED
+  ══════════════════════════════════════════ -->
+  <div class="included-page">
+    <div class="eyebrow">Complete System</div>
+    <h2 style="font-size:16pt; font-weight:800; margin-bottom:6px;">Everything in One Cabinet. Nothing Left to Integrate.</h2>
+    <p style="font-size:9pt; color:#555; max-width:480px; line-height:1.6;">The Series-B ships as a single outdoor-rated system. No third-party EMS. No separate PCS procurement. No compatibility guesswork. One vendor. One warranty. One point of contact.</p>
+
+    <div class="included-grid">
+      <ul class="included-list">
+        <li class="included-item">
+          <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div class="inc-text">
+            <h4>Sodium-Ion NFPP Battery Modules</h4>
+            <p>Prismatic cell configuration in IP54 outdoor enclosure — 279 kWh nameplate, 229 kWh usable at 85% DOD</p>
+          </div>
+        </li>
+        <li class="included-item">
+          <div class="inc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+          <div class="inc-text">
+            <h4>Battery Management System (BMS)</h4>
+            <p>US BMS with Modbus TCP — continuous cell-level monitoring, protection, and state-of-charge reporting</p>
+          </div>
+        </li>
+        <li class="included-item">
+          <div class="inc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="inc-text">
+            <h4>EnergiOS™ + Coulomb AI™ + GridIQ™</h4>
+            <p>Full software stack pre-installed — real-time EMS, AI revenue optimization, and grid services dispatch</p>
+          </div>
+        </li>
+        <li class="included-item">
+          <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="inc-text">
+            <h4>Mobile App + Multi-Tenant Portal</h4>
+            <p>Property owners and individual tenants each get their own dashboard for real-time monitoring and bill optimization</p>
+          </div>
+        </li>
+        <li class="included-item">
+          <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="inc-text">
+            <h4>Auxiliary Safety Systems</h4>
+            <p>Fire suppression, gas detection, and venting — IP54 outdoor cabinet rated for all-weather deployment</p>
+          </div>
+        </li>
+      </ul>
+      <div>
+        <div class="included-photo">
+          <img src="images/prod_seriesb_outdoor.jpg" alt="Series-B installed outdoors" />
+          <div class="ip-badge"><strong>IP54 Rated</strong>All-weather outdoor deployment</div>
+        </div>
+        <div style="margin-top:14px; background:#f5f7fa; border-radius:8px; padding:14px 16px;">
+          <div style="font-size:7pt; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); margin-bottom:8px;">Certifications</div>
+          <div class="cert-row">
+            <span class="cert-pill">UL 1973</span>
+            <span class="cert-pill">UL 9540</span>
+            <span class="cert-pill">UL 9540A</span>
+            <span class="cert-pill">UN38.3</span>
+            <span class="cert-pill">IP54</span>
+            <span class="cert-pill">IEC 62619</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 3 — SOFTWARE PLATFORM
+  ══════════════════════════════════════════ -->
+  <div class="platform-page">
+    <div class="eyebrow">Integrated Software Platform</div>
+    <h2 style="font-size:16pt; font-weight:800; margin-bottom:6px;">Three Engines. One Intelligent System.</h2>
+    <p style="font-size:9pt; color:#555; max-width:480px; line-height:1.6;">EnergiOS™, Coulomb AI™, and GridIQ™ ship pre-installed on every Series-B — no third-party EMS, no integration fees, no separate licensing.</p>
+
+    <div class="engines-grid">
+      <div class="engine-card">
+        <span class="engine-num">01</span>
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="engine-name">EnergiOS™</div>
+        <div class="engine-sub">Energy Management System</div>
+        <p class="engine-desc">The operating system for your energy assets. Monitors, controls, and optimizes every aspect of your battery in real time — from cell-level BMS data to grid tariff signals.</p>
+        <ul class="engine-features">
+          <li>Real-time energy flow monitoring and control</li>
+          <li>Multi-tenant dashboard with per-tenant controls</li>
+          <li>Grid tariff integration and rate optimization</li>
+          <li>Remote diagnostics and over-the-air updates</li>
+          <li>SCADA / Modbus TCP integration ready</li>
+        </ul>
+      </div>
+      <div class="engine-card">
+        <span class="engine-num">02</span>
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="engine-name">Coulomb AI™</div>
+        <div class="engine-sub">Predictive Revenue Optimization</div>
+        <p class="engine-desc">The intelligence layer that makes your battery work while you sleep. Continuously evaluates and predicts the optimal energy scenario — every 15 minutes, 24/7.</p>
+        <ul class="engine-features">
+          <li>Predictive load forecasting and price signal analysis</li>
+          <li>Automated arbitrage — charge low, discharge high</li>
+          <li>Demand charge reduction scheduling</li>
+          <li>Grid services dispatch optimization</li>
+          <li>VPP aggregation and dispatch coordination</li>
+        </ul>
+      </div>
+      <div class="engine-card">
+        <span class="engine-num">03</span>
+        <div class="engine-icon"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M14 14h7v7h-7z"/><path d="M3 14h7v7H3z"/></svg></div>
+        <div class="engine-name">GridIQ™</div>
+        <div class="engine-sub">Grid Services Intelligence</div>
+        <p class="engine-desc">Your direct connection to grid revenue markets. Handles enrollment, dispatch, and settlement for all available grid services programs.</p>
+        <ul class="engine-features">
+          <li>Demand Response (DR) enrollment and dispatch</li>
+          <li>Capacity market participation and bidding</li>
+          <li>Frequency regulation (FFR / PFR) response</li>
+          <li>Virtual Power Plant (VPP) aggregation</li>
+          <li>Automated settlement and revenue reporting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="app-strip">
+      <div class="app-strip-title">EnergiOS™ Mobile App &amp; Multi-Tenant Portal</div>
+      <div class="app-feat">Live battery SOC, power flow, grid status, and solar generation in one view</div>
+      <div class="app-feat">See exactly how much your system has earned from arbitrage, DR, and grid services</div>
+      <div class="app-feat">Per-tenant access — each business on your property controls their own energy optimization</div>
+      <div class="app-feat">Push notifications for system events, maintenance reminders, and performance anomalies</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 4 — REVENUE STREAMS
+  ══════════════════════════════════════════ -->
+  <div class="revenue-page">
+    <div class="eyebrow">Revenue Streams</div>
+    <h2 style="font-size:16pt; font-weight:800; margin-bottom:6px;">Four Ways Your Battery Pays You Back</h2>
+    <p style="font-size:9pt; color:#555; max-width:480px; line-height:1.6;">The Series-B doesn't just store energy — it actively generates revenue and reduces costs across four independent income streams, simultaneously optimized by Coulomb AI™.</p>
+
+    <div class="revenue-grid">
+      <div class="rev-card">
+        <div class="rev-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="rev-stat"><em>↑</em>14%</div>
+        <div class="rev-name">Energy Arbitrage</div>
+        <p class="rev-desc">Charge during off-peak low-rate hours. Discharge during peak high-rate hours. Coulomb AI™ automates this 24/7 to maximize rate spread capture.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="rev-stat"><em>$0</em></div>
+        <div class="rev-name">Demand Charge Reduction</div>
+        <p class="rev-desc">Eliminate peak demand charges — often the largest line item on a commercial utility bill — by discharging during peak consumption windows.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="rev-stat"><em>+</em>$</div>
+        <div class="rev-name">Grid Services Revenue</div>
+        <p class="rev-desc">Get paid by the grid operator for providing demand response, capacity market participation, and frequency regulation through GridIQ™.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="rev-stat">VPP</div>
+        <div class="rev-name">Virtual Power Plant</div>
+        <p class="rev-desc">Enroll in a VPP aggregation program and earn revenue by allowing the grid operator to dispatch your battery as part of a coordinated DER fleet.</p>
+      </div>
+    </div>
+
+    <div class="metrics-strip">
+      <div class="metric-item">
+        <div class="metric-num"><em>14</em>%</div>
+        <div class="metric-lbl">Lower 15-Year TCO vs. LFP</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num"><em>4</em>yr</div>
+        <div class="metric-lbl">Typical Payback Period</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num"><em>20</em>yr</div>
+        <div class="metric-lbl">Battery Life Design Target</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num"><em>0</em></div>
+        <div class="metric-lbl">Thermal Incidents to Date</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 5 — TECHNICAL SPECIFICATIONS
+  ══════════════════════════════════════════ -->
+  <div class="specs-page">
+    <div class="eyebrow">Technical Specifications</div>
+    <h2 style="font-size:16pt; font-weight:800; margin-bottom:6px;">Built to Spec. Engineered to Last.</h2>
+    <p style="font-size:9pt; color:#555; max-width:480px; line-height:1.6;">The Series-B is designed for 20-year commercial deployments. Air-cooled operation across extreme temperature ranges means no HVAC infrastructure and no moving parts to maintain.</p>
+
+    <div class="specs-grid">
+      <table class="specs-table">
+        <caption>Electrical Specifications</caption>
+        <tbody>
+          <tr><td>Nameplate Capacity</td><td class="hl">279 kWh</td></tr>
+          <tr><td>Usable Energy (85% DOD)</td><td>229 kWh</td></tr>
+          <tr><td>Max Rated Power</td><td>140 kW</td></tr>
+          <tr><td>Nominal Voltage</td><td>821 VDC</td></tr>
+          <tr><td>Voltage Range</td><td>634–994 VDC</td></tr>
+          <tr><td>Max Charge Current</td><td>170 A</td></tr>
+          <tr><td>Max Discharge Current</td><td>170 A</td></tr>
+          <tr><td>Duration Range</td><td class="hl">2.2–10 Hours</td></tr>
+          <tr><td>Round-Trip Efficiency</td><td>&gt;90%</td></tr>
+          <tr><td>Cycle Life</td><td class="hl">6,000+ cycles</td></tr>
+          <tr><td>Calendar Life</td><td>20 years (design target)</td></tr>
+          <tr><td>Self-Discharge</td><td>&lt;3% per month</td></tr>
+        </tbody>
+      </table>
+      <table class="specs-table">
+        <caption>Physical &amp; Environmental</caption>
+        <tbody>
+          <tr><td>Operating Temperature</td><td class="hl">−40°C to +55°C</td></tr>
+          <tr><td>Storage Temperature</td><td>−40°C to +60°C</td></tr>
+          <tr><td>Cooling Method</td><td>Air-cooled (no HVAC)</td></tr>
+          <tr><td>Enclosure Rating</td><td class="hl">IP54 Outdoor</td></tr>
+          <tr><td>Dimensions (W×D×H)</td><td>2,000×1,500×2,300 mm</td></tr>
+          <tr><td>Weight</td><td>~3,200 kg</td></tr>
+          <tr><td>Communication</td><td>Modbus TCP / SCADA</td></tr>
+          <tr><td>Grid Connection</td><td>Via external PCS</td></tr>
+          <tr><td>Chemistry</td><td>Sodium-Ion NFPP</td></tr>
+          <tr><td>Cell Format</td><td>Prismatic</td></tr>
+          <tr><td>Thermal Risk</td><td class="hl">Zero runaway incidents</td></tr>
+          <tr><td>Warranty</td><td>5 years system</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cert-row" style="margin-top:18px;">
+      <span style="font-size:7pt; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray); margin-right:6px; align-self:center;">Certifications:</span>
+      <span class="cert-pill">UL 1973</span>
+      <span class="cert-pill">UL 9540</span>
+      <span class="cert-pill">UL 9540A</span>
+      <span class="cert-pill">UN38.3</span>
+      <span class="cert-pill">IP54</span>
+      <span class="cert-pill">IEC 62619</span>
+      <span class="cert-pill">Modbus TCP / SCADA</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 6 — APPLICATIONS
+  ══════════════════════════════════════════ -->
+  <div class="apps-page">
+    <div class="eyebrow">Applications</div>
+    <h2 style="font-size:16pt; font-weight:800; margin-bottom:6px;">Where the Series-B Performs</h2>
+    <p style="font-size:9pt; color:#555; max-width:480px; line-height:1.6;">From peak demand management at commercial properties to critical backup at data centers, the Series-B is engineered for the full spectrum of commercial energy storage applications.</p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <img src="images/uc_peak_demand.jpg" alt="Peak Demand Management" />
+        <div class="app-card-body">
+          <span class="app-tag">C&amp;I / Retail</span>
+          <h3>Peak Demand &amp; Arbitrage</h3>
+          <p>Eliminate demand charges and capture rate spread arbitrage at big-box retail, industrial facilities, and multi-tenant commercial properties.</p>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/uc_critical_backup.jpg" alt="Critical Backup Power" />
+        <div class="app-card-body">
+          <span class="app-tag">Data Centers / Healthcare</span>
+          <h3>Critical Backup &amp; UPS</h3>
+          <p>Replace traditional UPS and diesel backup with a zero-maintenance sodium-ion system — no thermal runaway risk, no HVAC, no fuel logistics.</p>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/uc_renewable.jpg" alt="Solar + Storage" />
+        <div class="app-card-body">
+          <span class="app-tag">Solar + Storage</span>
+          <h3>Renewable Integration</h3>
+          <p>Pair with solar to maximize self-consumption, eliminate export curtailment, and participate in grid services programs — all managed autonomously by GridIQ™.</p>
+        </div>
+      </div>
+      <div class="app-card">
+        <img src="images/prod_seriesb_campus.jpg" alt="Campus Microgrid" />
+        <div class="app-card-body">
+          <span class="app-tag">Campus / Microgrid</span>
+          <h3>Campus Microgrids</h3>
+          <p>Deploy multiple Series-B units in parallel to build a campus-scale microgrid — universities, hospitals, and industrial parks with multi-MWh storage needs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back cover strip -->
+    <div class="back-cover" style="margin-top:20px; border-radius:12px;">
+      <div class="bc-left">
+        <img src="images/coulomb-logo-white.jpg" alt="Coulomb Technology" />
+        <p>Energy Storage You Can Bank On. High-uptime, safety-first sodium-ion systems with lower total cost of ownership.</p>
+        <p class="bc-copy">© 2026 Coulomb Technology, Inc. All rights reserved. Specifications subject to change without notice.</p>
+      </div>
+      <div class="bc-right">
+        <p><strong>coulombtechnology.com</strong></p>
+        <p>Series-B Product Data Sheet<br>Document No. CT-PDS-B-2026.1</p>
+        <p style="margin-top:8px; font-size:7pt; color:rgba(255,255,255,0.3);">Sodium is 1,000× more abundant than lithium.<br>Made in America.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
