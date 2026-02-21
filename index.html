@@ -293,9 +293,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(107,191,0,0.15);
-      border: 1px solid rgba(107,191,0,0.35);
-      color: var(--green);
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -343,7 +343,7 @@
        STATS STRIP — standalone section between hero & industries
     ============================================= */
     .stats-strip {
-      background: #1c2b1c;
+      background: #111111;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .stats-strip-inner {
@@ -390,7 +390,7 @@
        VALUE PROPS BAR (below stats strip)
     ============================================= */
     .value-bar {
-      background: #1e2e1e;
+      background: #1a1a1a;
     }
     .value-bar-inner {
       max-width: var(--max-w);
@@ -412,7 +412,7 @@
     .vp-icon {
       width: 40px;
       height: 40px;
-      background: rgba(107,191,0,0.1);
+      background: rgba(255,255,255,0.08);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -601,7 +601,7 @@
       flex-shrink: 0;
       width: 40px;
       height: 40px;
-      background: rgba(107,191,0,0.12);
+      background: rgba(0,0,0,0.07);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -790,7 +790,7 @@
       border-bottom: 1px solid rgba(220,53,69,0.1);
     }
     .wp-row-good {
-      background: rgba(107,191,0,0.06);
+      background: rgba(255,255,255,0.06);
       color: rgba(255,255,255,0.95);
       font-weight: 600;
     }
@@ -805,7 +805,7 @@
       flex-shrink: 0;
     }
     .wp-icon-bad  { background: rgba(220,53,69,0.2);  color: #e74c3c; }
-    .wp-icon-good { background: rgba(107,191,0,0.2);  color: var(--green); }
+    .wp-icon-good { background: rgba(0,0,0,0.07);  color: var(--green); }
 
     /* Big stat callout */
     .wp-stat {
@@ -813,8 +813,8 @@
       align-items: center;
       gap: 20px;
       padding: 20px 24px;
-      background: rgba(107,191,0,0.06);
-      border: 1px solid rgba(107,191,0,0.15);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 10px;
     }
     .wp-stat-num {
@@ -985,11 +985,11 @@
       position: relative;
       transition: background 0.3s;
     }
-    .pillar-card:hover { background: #f7fdf0; }
+    .pillar-card:hover { background: #f2f2f2; }
     .pillar-num {
       font-size: 3.5rem;
       font-weight: 900;
-      color: rgba(107,191,0,0.15);
+      color: rgba(0,0,0,0.07);
       line-height: 1;
       margin-bottom: 12px;
       font-variant-numeric: tabular-nums;
@@ -997,8 +997,8 @@
     .pillar-icon {
       width: 48px; height: 48px;
       border-radius: 10px;
-      background: rgba(107,191,0,0.12);
-      border: 1px solid rgba(107,191,0,0.25);
+      background: rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.12);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 18px;
     }
@@ -1055,11 +1055,11 @@
     .ems-bullets li .bullet-icon {
       width: 22px; height: 22px; min-width: 22px;
       border-radius: 50%;
-      background: var(--green);
+      background: #1a1a1a;
       display: flex; align-items: center; justify-content: center;
       margin-top: 1px;
     }
-    .ems-bullets li .bullet-icon svg { width: 12px; height: 12px; color: #1a1a1a; }
+    .ems-bullets li .bullet-icon svg { width: 12px; height: 12px; color: var(--green); }
     .ems-diagram-wrap {
       border-radius: 16px;
       overflow: hidden;
@@ -1101,7 +1101,7 @@
     }
     .rev-card {
       background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(107,191,0,0.2);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 14px;
       padding: 32px 24px;
       text-align: center;
@@ -1120,16 +1120,16 @@
     }
     .rev-card:hover::before { transform: scaleX(1); }
     .rev-card:hover {
-      background: rgba(107,191,0,0.08);
-      border-color: rgba(107,191,0,0.45);
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.18);
       transform: translateY(-4px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     }
     .rev-card-icon {
       width: 60px; height: 60px;
       border-radius: 14px;
-      background: rgba(107,191,0,0.12);
-      border: 1.5px solid rgba(107,191,0,0.3);
+      background: rgba(0,0,0,0.07);
+      border: 1.5px solid rgba(255,255,255,0.15);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 20px;
     }
