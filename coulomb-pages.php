@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.3.6
+ * Version:     1.3.7
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -18,7 +18,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-home',
             plugin_dir_url( __FILE__ ) . 'css/home.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Series-B page (ID 2363)
@@ -27,7 +27,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesb',
             plugin_dir_url( __FILE__ ) . 'css/seriesb.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Contact page — matched by slug
@@ -36,7 +36,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-contact',
             plugin_dir_url( __FILE__ ) . 'css/contact.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Commercial & Industrial page — matched by slug
@@ -45,7 +45,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-ci',
             plugin_dir_url( __FILE__ ) . 'css/ci.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Defense & Government page — matched by slug
@@ -54,7 +54,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-def',
             plugin_dir_url( __FILE__ ) . 'css/def.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Motive & Fleet page — matched by slug
@@ -63,7 +63,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-mf',
             plugin_dir_url( __FILE__ ) . 'css/mf.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // 48V Traction Battery page — matched by slug
@@ -72,7 +72,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-tb48',
             plugin_dir_url( __FILE__ ) . 'css/tb48.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // Series-DC page — matched by slug
@@ -81,7 +81,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesdc',
             plugin_dir_url( __FILE__ ) . 'css/seriesdc.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
     // 48V Series R page — matched by slug
@@ -90,7 +90,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesr',
             plugin_dir_url( __FILE__ ) . 'css/seriesr.css',
             array(),
-            '1.3.6'
+            '1.3.7'
         );
     }
 }

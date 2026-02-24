@@ -544,22 +544,11 @@
         hamburger.classList.toggle('open');
       });
     }
-      li.addEventListener('mouseleave', function() {
-        dropdown.style.display = 'none';
-      });
-      // Also handle focus for accessibility
-      li.addEventListener('focusin', function() {
-        dropdown.style.display = 'block';
-      });
-      li.addEventListener('focusout', function(e) {
-        if (!li.contains(e.relatedTarget)) dropdown.style.display = 'none';
-      });
-    });
 
-    // ── DESKTOP NAV DROPDOWNS (click + hover, immune to CSS overrides) ──
+    // Desktop nav dropdowns (click + hover, immune to CSS overrides)
     (function() {
       var dropdownItems = document.querySelectorAll('.nav-has-dropdown');
-      
+
       function closeAll() {
         dropdownItems.forEach(function(li) {
           var dd = li.querySelector('.nav-dropdown');
@@ -567,12 +556,12 @@
           li.classList.remove('dd-open');
         });
       }
-      
+
       dropdownItems.forEach(function(li) {
         var dropdown = li.querySelector('.nav-dropdown');
         if (!dropdown) return;
-        
-        // Set base inline styles so no CSS can override
+
+        // Force inline styles so no external CSS can override
         dropdown.style.cssText = [
           'display:none',
           'position:absolute',
@@ -588,8 +577,8 @@
           'list-style:none',
           'margin:0'
         ].join(';');
-        
-        // HOVER: open on mouseenter, close on mouseleave
+
+        // Hover: open on mouseenter, close on mouseleave
         li.addEventListener('mouseenter', function() {
           closeAll();
           dropdown.style.display = 'block';
@@ -599,8 +588,8 @@
           dropdown.style.display = 'none';
           li.classList.remove('dd-open');
         });
-        
-        // CLICK: toggle on click of the anchor (for trackpads / touch)
+
+        // Click: toggle for trackpad / touch users
         var anchor = li.querySelector('a');
         if (anchor) {
           anchor.addEventListener('click', function(e) {
@@ -615,19 +604,14 @@
           });
         }
       });
-      
-      // Close dropdowns when clicking anywhere outside the nav
+
+      // Close on outside click
       document.addEventListener('click', function(e) {
-        var nav = document.getElementById('mainNav');
-        if (nav && !nav.contains(e.target)) {
-          closeAll();
-        }
+        if (nav && !nav.contains(e.target)) closeAll();
       });
-      
-      // Close dropdowns on scroll
-      window.addEventListener('scroll', function() {
-        closeAll();
-      }, {passive: true});
+
+      // Close on scroll
+      window.addEventListener('scroll', function() { closeAll(); }, {passive: true});
     })();
 
     // Intersection observer for fade-up animations
