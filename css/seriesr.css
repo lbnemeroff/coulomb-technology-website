@@ -86,6 +86,14 @@
     .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: #1a1a1a; border-radius: 2px; }
+    /* ── MOBILE NAV ── */
+    .mobile-nav { display: none !important; position: fixed; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); z-index: 9999; padding: 16px 24px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .mobile-nav.open { display: block !important; }
+    .mobile-nav ul { list-style: none !important; padding: 0 !important; margin: 0 !important; display: flex; flex-direction: column; gap: 0; }
+    .mobile-nav ul li { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .mobile-nav ul li:last-child { border-bottom: none; }
+    .mobile-nav ul li a { display: block; padding: 14px 0; font-size: 1rem; color: #1a1a1a; text-decoration: none; font-weight: 500; }
+    .mobile-nav ul li a:hover { color: var(--green); }
 
     /* ── BREADCRUMB ── */
     .breadcrumb {
