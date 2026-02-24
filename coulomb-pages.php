@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.1.8
+ * Version:     1.2.1
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -54,7 +54,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-def',
             plugin_dir_url( __FILE__ ) . 'css/def.css',
             array(),
-            '1.1.8'
+            '1.2.0'
         );
     }
 }
