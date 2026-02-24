@@ -277,20 +277,21 @@
 .coulomb-def-page .ind-card:hover img { transform: scale(1.06); }
 .coulomb-def-page .ind-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.15) 75%, transparent 100%);
 }
 .coulomb-def-page .ind-body {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 24px 22px; color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 .coulomb-def-page .ind-vtag {
   display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
   text-transform: uppercase; background: var(--green); color: #000;
   border-radius: 20px; padding: 3px 10px; margin-bottom: 8px;
 }
-.coulomb-def-page .ind-title { font-size: 0.95rem; font-weight: 700; color: #fff !important; margin-bottom: 6px; line-height: 1.35; }
-.coulomb-def-page .ind-apps { font-size: 0.75rem; color: rgba(255,255,255,0.72); line-height: 1.5; margin-bottom: 4px; }
-.coulomb-def-page .ind-challenge { font-size: 0.72rem; color: rgba(255,255,255,0.55); line-height: 1.45; margin-bottom: 10px; }
+.coulomb-def-page .ind-title { font-size: 1rem; font-weight: 700; color: #fff !important; margin-bottom: 6px; line-height: 1.35; }
+.coulomb-def-page .ind-apps { font-size: 0.78rem; color: rgba(255,255,255,0.90); line-height: 1.5; margin-bottom: 4px; }
+.coulomb-def-page .ind-challenge { font-size: 0.75rem; color: rgba(255,255,255,0.82); line-height: 1.45; margin-bottom: 10px; }
 .coulomb-def-page .ind-link {
   display: inline-block; font-size: 0.78rem; font-weight: 700;
   color: var(--green); text-decoration: none; transition: color 0.2s;
