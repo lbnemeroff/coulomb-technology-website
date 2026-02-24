@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.2.1
+ * Version:     1.2.2
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -57,6 +57,15 @@ function coulomb_enqueue_page_styles() {
             '1.2.0'
         );
     }
+    // Motive & Fleet page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'motive-fleet' ) {
+        wp_enqueue_style(
+            'coulomb-mf',
+            plugin_dir_url( __FILE__ ) . 'css/mf.css',
+            array(),
+            '1.2.2'
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'coulomb_enqueue_page_styles' );
 
@@ -84,6 +93,9 @@ function coulomb_hide_avada_header_footer() {
     if ( $post->post_name === 'defense-government' ) {
         $coulomb_ids[] = $post->ID;
     }
+    if ( $post->post_name === 'motive-fleet' ) {
+        $coulomb_ids[] = $post->ID;
+    }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
         remove_action( 'avada_header', 'avada_header_content' );
         remove_action( 'avada_footer', 'avada_footer_content' );
@@ -106,6 +118,9 @@ function coulomb_disable_wpautop( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'defense-government' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'motive-fleet' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -168,6 +183,18 @@ function coulomb_def_shortcode() {
 }
 add_shortcode( 'coulomb_def', 'coulomb_def_shortcode' );
 
+function coulomb_mf_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/mf-body.html';
+    if ( file_exists( $file ) ) {
+        $html = file_get_contents( $file );
+        $img_url = plugin_dir_url( __FILE__ ) . 'images/';
+        $html = str_replace( 'PLUGIN_IMG_URL/', $img_url, $html );
+        return $html;
+    }
+    return '<!-- Coulomb Motive & Fleet HTML not found -->';
+}
+add_shortcode( 'coulomb_mf', 'coulomb_mf_shortcode' );
+
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_home';
@@ -175,6 +202,7 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_contact';
     $shortcodes[] = 'coulomb_ci';
     $shortcodes[] = 'coulomb_def';
+    $shortcodes[] = 'coulomb_mf';
     return $shortcodes;
 });
 
@@ -189,6 +217,9 @@ add_filter( 'the_content', function( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === 'defense-government' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'motive-fleet' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
