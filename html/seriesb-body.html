@@ -600,16 +600,6 @@
         hamburger.classList.toggle('open');
       });
     }
-
-    // ── DESKTOP NAV DROPDOWNS (JS-driven, immune to CSS overrides) ──
-    document.querySelectorAll('.nav-has-dropdown').forEach(function(li) {
-      var dropdown = li.querySelector('.nav-dropdown');
-      if (!dropdown) return;
-      // Force dropdown styles inline so no CSS can override
-      dropdown.style.cssText = 'display:none; position:absolute; top:calc(100% + 8px); left:0; min-width:240px; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.14); padding:8px 0; z-index:99999;';
-      li.addEventListener('mouseenter', function() {
-        dropdown.style.display = 'block';
-      });
       li.addEventListener('mouseleave', function() {
         dropdown.style.display = 'none';
       });
@@ -621,6 +611,80 @@
         if (!li.contains(e.relatedTarget)) dropdown.style.display = 'none';
       });
     });
+
+    // ── DESKTOP NAV DROPDOWNS (click + hover, immune to CSS overrides) ──
+    (function() {
+      var dropdownItems = document.querySelectorAll('.nav-has-dropdown');
+      
+      function closeAll() {
+        dropdownItems.forEach(function(li) {
+          var dd = li.querySelector('.nav-dropdown');
+          if (dd) dd.style.display = 'none';
+          li.classList.remove('dd-open');
+        });
+      }
+      
+      dropdownItems.forEach(function(li) {
+        var dropdown = li.querySelector('.nav-dropdown');
+        if (!dropdown) return;
+        
+        // Set base inline styles so no CSS can override
+        dropdown.style.cssText = [
+          'display:none',
+          'position:absolute',
+          'top:calc(100% + 4px)',
+          'left:0',
+          'min-width:260px',
+          'background:#ffffff',
+          'border:1px solid rgba(0,0,0,0.10)',
+          'border-radius:8px',
+          'box-shadow:0 8px 32px rgba(0,0,0,0.16)',
+          'padding:8px 0',
+          'z-index:999999',
+          'list-style:none',
+          'margin:0'
+        ].join(';');
+        
+        // HOVER: open on mouseenter, close on mouseleave
+        li.addEventListener('mouseenter', function() {
+          closeAll();
+          dropdown.style.display = 'block';
+          li.classList.add('dd-open');
+        });
+        li.addEventListener('mouseleave', function() {
+          dropdown.style.display = 'none';
+          li.classList.remove('dd-open');
+        });
+        
+        // CLICK: toggle on click of the anchor (for trackpads / touch)
+        var anchor = li.querySelector('a');
+        if (anchor) {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var isOpen = li.classList.contains('dd-open');
+            closeAll();
+            if (!isOpen) {
+              dropdown.style.display = 'block';
+              li.classList.add('dd-open');
+            }
+          });
+        }
+      });
+      
+      // Close dropdowns when clicking anywhere outside the nav
+      document.addEventListener('click', function(e) {
+        var nav = document.getElementById('mainNav');
+        if (nav && !nav.contains(e.target)) {
+          closeAll();
+        }
+      });
+      
+      // Close dropdowns on scroll
+      window.addEventListener('scroll', function() {
+        closeAll();
+      }, {passive: true});
+    })();
 
     // Intersection observer for fade-up animations
     const observer = new IntersectionObserver((entries) => {
