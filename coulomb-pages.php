@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.2.7
+ * Version:     1.2.8
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -84,6 +84,15 @@ function coulomb_enqueue_page_styles() {
             '1.2.6'
         );
     }
+    // 48V Series R page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === '48v-series-r' ) {
+        wp_enqueue_style(
+            'coulomb-seriesr',
+            plugin_dir_url( __FILE__ ) . 'css/seriesr.css',
+            array(),
+            '1.2.8'
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'coulomb_enqueue_page_styles' );
 
@@ -120,6 +129,9 @@ function coulomb_hide_avada_header_footer() {
     if ( $post->post_name === 'series-dc' ) {
         $coulomb_ids[] = $post->ID;
     }
+    if ( $post->post_name === '48v-series-r' ) {
+        $coulomb_ids[] = $post->ID;
+    }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
         remove_action( 'avada_header', 'avada_header_content' );
         remove_action( 'avada_footer', 'avada_footer_content' );
@@ -151,6 +163,9 @@ function coulomb_disable_wpautop( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'series-dc' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === '48v-series-r' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -246,6 +261,15 @@ function coulomb_seriesdc_shortcode() {
 }
 add_shortcode( 'coulomb_seriesdc', 'coulomb_seriesdc_shortcode' );
 
+function coulomb_seriesr_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/seriesr-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb 48V Series R HTML not found -->';
+}
+add_shortcode( 'coulomb_seriesr', 'coulomb_seriesr_shortcode' );
+
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_home';
@@ -256,6 +280,7 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_mf';
     $shortcodes[] = 'coulomb_tb48';
     $shortcodes[] = 'coulomb_seriesdc';
+    $shortcodes[] = 'coulomb_seriesr';
     return $shortcodes;
 });
 
@@ -279,6 +304,9 @@ add_filter( 'the_content', function( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === 'series-dc' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === '48v-series-r' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
