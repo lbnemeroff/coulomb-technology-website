@@ -86,6 +86,28 @@
     .nav-cta:hover { background: #0052cc; transform: translateY(-1px); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: #1a1a1a; border-radius: 2px; }
+    /* ── NAV DROPDOWNS ── */
+    .nav-has-dropdown { position: relative; }
+    .nav-has-dropdown:hover .nav-dropdown,
+    .nav-has-dropdown:focus-within .nav-dropdown { display: block; }
+    .nav-dropdown {
+      display: none; position: absolute; top: calc(100% + 8px); left: 0;
+      min-width: 240px; background: #fff;
+      border: 1px solid rgba(0,0,0,0.08); border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 8px 0; z-index: 2000;
+    }
+    .nav-drop-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 10px 18px; color: #1a1a1a !important;
+      font-size: 0.875rem; font-weight: 500;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .nav-drop-item:hover { background: var(--off-white) !important; color: var(--green) !important; }
+    .nav-drop-tag {
+      font-size: 0.7rem; font-weight: 600; color: var(--green);
+      background: rgba(107,191,0,0.1); border-radius: 3px;
+      padding: 2px 6px; white-space: nowrap;
+    }
     /* ── MOBILE NAV ── */
     .mobile-nav { display: none !important; position: fixed; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); z-index: 9999; padding: 16px 24px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
     .mobile-nav.open { display: block !important; }
