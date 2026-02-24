@@ -600,6 +600,28 @@
         hamburger.classList.toggle('open');
       });
     }
+
+    // ── DESKTOP NAV DROPDOWNS (JS-driven, immune to CSS overrides) ──
+    document.querySelectorAll('.nav-has-dropdown').forEach(function(li) {
+      var dropdown = li.querySelector('.nav-dropdown');
+      if (!dropdown) return;
+      // Force dropdown styles inline so no CSS can override
+      dropdown.style.cssText = 'display:none; position:absolute; top:calc(100% + 8px); left:0; min-width:240px; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.14); padding:8px 0; z-index:99999;';
+      li.addEventListener('mouseenter', function() {
+        dropdown.style.display = 'block';
+      });
+      li.addEventListener('mouseleave', function() {
+        dropdown.style.display = 'none';
+      });
+      // Also handle focus for accessibility
+      li.addEventListener('focusin', function() {
+        dropdown.style.display = 'block';
+      });
+      li.addEventListener('focusout', function(e) {
+        if (!li.contains(e.relatedTarget)) dropdown.style.display = 'none';
+      });
+    });
+
     // Intersection observer for fade-up animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
