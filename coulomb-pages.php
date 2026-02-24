@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.3.8
+ * Version:     1.3.9
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -18,7 +18,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-home',
             plugin_dir_url( __FILE__ ) . 'css/home.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Series-B page (ID 2363)
@@ -27,7 +27,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesb',
             plugin_dir_url( __FILE__ ) . 'css/seriesb.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Contact page — matched by slug
@@ -36,7 +36,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-contact',
             plugin_dir_url( __FILE__ ) . 'css/contact.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Commercial & Industrial page — matched by slug
@@ -45,7 +45,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-ci',
             plugin_dir_url( __FILE__ ) . 'css/ci.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Defense & Government page — matched by slug
@@ -54,7 +54,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-def',
             plugin_dir_url( __FILE__ ) . 'css/def.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Motive & Fleet page — matched by slug
@@ -63,7 +63,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-mf',
             plugin_dir_url( __FILE__ ) . 'css/mf.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // 48V Traction Battery page — matched by slug
@@ -72,7 +72,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-tb48',
             plugin_dir_url( __FILE__ ) . 'css/tb48.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // Series-DC page — matched by slug
@@ -81,7 +81,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesdc',
             plugin_dir_url( __FILE__ ) . 'css/seriesdc.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
     // 48V Series R page — matched by slug
@@ -90,7 +90,7 @@ function coulomb_enqueue_page_styles() {
             'coulomb-seriesr',
             plugin_dir_url( __FILE__ ) . 'css/seriesr.css',
             array(),
-            '1.3.8'
+            '1.3.9'
         );
     }
 }
@@ -417,3 +417,86 @@ function coulomb_handle_contact_form() {
 }
 add_action( 'wp_ajax_coulomb_contact_form', 'coulomb_handle_contact_form' );
 add_action( 'wp_ajax_nopriv_coulomb_contact_form', 'coulomb_handle_contact_form' );
+
+// ─── 7. Secure REST Deploy Endpoint ─────────────────────────────────────────
+// Allows Manus to push individual file updates without a full plugin zip upload.
+// Authenticated via WordPress application password (admin only).
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'coulomb/v1', '/deploy', array(
+        'methods'             => 'POST',
+        'callback'            => 'coulomb_rest_deploy',
+        'permission_callback' => function () {
+            return current_user_can( 'manage_options' );
+        },
+    ) );
+} );
+
+function coulomb_rest_deploy( WP_REST_Request $request ) {
+    $files   = $request->get_param( 'files' );   // array of {path, content}
+    $version = $request->get_param( 'version' );  // new version string e.g. "1.3.9"
+
+    if ( empty( $files ) || ! is_array( $files ) ) {
+        return new WP_Error( 'no_files', 'No files provided.', array( 'status' => 400 ) );
+    }
+
+    $plugin_dir = plugin_dir_path( __FILE__ );
+    $updated    = array();
+    $errors     = array();
+
+    // Allowed file extensions for security
+    $allowed_ext = array( 'html', 'css', 'php', 'js' );
+
+    foreach ( $files as $file ) {
+        $rel_path = isset( $file['path'] ) ? ltrim( $file['path'], '/' ) : '';
+        $content  = isset( $file['content'] ) ? $file['content'] : null;
+
+        if ( empty( $rel_path ) || $content === null ) {
+            $errors[] = 'Invalid file entry: ' . json_encode( $file );
+            continue;
+        }
+
+        // Security: only allow files within the plugin directory, no traversal
+        $ext = strtolower( pathinfo( $rel_path, PATHINFO_EXTENSION ) );
+        if ( ! in_array( $ext, $allowed_ext ) ) {
+            $errors[] = 'Disallowed file type: ' . $rel_path;
+            continue;
+        }
+        if ( strpos( $rel_path, '..' ) !== false ) {
+            $errors[] = 'Path traversal attempt: ' . $rel_path;
+            continue;
+        }
+
+        $abs_path = $plugin_dir . $rel_path;
+        $dir      = dirname( $abs_path );
+
+        // Ensure directory exists
+        if ( ! is_dir( $dir ) ) {
+            wp_mkdir_p( $dir );
+        }
+
+        $bytes = file_put_contents( $abs_path, $content );
+        if ( $bytes === false ) {
+            $errors[] = 'Failed to write: ' . $rel_path;
+        } else {
+            $updated[] = $rel_path . ' (' . $bytes . ' bytes)';
+        }
+    }
+
+    // Optionally update the version in the main plugin file
+    if ( ! empty( $version ) && preg_match( '/^\d+\.\d+\.\d+$/', $version ) ) {
+        $main_file = $plugin_dir . 'coulomb-pages.php';
+        $php       = file_get_contents( $main_file );
+        // Update Version header
+        $php = preg_replace( '/(\* Version:\s+)[\d.]+/', '${1}' . $version, $php );
+        // Update all version strings in wp_enqueue_style calls
+        $php = preg_replace( "/('[\d.]+')\s*\)\s*;(\s*\/\/ enqueue)/", "'" . $version . "' );$2", $php );
+        file_put_contents( $main_file, $php );
+        $updated[] = 'coulomb-pages.php (version bumped to ' . $version . ')';
+    }
+
+    return array(
+        'success' => true,
+        'updated' => $updated,
+        'errors'  => $errors,
+    );
+}
