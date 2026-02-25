@@ -571,3 +571,9 @@
       .ap-chem-stats { grid-template-columns: 1fr; }
       .ap-hero h1 { font-size: 1.9rem !important; }
     }
+
+    /* Hide Avada green copyright footer bar */
+    #footer.fusion-footer-copyright-area,
+    .fusion-footer-copyright-area {
+      display: none !important;
+    }
