@@ -54,34 +54,39 @@
     </ul>
   </div>
 
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb">
-    <div class="breadcrumb-inner">
-      <a href="/">Home</a>
-      <span class="sep">›</span>
-      <span class="current">All Products</span>
-    </div>
-  </div>
-
   <!-- =============================================
-       HERO
+       HERO — SLIDESHOW
   ============================================= -->
-  <section class="ap-hero">
-    <div class="container">
-      <div class="ap-hero-inner fade-up">
-        <p class="section-eyebrow">Product Portfolio</p>
-        <h1>Every Coulomb Product.<br>One Place to Compare.</h1>
-        <p class="ap-hero-desc">
-          All Coulomb Technology energy storage systems run on the same sodium-ion NFPP chemistry — 
-          non-flammable, maintenance-free, and rated for 4,000–6,000+ cycles. Choose between 
-          <strong>Smart EMS</strong> systems with built-in intelligence and <strong>Core BESS</strong> 
-          platforms engineered for integrators.
-        </p>
-        <div class="ap-hero-tags">
-          <span class="ap-tag ap-tag-ems">Smart EMS — 2 Products</span>
-          <span class="ap-tag ap-tag-core">Core BESS — 3 Products</span>
-          <span class="ap-tag ap-tag-chem">Sodium-Ion NFPP Throughout</span>
-        </div>
+  <section class="ap-hero" id="apHero">
+    <!-- Slideshow slides -->
+    <div class="ap-slides">
+      <div class="ap-slide ap-slide-active" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/uc_peak_demand-1-scaled.png')"></div>
+      <div class="ap-slide" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/uc_critical_backup-1-scaled.png')"></div>
+      <div class="ap-slide" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/uc_renewable-1-scaled.png')"></div>
+      <div class="ap-slide" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/uc_forklift.jpg')"></div>
+      <div class="ap-slide" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/prod_seriesb_campus-1.jpg')"></div>
+    </div>
+    <!-- Dark gradient overlay -->
+    <div class="ap-hero-overlay"></div>
+    <!-- Hero content -->
+    <div class="ap-hero-content">
+      <div class="ap-hero-eyebrow">
+        <span class="ap-hero-eyebrow-dot"></span>
+        Product Portfolio
+      </div>
+      <h1>One Platform.<br><em>Every Application.</em></h1>
+      <p class="ap-hero-sub">Five sodium-ion BESS products — from 12V residential to 279 kWh commercial — built on non-flammable NFPP chemistry. Choose Smart EMS with built-in intelligence, or Core BESS for open-protocol integration.</p>
+      <div class="ap-hero-actions">
+        <a href="#smart-ems" class="btn btn-green">Explore Smart EMS</a>
+        <a href="#core-bess" class="btn btn-outline-white">Explore Core BESS</a>
+      </div>
+      <!-- Slide indicators -->
+      <div class="ap-slide-dots">
+        <button class="ap-dot ap-dot-active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="ap-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="ap-dot" data-slide="2" aria-label="Slide 3"></button>
+        <button class="ap-dot" data-slide="3" aria-label="Slide 4"></button>
+        <button class="ap-dot" data-slide="4" aria-label="Slide 5"></button>
       </div>
     </div>
   </section>
@@ -89,7 +94,7 @@
   <!-- =============================================
        SECTION 1 — SMART EMS
   ============================================= -->
-  <section class="ap-section ap-section-ems">
+  <section class="ap-section ap-section-ems" id="smart-ems">
     <div class="container">
 
       <!-- Section Header -->
@@ -396,7 +401,7 @@
   <!-- =============================================
        SECTION 2 — CORE BESS
   ============================================= -->
-  <section class="ap-section ap-section-core">
+  <section class="ap-section ap-section-core" id="core-bess">
     <div class="container">
 
       <!-- Section Header -->
@@ -789,11 +794,10 @@
   <section class="ap-cta fade-up">
     <div class="container">
       <div class="ap-cta-inner">
-        <h2>Not Sure Which Product Fits?</h2>
+        <h2>Ready to Find Your Solution?</h2>
         <p>Our applications engineering team will match you with the right system for your voltage, capacity, and integration requirements — at no cost.</p>
         <div class="ap-cta-btns">
-          <a href="/contact/?inquiry=product-selection" class="btn btn-primary">Talk to an Engineer</a>
-          <a href="/contact/?inquiry=spec-sheet" class="btn btn-outline-dark">Request Spec Sheets</a>
+          <a href="/contact/" class="btn btn-primary">Request a Demo</a>
         </div>
       </div>
     </div>
@@ -907,4 +911,29 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── HERO SLIDESHOW ──
+    (function() {
+      var slides = document.querySelectorAll('.ap-slide');
+      var dots = document.querySelectorAll('.ap-dot');
+      var current = 0;
+      var timer;
+      function goTo(n) {
+        slides[current].classList.remove('ap-slide-active');
+        dots[current].classList.remove('ap-dot-active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('ap-slide-active');
+        dots[current].classList.add('ap-dot-active');
+      }
+      function next() { goTo(current + 1); }
+      function startTimer() { timer = setInterval(next, 5000); }
+      function resetTimer() { clearInterval(timer); startTimer(); }
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          goTo(parseInt(this.getAttribute('data-slide')));
+          resetTimer();
+        });
+      });
+      startTimer();
+    })();
   </script>
