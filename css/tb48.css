@@ -106,6 +106,20 @@
   text-transform: uppercase; background: var(--green); color: var(--white);
   padding: 2px 7px; border-radius: 3px; margin-left: 8px;
 }
+/* Two-section dropdown extras */
+.coulomb-tb48-page .nav-dropdown { min-width: 420px !important; }
+.coulomb-tb48-page .nav-drop-section-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: #0066FF; padding: 8px 18px 4px;
+  pointer-events: none;
+}
+.coulomb-tb48-page .nav-drop-divider { height: 1px; background: rgba(0,0,0,0.07); margin: 6px 12px; }
+.coulomb-tb48-page .nav-drop-soon { opacity: 0.5; pointer-events: none; cursor: default !important; }
+.coulomb-tb48-page .nav-drop-tag-soon {
+  font-size: 0.65rem; font-weight: 600; color: #999;
+  background: rgba(0,0,0,0.06); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
 .coulomb-tb48-page .nav-cta-group { display: flex; align-items: center; gap: 16px; }
 .coulomb-tb48-page .nav-cta {
   background: var(--green); color: var(--white); padding: 10px 22px;

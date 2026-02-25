@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.3.9
+ * Version:     1.4.0
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -76,7 +76,7 @@ function coulomb_enqueue_page_styles() {
         );
     }
     // Series-DC page — matched by slug
-    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'series-dc' ) {
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === '279v-series-dc' ) {
         wp_enqueue_style(
             'coulomb-seriesdc',
             plugin_dir_url( __FILE__ ) . 'css/seriesdc.css',
@@ -89,6 +89,24 @@ function coulomb_enqueue_page_styles() {
         wp_enqueue_style(
             'coulomb-seriesr',
             plugin_dir_url( __FILE__ ) . 'css/seriesr.css',
+            array(),
+            '1.3.9'
+        );
+    }
+    // Series-M page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'series-m' ) {
+        wp_enqueue_style(
+            'coulomb-seriesm',
+            plugin_dir_url( __FILE__ ) . 'css/seriesm.css',
+            array(),
+            '1.3.9'
+        );
+    }
+    // Series-S page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'series-s' ) {
+        wp_enqueue_style(
+            'coulomb-seriess',
+            plugin_dir_url( __FILE__ ) . 'css/seriess.css',
             array(),
             '1.3.9'
         );
@@ -126,10 +144,16 @@ function coulomb_hide_avada_header_footer() {
     if ( $post->post_name === '48v-traction-battery' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'series-dc' ) {
+    if ( $post->post_name === '279v-series-dc' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === '48v-series-r' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'series-m' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'series-s' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -162,10 +186,16 @@ function coulomb_disable_wpautop( $content ) {
     if ( $post->post_name === '48v-traction-battery' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'series-dc' ) {
+    if ( $post->post_name === '279v-series-dc' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === '48v-series-r' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'series-m' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'series-s' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -269,6 +299,22 @@ function coulomb_seriesr_shortcode() {
     return '<!-- Coulomb 48V Series R HTML not found -->';
 }
 add_shortcode( 'coulomb_seriesr', 'coulomb_seriesr_shortcode' );
+function coulomb_seriesm_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/seriesm-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb Series-M HTML not found -->';
+}
+add_shortcode( 'coulomb_seriesm', 'coulomb_seriesm_shortcode' );
+function coulomb_seriess_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/seriess-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb Series-S HTML not found -->';
+}
+add_shortcode( 'coulomb_seriess', 'coulomb_seriess_shortcode' );
 
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
@@ -281,6 +327,8 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_tb48';
     $shortcodes[] = 'coulomb_seriesdc';
     $shortcodes[] = 'coulomb_seriesr';
+    $shortcodes[] = 'coulomb_seriesm';
+    $shortcodes[] = 'coulomb_seriess';
     return $shortcodes;
 });
 
@@ -303,10 +351,16 @@ add_filter( 'the_content', function( $content ) {
     if ( isset( $post->post_name ) && $post->post_name === '48v-traction-battery' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( isset( $post->post_name ) && $post->post_name === 'series-dc' ) {
+    if ( isset( $post->post_name ) && $post->post_name === '279v-series-dc' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === '48v-series-r' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'series-m' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'series-s' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -493,6 +547,17 @@ function coulomb_rest_deploy( WP_REST_Request $request ) {
         file_put_contents( $main_file, $php );
         $updated[] = 'coulomb-pages.php (version bumped to ' . $version . ')';
     }
+
+    // Flush object cache and page caches after deploy
+    if ( function_exists( 'wp_cache_flush' ) ) { wp_cache_flush(); }
+    if ( function_exists( 'rocket_clean_domain' ) ) { rocket_clean_domain(); }
+    if ( function_exists( 'w3tc_flush_all' ) ) { w3tc_flush_all(); }
+    if ( function_exists( 'wpfc_clear_all_cache' ) ) { wpfc_clear_all_cache(); }
+    // GoDaddy Managed WordPress cache purge
+    if ( class_exists( 'WPaaS\\Cache' ) ) { do_action( 'wpaas_purge_cache' ); }
+    // Flush rewrite rules and transients
+    delete_transient( 'coulomb_pages_cache' );
+    flush_rewrite_rules( false );
 
     return array(
         'success' => true,

@@ -121,6 +121,20 @@
       border-radius: 20px;
       margin-left: auto;
     }
+/* Two-section dropdown extras */
+.coulomb-contact-page .nav-dropdown { min-width: 420px !important; }
+.coulomb-contact-page .nav-drop-section-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: #0066FF; padding: 8px 18px 4px;
+  pointer-events: none;
+}
+.coulomb-contact-page .nav-drop-divider { height: 1px; background: rgba(0,0,0,0.07); margin: 6px 12px; }
+.coulomb-contact-page .nav-drop-soon { opacity: 0.5; pointer-events: none; cursor: default !important; }
+.coulomb-contact-page .nav-drop-tag-soon {
+  font-size: 0.65rem; font-weight: 600; color: #999;
+  background: rgba(0,0,0,0.06); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
     .nav-cta-group { display: flex; align-items: center; gap: 12px; margin-left: auto; }
     .nav-contact {
       font-size: 0.9rem;

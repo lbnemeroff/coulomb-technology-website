@@ -231,6 +231,32 @@
       padding: 2px 6px;
       white-space: nowrap;
     }
+    /* Two-section dropdown extras */
+    .nav-dropdown { min-width: 420px !important; }
+    .nav-drop-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0066FF;
+      padding: 8px 18px 4px;
+      pointer-events: none;
+    }
+    .nav-drop-divider {
+      height: 1px;
+      background: rgba(0,0,0,0.07);
+      margin: 6px 12px;
+    }
+    .nav-drop-soon { opacity: 0.5; pointer-events: none; cursor: default !important; }
+    .nav-drop-tag-soon {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #999;
+      background: rgba(0,0,0,0.06);
+      border-radius: 3px;
+      padding: 2px 6px;
+      white-space: nowrap;
+    }
 
     .nav-cta-group { display: flex; align-items: center; gap: 12px; }
     .nav-contact {
@@ -692,7 +718,7 @@
     /* Top intro bar */
     .why-intro-bar {
       padding: 72px var(--pad-x) 56px;
-      text-align: center;
+      text-align: center !important;
       max-width: var(--max-w);
       margin: 0 auto;
     }
@@ -701,10 +727,11 @@
       margin-bottom: 14px;
     }
     .why-intro-bar p {
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.85) !important;
       max-width: 580px;
-      margin: 0 auto;
-      font-size: 1.05rem;
+      margin: 0 auto !important;
+      font-size: 1.05rem !important;
+      text-align: center !important;
     }
 
     /* Tab navigation */
@@ -1332,11 +1359,11 @@
       margin: 0 auto;
     }
     .cta-header {
-      text-align: center;
+      text-align: center !important;
       margin-bottom: 52px;
     }
     .cta-header h2 { margin-bottom: 14px !important; color: var(--charcoal) !important; }
-    .cta-header p { font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+    .cta-header p { font-size: 1.05rem !important; max-width: 500px; margin: 0 auto !important; text-align: center !important; }
     .cta-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
