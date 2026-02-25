@@ -121,6 +121,20 @@
       background: rgba(0,0,0,0.06); border-radius: 3px;
       padding: 2px 6px; white-space: nowrap;
     }
+/* All Products nav item — green highlight */
+.nav-drop-all-products {
+  font-weight: 700 !important;
+  color: var(--green) !important;
+}
+.nav-drop-all-products:hover {
+  background: rgba(107,191,0,0.08) !important;
+}
+.nav-drop-tag-green {
+  font-size: 0.65rem; font-weight: 700; color: #fff;
+  background: var(--green); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
+
     /* ── MOBILE NAV ── */
     .mobile-nav { display: none !important; position: fixed; top: 72px; left: 0; right: 0; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); z-index: 9999; padding: 16px 24px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
     .mobile-nav.open { display: block !important; }

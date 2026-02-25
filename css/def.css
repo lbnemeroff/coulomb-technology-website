@@ -134,6 +134,19 @@
   background: rgba(0,0,0,0.06); border-radius: 3px;
   padding: 2px 6px; white-space: nowrap;
 }
+/* All Products nav item — green highlight */
+.coulomb-def-page .nav-drop-all-products {
+  font-weight: 700 !important;
+  color: var(--green) !important;
+}
+.coulomb-def-page .nav-drop-all-products:hover {
+  background: rgba(107,191,0,0.08) !important;
+}
+.coulomb-def-page .nav-drop-tag-green {
+  font-size: 0.65rem; font-weight: 700; color: #fff;
+  background: var(--green); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
 .coulomb-def-page .nav-cta-group { display: flex; align-items: center; gap: 12px; }
 .coulomb-def-page .nav-cta {
   background: var(--blue); color: #fff; font-size: 0.875rem;

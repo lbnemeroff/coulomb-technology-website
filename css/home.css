@@ -257,6 +257,20 @@
       padding: 2px 6px;
       white-space: nowrap;
     }
+/* All Products nav item — green highlight */
+.nav-drop-all-products {
+  font-weight: 700 !important;
+  color: var(--green) !important;
+}
+.nav-drop-all-products:hover {
+  background: rgba(107,191,0,0.08) !important;
+}
+.nav-drop-tag-green {
+  font-size: 0.65rem; font-weight: 700; color: #fff;
+  background: var(--green); border-radius: 3px;
+  padding: 2px 6px; white-space: nowrap;
+}
+
 
     .nav-cta-group { display: flex; align-items: center; gap: 12px; }
     .nav-contact {
