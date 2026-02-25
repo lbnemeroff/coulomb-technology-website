@@ -62,11 +62,9 @@
   </div>
 
   <!-- =============================================
-       HERO — Architecture Diagram as Background
+       HERO — Dark gradient with diagram image below
   ============================================= -->
   <section class="se-hero" id="seHero">
-    <div class="se-hero-bg" style="background-image:url('https://coulombtechnology.com/wp-content/uploads/2026/02/ems_diagram-1-scaled.png')"></div>
-    <div class="se-hero-overlay"></div>
     <div class="se-hero-content">
       <div class="se-hero-eyebrow">Smart EMS Technology</div>
       <h1 class="se-hero-h1">Not Just a Battery.<br><em>An Intelligent Energy Platform.</em></h1>
@@ -106,46 +104,8 @@
     </div>
   </div>
 
-  <!-- =============================================
-       SECTION 1: THE PROBLEM
-  ============================================= -->
-  <section class="se-problem-section" id="platform">
-    <div class="se-problem-inner">
-      <div class="se-problem-header fade-up">
-        <div class="se-section-label">The Problem With Conventional BESS</div>
-        <h2>A Battery Alone Is Just a Battery.</h2>
-        <p>Most commercial energy storage systems ship with a BMS and a basic monitoring app — and that's it. The result is a passive asset that only does what you tell it to do, when you remember to tell it.</p>
-      </div>
-      <div class="se-problem-grid">
-        <div class="se-problem-card fade-up">
-          <div class="se-problem-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          </div>
-          <h4>Reactive, Not Predictive</h4>
-          <p>Standard systems respond to what's happening now — they can't anticipate tomorrow's peak demand window or tonight's low-price charging opportunity.</p>
-        </div>
-        <div class="se-problem-card fade-up fade-up-d1">
-          <div class="se-problem-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h4>Manual Intervention Required</h4>
-          <p>Operators must manually adjust charge schedules, respond to grid events, and enroll in demand response programs — creating operational burden and missed revenue.</p>
-        </div>
-        <div class="se-problem-card fade-up fade-up-d2">
-          <div class="se-problem-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h4>Revenue Left on the Table</h4>
-          <p>Without automated grid services enrollment, most commercial BESS owners never participate in demand response, capacity markets, or VPP programs — missing thousands per month.</p>
-        </div>
-      </div>
-      <div class="se-problem-solution-bridge fade-up">
-        <div class="se-bridge-line"></div>
-        <div class="se-bridge-label">Coulomb Technology's answer</div>
-        <div class="se-bridge-line"></div>
-      </div>
-    </div>
-  </section>
+  <!-- anchor for Explore the Platform button -->
+  <div id="platform"></div>
 
   <!-- =============================================
        SECTION 2: ENERGIOS — Deep Dive
@@ -291,12 +251,15 @@
   <!-- =============================================
        SECTION 5: HOW IT WORKS — Step by Step
   ============================================= -->
-  <section class="se-how-section">
+  <section class="se-how-section" id="platform">
     <div class="se-how-inner">
       <div class="se-how-header fade-up">
         <div class="se-section-label">How It Works</div>
         <h2>Your Battery Works While You Sleep.</h2>
         <p>Coulomb AI™ continuously monitors solar generation, grid pricing, weather forecasts, and your facility's load profile — then automatically executes the best energy strategy every 15 minutes, 24/7.</p>
+      </div>
+      <div class="se-how-diagram fade-up">
+        <img src="https://coulombtechnology.com/wp-content/uploads/2026/02/ems_diagram-1-scaled.png" alt="Smart EMS System Architecture Diagram" />
       </div>
       <div class="se-how-steps">
         <div class="se-how-step fade-up">
@@ -386,13 +349,7 @@
           <p>Earn additional revenue during grid stress events by joining a VPP aggregation network — coordinated automatically by GridIQ™.</p>
         </div>
       </div>
-      <div class="se-rev-summary fade-up">
-        <div class="se-rev-summary-num">4yr</div>
-        <div class="se-rev-summary-text">
-          <strong>Typical Payback Period</strong>
-          <span>All four streams managed automatically — no manual intervention required</span>
-        </div>
-      </div>
+
     </div>
   </section>
 
@@ -475,7 +432,7 @@
         </div>
         <div class="se-products-cta-action">
           <a href="/all-products/#smart-ems" class="btn-se btn-se-primary btn-se-lg">View All Smart EMS Products →</a>
-          <a href="/contact/" class="btn-se btn-se-outline-navy">Talk to an Engineer</a>
+
         </div>
       </div>
     </div>

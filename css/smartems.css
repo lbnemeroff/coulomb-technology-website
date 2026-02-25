@@ -1,6 +1,6 @@
 /* ============================================================
    SMART EMS TECHNOLOGY PAGE — smartems.css
-   Coulomb Technology v1.9.0
+   Coulomb Technology v2.0.0
    ============================================================ */
 
 /* ---- Variables ---- */
@@ -108,33 +108,17 @@ body.page-template-default #main {
 .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
 .mobile-nav { display: none; }
 
-/* ---- HERO — Architecture Diagram Background ---- */
+/* ---- HERO — Clean centered dark ---- */
 .se-hero {
-  position: relative;
-  height: 100vh; min-height: 600px; max-height: 920px;
-  overflow: hidden;
-  display: flex; align-items: center;
-}
-.se-hero-bg {
-  position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  transform: scale(1.04);
-  transition: transform 8s ease;
-}
-.se-hero:hover .se-hero-bg { transform: scale(1.0); }
-.se-hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(10,14,20,0.92) 0%, rgba(10,14,20,0.72) 50%, rgba(10,14,20,0.55) 100%);
+  background: var(--navy);
+  padding: 120px 24px 80px;
 }
 .se-hero-content {
-  position: relative; z-index: 2;
-  max-width: 1280px; width: 100%;
+  max-width: 760px;
   margin: 0 auto;
-  padding: 0 24px;
-  padding-top: 72px;
+  text-align: center;
 }
+.se-hero-btns { justify-content: center; }
 .se-hero-eyebrow {
   display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--green); margin-bottom: 20px;
@@ -187,8 +171,7 @@ body.page-template-default #main {
   text-transform: uppercase; color: var(--green); margin-bottom: 14px;
 }
 
-/* ---- PROBLEM SECTION ---- */
-.se-problem-section { background: var(--off-white); padding: 96px 24px 48px; }
+/* ---- PROBLEM SECTION ---- (removed — section deleted) */
 .se-problem-inner { max-width: 1100px; margin: 0 auto; }
 .se-problem-header { text-align: left; margin-bottom: 56px; max-width: 680px; }
 .se-problem-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); margin: 0 0 16px; }
@@ -242,7 +225,7 @@ body.page-template-default #main {
 }
 
 /* ---- HOW IT WORKS ---- */
-.se-how-section { background: var(--navy-mid); padding: 96px 24px; }
+.se-how-section { background: var(--charcoal); padding: 96px 24px; }
 .se-how-inner { max-width: 1100px; margin: 0 auto; }
 .se-how-header { text-align: left; margin-bottom: 64px; max-width: 680px; }
 .se-how-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: white; margin: 0 0 16px; }
@@ -251,7 +234,7 @@ body.page-template-default #main {
 .se-how-step {
   flex: 1; padding: 36px 28px;
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius);
 }
 .se-how-connector {
@@ -259,47 +242,49 @@ body.page-template-default #main {
   margin-top: 56px; opacity: 0.6;
 }
 .se-step-num { font-size: 2.5rem; font-weight: 900; color: var(--green); opacity: 0.7; margin-bottom: 12px; }
-.se-step-content h4 { font-size: 18px; font-weight: 700; color: white; margin: 0 0 10px; }
-.se-step-content p { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.65; margin: 0; }
+.se-step-content h4 { font-size: 18px; font-weight: 700; color: white !important; margin: 0 0 10px; }
+.se-step-content p { font-size: 14px; color: rgba(255,255,255,0.85) !important; line-height: 1.65; margin: 0; }
+/* Architecture diagram inside How It Works */
+.se-how-diagram {
+  margin-bottom: 56px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+.se-how-diagram img { width: 100%; display: block; }
 
 /* ---- REVENUE STACKING — 2x2 Grid ---- */
-.se-revenue-section { background: var(--off-white); padding: 96px 24px; }
+.se-revenue-section { background: var(--navy-mid); padding: 96px 24px; }
 .se-revenue-inner { max-width: 1000px; margin: 0 auto; }
 .se-revenue-header { text-align: left; margin-bottom: 56px; max-width: 680px; }
-.se-revenue-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); margin: 0 0 16px; }
-.se-revenue-header p { font-size: 17px; color: var(--text-light); line-height: 1.6; }
+.se-revenue-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: white; margin: 0 0 16px; }
+.se-revenue-header p { font-size: 17px; color: rgba(255,255,255,0.82); line-height: 1.6; }
 .se-revenue-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
   margin-bottom: 24px;
 }
 .se-rev-card {
-  background: white; border: 1px solid var(--gray-light);
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius); padding: 28px 28px 24px;
   border-top: 3px solid var(--green);
   transition: box-shadow var(--transition), transform var(--transition);
 }
-.se-rev-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.se-rev-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.3); transform: translateY(-2px); }
 .se-rev-card-top {
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 14px;
 }
 .se-rev-card-icon {
   width: 40px; height: 40px; min-width: 40px; max-width: 40px;
-  background: #e8f5e9; border-radius: 10px;
+  background: rgba(76,175,26,0.15); border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   color: var(--green); overflow: hidden;
 }
 .se-rev-card-icon svg { width: 22px !important; height: 22px !important; max-width: 22px !important; max-height: 22px !important; display: block; }
-.se-rev-card-val { font-size: 18px; font-weight: 800; color: var(--green-dark); }
-.se-rev-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
-.se-rev-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin: 0; }
-.se-rev-summary {
-  display: flex; align-items: center; gap: 24px;
-  background: var(--navy); border-radius: var(--radius); padding: 24px 32px;
-}
-.se-rev-summary-num { font-size: 3rem; font-weight: 900; color: var(--green); line-height: 1; flex-shrink: 0; }
-.se-rev-summary-text strong { display: block; font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px; }
-.se-rev-summary-text span { font-size: 14px; color: rgba(255,255,255,0.65); }
+.se-rev-card-val { font-size: 18px; font-weight: 800; color: var(--green); }
+.se-rev-card h4 { font-size: 16px; font-weight: 700; color: white; margin: 0 0 8px; }
+.se-rev-card p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.6; margin: 0; }
 
 /* ---- ROI BAND ---- */
 .se-roi-band { background: var(--navy-light); padding: 80px 24px; }
@@ -312,24 +297,26 @@ body.page-template-default #main {
 .se-roi-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ---- SODIUM-ION TEASER ---- */
-.se-sodium-teaser { background: var(--off-white); border-top: 1px solid var(--gray-light); padding: 64px 24px; }
+.se-sodium-teaser { background: var(--slate); border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 24px; }
 .se-sodium-teaser-inner {
   max-width: 1000px; margin: 0 auto;
   display: flex; align-items: center; gap: 32px;
-  background: white; border: 1px solid var(--gray-light);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius); padding: 40px 48px;
   border-left: 4px solid var(--green);
 }
 .se-sodium-teaser-icon {
   width: 56px; height: 56px; min-width: 56px;
-  background: rgba(76,175,26,0.1); border-radius: 14px;
+  background: rgba(76,175,26,0.15); border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
   color: var(--green);
 }
 .se-sodium-teaser-icon svg { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; display: block; }
 .se-sodium-teaser-text { flex: 1; }
-.se-sodium-teaser-text h3 { font-size: 1.4rem; font-weight: 800; color: var(--navy); margin: 8px 0 10px; }
-.se-sodium-teaser-text p { font-size: 15px; color: var(--text-light); line-height: 1.6; margin: 0; }
+.se-sodium-teaser-text h3 { font-size: 1.4rem; font-weight: 800; color: white; margin: 8px 0 10px; }
+.se-sodium-teaser-text p { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.6; margin: 0; }
+.btn-se-outline-navy { background: transparent; color: rgba(255,255,255,0.85) !important; border: 2px solid rgba(255,255,255,0.35) !important; }
+.btn-se-outline-navy:hover { background: rgba(255,255,255,0.1) !important; color: white !important; border-color: white !important; }
 
 /* ---- PRODUCTS CTA — Generic ---- */
 .se-products-cta { background: var(--navy); padding: 96px 24px; }
@@ -399,7 +386,8 @@ body.page-template-default #main {
 @media (max-width: 900px) {
   .se-stats-inner { grid-template-columns: repeat(2, 1fr); }
   .se-stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .se-problem-grid { grid-template-columns: 1fr; }
+  .se-hero-inner { grid-template-columns: 1fr; }
+  .se-hero-diagram { display: none; }
   .se-tech-inner { grid-template-columns: 1fr; gap: 40px; }
   .se-tech-inner-reverse { direction: ltr; }
   .se-how-steps { flex-direction: column; }
