@@ -126,8 +126,7 @@
 
     /* ── BREADCRUMB ── */
     .breadcrumb {
-      background: var(--off-white); border-bottom: 1px solid rgba(0,0,0,0.06);
-      padding: 12px 0; margin-top: 72px;
+      display: none !important;
     }
     .breadcrumb-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
     .breadcrumb-inner a, .breadcrumb-inner span { font-size: 0.82rem; color: var(--gray); text-decoration: none; }
@@ -151,13 +150,14 @@
     .ap-hero {
       background: var(--navy);
       padding: 80px 0 72px;
+      margin-top: 72px;
       text-align: center;
     }
     .ap-hero-inner { max-width: 820px; margin: 0 auto; }
     .ap-hero .section-eyebrow { color: var(--green); }
     .ap-hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800;
-      color: var(--white); line-height: 1.15; margin-bottom: 20px;
+      font-size: clamp(2.2rem, 4vw, 3.4rem) !important; font-weight: 800 !important;
+      color: #ffffff !important; line-height: 1.15 !important; margin-bottom: 20px !important;
     }
     .ap-hero-desc {
       font-size: 1.1rem; color: var(--text-lt); max-width: 680px; margin: 0 auto 32px; line-height: 1.7;
