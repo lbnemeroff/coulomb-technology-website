@@ -3,11 +3,11 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.5.9
+ * Version:     1.6.0
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-define( 'COULOMB_PAGES_VERSION', '1.5.9' );
+define( 'COULOMB_PAGES_VERSION', '1.6.0' );
 
 // ─── 1. Enqueue CSS on the correct pages ────────────────────────────────────
 function coulomb_enqueue_page_styles() {
@@ -121,6 +121,15 @@ function coulomb_enqueue_page_styles() {
             COULOMB_PAGES_VERSION
         );
     }
+    // Legal pages — Terms of Use and Privacy Policy
+    if ( is_a( $post, 'WP_Post' ) && in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
+        wp_enqueue_style(
+            'coulomb-legal',
+            plugin_dir_url( __FILE__ ) . 'css/legal.css',
+            array(),
+            COULOMB_PAGES_VERSION
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'coulomb_enqueue_page_styles', 9999 );
 
@@ -167,6 +176,9 @@ function coulomb_hide_avada_header_footer() {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'all-products' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -341,6 +353,24 @@ function coulomb_allproducts_shortcode() {
 }
 add_shortcode( 'coulomb_allproducts', 'coulomb_allproducts_shortcode' );
 
+
+// Terms of Use shortcode
+add_shortcode( 'coulomb_terms', function() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/terms-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '';
+} );
+
+// Privacy Policy shortcode
+add_shortcode( 'coulomb_privacy', function() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/privacy-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '';
+} );
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_home';
@@ -355,13 +385,15 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_seriesm';
     $shortcodes[] = 'coulomb_seriess';
     $shortcodes[] = 'coulomb_allproducts';
+    $shortcodes[] = 'coulomb_terms';
+    $shortcodes[] = 'coulomb_privacy';
     return $shortcodes;
 });
 
 add_filter( 'the_content', function( $content ) {
     global $post;
     if ( ! is_a( $post, 'WP_Post' ) ) return $content;
-    $coulomb_ids = array( 683, 2363 );
+    $coulomb_ids = array(683, 2363);
     if ( isset( $post->post_name ) && $post->post_name === 'contact' ) {
         $coulomb_ids[] = $post->ID;
     }
@@ -390,6 +422,9 @@ add_filter( 'the_content', function( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === 'all-products' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
