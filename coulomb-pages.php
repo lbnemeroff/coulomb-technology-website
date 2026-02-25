@@ -3,7 +3,7 @@
  * Plugin Name: Coulomb Technology Pages
  * Plugin URI:  https://coulombtechnology.com
  * Description: Delivers the Coulomb Technology homepage, Series-B product page, and Contact page with proper CSS enqueuing and unfiltered HTML shortcodes.
- * Version:     1.6.2
+ * Version:     1.7.0
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -130,6 +130,24 @@ function coulomb_enqueue_page_styles() {
             COULOMB_PAGES_VERSION
         );
     }
+    // Smart EMS Technology page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'smart-ems' ) {
+        wp_enqueue_style(
+            'coulomb-smartems',
+            plugin_dir_url( __FILE__ ) . 'css/smartems.css',
+            array(),
+            COULOMB_PAGES_VERSION
+        );
+    }
+    // BESS Core Technology page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'bess-core' ) {
+        wp_enqueue_style(
+            'coulomb-besscore',
+            plugin_dir_url( __FILE__ ) . 'css/besscore.css',
+            array(),
+            COULOMB_PAGES_VERSION
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'coulomb_enqueue_page_styles', 9999 );
 
@@ -181,6 +199,12 @@ function coulomb_hide_avada_header_footer() {
     if ( in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
         $coulomb_ids[] = $post->ID;
     }
+    if ( $post->post_name === 'smart-ems' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'bess-core' ) {
+        $coulomb_ids[] = $post->ID;
+    }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
         remove_action( 'avada_header', 'avada_header_content' );
         remove_action( 'avada_footer', 'avada_footer_content' );
@@ -224,6 +248,15 @@ function coulomb_disable_wpautop( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'all-products' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'smart-ems' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'bess-core' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -371,6 +404,25 @@ add_shortcode( 'coulomb_privacy', function() {
     }
     return '';
 } );
+
+function coulomb_smartems_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/smartems-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb Smart EMS HTML not found -->';
+}
+add_shortcode( 'coulomb_smartems', 'coulomb_smartems_shortcode' );
+
+function coulomb_besscore_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/besscore-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb BESS Core HTML not found -->';
+}
+add_shortcode( 'coulomb_besscore', 'coulomb_besscore_shortcode' );
+
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_home';
@@ -387,6 +439,8 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_allproducts';
     $shortcodes[] = 'coulomb_terms';
     $shortcodes[] = 'coulomb_privacy';
+    $shortcodes[] = 'coulomb_smartems';
+    $shortcodes[] = 'coulomb_besscore';
     return $shortcodes;
 });
 
@@ -425,6 +479,12 @@ add_filter( 'the_content', function( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && in_array( $post->post_name, array( 'terms-of-use', 'terms-conditions', 'privacy-policy' ) ) ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'smart-ems' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'bess-core' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
