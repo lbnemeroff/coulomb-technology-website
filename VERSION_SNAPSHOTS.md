@@ -5,6 +5,35 @@ If work is lost or a page regresses, reference these snapshots to restore.
 
 ---
 
+## Homepage (`/`) — v1.x STABLE
+**Date:** 2026-02-27
+**Git Commit:** `2030059` (coulomb-pages-plugin master)
+**Files:** `html/home-body.html` (932 lines), `css/home.css` (1,653 lines)
+
+### Design Summary
+- **Nav:** White background (`rgba(255,255,255,0.97)`), black Coulomb logo (`coulomb-logo-black-1.jpg`), dropdowns with Industries / Products / Technology / About. Contact Us button `#0066FF` blue. Hamburger menu on mobile.
+- **Hero:** Full-screen video (`hero-video.mp4`) with dark overlay and fallback poster image (`coulomb_hero_montage.jpg`). H1: *"Energy Storage You Can Bank On"*. Two CTAs: green "Find Your Solution" → `/contact/`, white outline "Why Sodium-Ion?" → `#why`.
+- **Section 2 — Industries:** Three industry cards (Commercial & Industrial, Defense & Government, Motive & Fleet) with icons and links.
+- **Section 3b — Intelligent Energy Platform:** Feature showcase for Smart EMS / BESS Core with product cards.
+- **Section 3 — Why Sodium-Ion:** Bold tabbed split section comparing sodium-ion vs lithium-ion across Safety, Performance, Economics tabs.
+- **Section 4 — Partners:** Research partners logo strip: Oak Ridge, Argonne, Rutgers, NEI Corp, Cleantech Open, Innovation Crossroads, Spark Cleantech, Bronco Ventures, Cradle to Commerce, NENY.
+- **Section 5 — Final CTA:** White/light background. H2: *"Ready to Get Started?"*. CTA cards grid.
+- **Footer:** Custom dark footer (Avada footer hidden by plugin PHP). White logo (`coulomb-logo-white-1.webp`), Products / Industries / Company columns, LinkedIn + Twitter social icons, copyright, Made in America tagline.
+
+### CSS Design Tokens
+- `--green: #6BBF00` (homepage uses this variant, not `#4caf1a`)
+- `--blue: #0066FF`
+- `--charcoal: #1A1A1A`
+- `--light: #F7F7F7`
+- `--max-w: 1400px`
+
+### Key Notes
+- Homepage nav uses **black logo** (light nav bar) — all other pages use **white logo** (dark nav bar).
+- Hero video autoplay is forced via JS with fallback to poster image if autoplay is blocked.
+- The Why Sodium-Ion section uses tabbed JS interaction (`data-tab` attributes).
+
+---
+
 ## BESS Core Page (`/bess/`) — v2.0 STABLE
 **Date:** 2026-02-27
 **Git Commit:** `6a8d960` (coulomb-pages-plugin master)
