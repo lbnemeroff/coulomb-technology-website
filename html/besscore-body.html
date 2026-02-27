@@ -1,4 +1,4 @@
-<!-- NAV -->
+
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
       <a href="https://coulombtechnology.com/" class="nav-logo" aria-label="Coulomb Technology">
@@ -59,6 +59,8 @@
     </ul>
   </div>
 
+
+
   <!-- HERO -->
   <section class="bc-hero">
     <div class="bc-hero-inner">
@@ -109,21 +111,21 @@
       </div>
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;" class="fade-up">
         <div style="background:var(--bc-off-white); border-radius:14px; padding:32px 28px; border:1px solid var(--bc-gray-light);">
-          <div style="width:48px;height:48px;border-radius:10px;background:rgba(57,255,20,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <div style="width:48px;height:48px;border-radius:10px;background:rgba(76,175,26,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <h4 style="font-size:1rem;font-weight:700;color:var(--bc-text);margin:0 0 10px;">Store Energy. Use It When You Need It.</h4>
           <p style="font-size:13px;color:var(--bc-text-light);line-height:1.65;margin:0;">A BESS charges during off-peak hours or from solar/wind generation, then discharges during peak demand — reducing utility bills, providing backup power, and smoothing out grid instability.</p>
         </div>
         <div style="background:var(--bc-off-white); border-radius:14px; padding:32px 28px; border:1px solid var(--bc-gray-light);">
-          <div style="width:48px;height:48px;border-radius:10px;background:rgba(57,255,20,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <div style="width:48px;height:48px;border-radius:10px;background:rgba(76,175,26,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
           </div>
           <h4 style="font-size:1rem;font-weight:700;color:var(--bc-text);margin:0 0 10px;">The Battery Is Only Part of the System.</h4>
           <p style="font-size:13px;color:var(--bc-text-light);line-height:1.65;margin:0;">A complete BESS includes battery cells, a Battery Management System (BMS), power conversion electronics, and software. The chemistry of the cells determines safety, lifespan, and total cost — which is why cell selection matters more than most buyers realize.</p>
         </div>
         <div style="background:var(--bc-off-white); border-radius:14px; padding:32px 28px; border:1px solid var(--bc-gray-light);">
-          <div style="width:48px;height:48px;border-radius:10px;background:rgba(57,255,20,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <div style="width:48px;height:48px;border-radius:10px;background:rgba(76,175,26,0.07);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <h4 style="font-size:1rem;font-weight:700;color:var(--bc-text);margin:0 0 10px;">Not All BESS Are Built the Same.</h4>
@@ -554,7 +556,8 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+
+  <!-- FOOTER ============================================= -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -592,13 +595,14 @@
             <ul>
               <li><a href="/about-us/">About Us</a></li>
               <li><a href="/contact/">Contact</a></li>
+              <li><a href="/partners/">Partners</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&#169; 2026 Coulomb Technology, Inc. All rights reserved.</span>
-        <span class="footer-made">&#127482;&#127480; <strong>Made in America</strong> &#8212; Sodium is 1,000&#215; more abundant than lithium</span>
+        <span>© 2026 Coulomb Technology, Inc. All rights reserved.</span>
+        <span class="footer-made">&#x1F1FA;&#x1F1F8; <strong>Made in America</strong> — Sodium is 1,000× more abundant than lithium</span>
         <div class="footer-legal">
           <a href="/privacy-policy/">Privacy Policy</a>
           <a href="/terms-conditions/">Terms of Use</a>
@@ -609,14 +613,6 @@
 
   <script>
   (function(){
-    var nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', function(){
-      nav.classList.toggle('nav-scrolled', window.scrollY > 40);
-    });
-    document.getElementById('hamburger').addEventListener('click', function(){
-      document.getElementById('mobileNav').classList.toggle('open');
-      this.classList.toggle('open');
-    });
     // Intersection observer for fade-up animations
     var observer = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
