@@ -471,3 +471,6 @@
   .coulomb-ci-page .process-cta .btn { width: 100%; }
   .coulomb-ci-page .final-cta .btn { width: 100%; max-width: 320px; }
 }
+
+/* Ensure mobile nav never shows as raw list on desktop */
+.mobile-nav { display: none !important; }

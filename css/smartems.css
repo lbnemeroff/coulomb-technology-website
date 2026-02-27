@@ -201,85 +201,87 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 
 /* ---- TECH SECTIONS (EnergiOS / Coulomb AI / GridIQ) ---- */
 .se-tech-section { padding: 96px 24px; }
-/* Charcoal: dark but not black — renderings visible */
-.se-tech-charcoal { background: var(--charcoal); }
-/* Slate: slightly lighter — alternating feel */
-.se-tech-slate { background: var(--slate); }
+/* Light alternating sections */
+.se-tech-charcoal { background: #ffffff; }
+.se-tech-slate { background: var(--off-white); }
 .se-tech-inner {
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
 }
 .se-tech-inner-reverse { direction: rtl; }
 .se-tech-inner-reverse > * { direction: ltr; }
-.se-tech-num { font-size: 3.5rem; font-weight: 900; color: var(--green); opacity: 0.35; line-height: 1; margin-bottom: 8px; }
+.se-tech-num { font-size: 3.5rem; font-weight: 900; color: var(--green); opacity: 0.5; line-height: 1; margin-bottom: 8px; }
 .se-tech-badge {
   display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px;
   background: rgba(76,175,26,0.18); color: var(--green);
   border: 1px solid rgba(76,175,26,0.3);
 }
-.se-tech-name { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: white; margin: 0 0 16px; }
-.se-tech-lead { font-size: 16px; color: rgba(255,255,255,0.88); line-height: 1.65; margin-bottom: 32px; }
+.se-tech-name { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--navy); margin: 0 0 16px; }
+.se-tech-lead { font-size: 16px; color: var(--text-light); line-height: 1.65; margin-bottom: 32px; }
 .se-tech-features { display: flex; flex-direction: column; gap: 18px; }
 .se-tech-feature { display: flex; gap: 14px; align-items: flex-start; }
 .se-tf-dot {
   width: 8px; height: 8px; border-radius: 50%; background: var(--green);
   flex-shrink: 0; margin-top: 6px;
 }
-.se-tech-feature strong { display: block; font-size: 14px; font-weight: 700; color: white; margin-bottom: 3px; }
-.se-tech-feature span { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.55; }
+.se-tech-feature strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.se-tech-feature span { font-size: 13px; color: var(--text-light); line-height: 1.55; }
 .se-tech-visual img {
   width: 100%; border-radius: var(--radius);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid var(--gray-light);
 }
 
 /* ---- HOW IT WORKS ---- */
-.se-how-section { background: var(--charcoal); padding: 96px 24px; }
+.se-how-section { background: var(--off-white); padding: 96px 24px; }
 .se-how-inner { max-width: 1100px; margin: 0 auto; }
 .se-how-header { text-align: left; margin-bottom: 64px; max-width: 680px; }
-.se-how-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: white; margin: 0 0 16px; }
-.se-how-header p { font-size: 17px; color: rgba(255,255,255,0.82); line-height: 1.6; }
+.se-how-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); margin: 0 0 16px; }
+.se-how-header p { font-size: 17px; color: var(--text-light); line-height: 1.6; }
 .se-how-steps { display: flex; align-items: flex-start; gap: 0; }
 .se-how-step {
   flex: 1; padding: 36px 28px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: white;
+  border: 1px solid var(--gray-light);
   border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 .se-how-connector {
   width: 32px; flex-shrink: 0; height: 2px; background: var(--green);
   margin-top: 56px; opacity: 0.6;
 }
 .se-step-num { font-size: 2.5rem; font-weight: 900; color: var(--green); opacity: 0.7; margin-bottom: 12px; }
-.se-step-content h4 { font-size: 18px; font-weight: 700; color: white !important; margin: 0 0 10px; }
-.se-step-content p { font-size: 14px; color: rgba(255,255,255,0.85) !important; line-height: 1.65; margin: 0; }
+.se-step-content h4 { font-size: 18px; font-weight: 700; color: var(--navy) !important; margin: 0 0 10px; }
+.se-step-content p { font-size: 14px; color: var(--text-light) !important; line-height: 1.65; margin: 0; }
 /* Architecture diagram inside How It Works */
 .se-how-diagram {
   margin-bottom: 56px;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  border: 1px solid var(--gray-light);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 .se-how-diagram img { width: 100%; display: block; }
 
-/* ---- REVENUE STACKING — 2x2 Grid ---- */
-.se-revenue-section { background: var(--navy-mid); padding: 96px 24px; }
+/* ---- REVENUE STACKING — 3-col Grid ---- */
+.se-revenue-section { background: white; padding: 96px 24px; }
 .se-revenue-inner { max-width: 1000px; margin: 0 auto; }
 .se-revenue-header { text-align: left; margin-bottom: 56px; max-width: 680px; }
-.se-revenue-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: white; margin: 0 0 16px; }
-.se-revenue-header p { font-size: 17px; color: rgba(255,255,255,0.82); line-height: 1.6; }
+.se-revenue-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); margin: 0 0 16px; }
+.se-revenue-header p { font-size: 17px; color: var(--text-light); line-height: 1.6; }
 .se-revenue-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   margin-bottom: 24px;
 }
 .se-rev-card {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  background: white; border: 1px solid var(--gray-light);
   border-radius: var(--radius); padding: 28px 28px 24px;
   border-top: 3px solid var(--green);
   transition: box-shadow var(--transition), transform var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.se-rev-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.3); transform: translateY(-2px); }
+.se-rev-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); transform: translateY(-2px); }
 .se-rev-card-top {
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 14px;
@@ -292,27 +294,28 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 }
 .se-rev-card-icon svg { width: 22px !important; height: 22px !important; max-width: 22px !important; max-height: 22px !important; display: block; }
 .se-rev-card-val { font-size: 18px; font-weight: 800; color: var(--green); }
-.se-rev-card h4 { font-size: 16px; font-weight: 700; color: white; margin: 0 0 8px; }
-.se-rev-card p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.6; margin: 0; }
+.se-rev-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+.se-rev-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin: 0; }
 
 /* ---- ROI BAND ---- */
-.se-roi-band { background: var(--navy-light); padding: 80px 24px; }
+.se-roi-band { background: var(--off-white); padding: 80px 24px; border-top: 1px solid var(--gray-light); border-bottom: 1px solid var(--gray-light); }
 .se-roi-inner { max-width: 860px; margin: 0 auto; text-align: center; }
-.se-roi-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: white; margin: 0 0 16px; }
-.se-roi-text p { font-size: 17px; color: rgba(255,255,255,0.82); line-height: 1.6; margin-bottom: 40px; }
+.se-roi-text h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--navy); margin: 0 0 16px; }
+.se-roi-text p { font-size: 17px; color: var(--text-light); line-height: 1.6; margin-bottom: 40px; }
 .se-roi-stats { display: flex; justify-content: center; gap: 48px; margin-bottom: 40px; flex-wrap: wrap; }
 .se-roi-stat-num { font-size: 2.4rem; font-weight: 900; color: var(--green); line-height: 1; }
-.se-roi-stat-label { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+.se-roi-stat-label { font-size: 13px; color: var(--text-light); margin-top: 6px; }
 .se-roi-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ---- SODIUM-ION TEASER ---- */
-.se-sodium-teaser { background: var(--slate); border-top: 1px solid rgba(255,255,255,0.06); padding: 64px 24px; }
+.se-sodium-teaser { background: white; border-top: 1px solid var(--gray-light); padding: 64px 24px; }
 .se-sodium-teaser-inner {
   max-width: 1000px; margin: 0 auto;
   display: flex; align-items: center; gap: 32px;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  background: var(--off-white); border: 1px solid var(--gray-light);
   border-radius: var(--radius); padding: 40px 48px;
   border-left: 4px solid var(--green);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 .se-sodium-teaser-icon {
   width: 56px; height: 56px; min-width: 56px;
@@ -322,10 +325,10 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 }
 .se-sodium-teaser-icon svg { width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; display: block; }
 .se-sodium-teaser-text { flex: 1; }
-.se-sodium-teaser-text h3 { font-size: 1.4rem; font-weight: 800; color: white; margin: 8px 0 10px; }
-.se-sodium-teaser-text p { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.6; margin: 0; }
-.btn-se-outline-navy { background: transparent; color: rgba(255,255,255,0.85) !important; border: 2px solid rgba(255,255,255,0.35) !important; }
-.btn-se-outline-navy:hover { background: rgba(255,255,255,0.1) !important; color: white !important; border-color: white !important; }
+.se-sodium-teaser-text h3 { font-size: 1.4rem; font-weight: 800; color: var(--navy); margin: 8px 0 10px; }
+.se-sodium-teaser-text p { font-size: 15px; color: var(--text-light); line-height: 1.6; margin: 0; }
+.btn-se-outline-navy { background: transparent; color: var(--navy) !important; border: 2px solid rgba(13,17,23,0.3) !important; }
+.btn-se-outline-navy:hover { background: var(--navy) !important; color: white !important; border-color: var(--navy) !important; }
 
 /* ---- PRODUCTS CTA — Generic ---- */
 .se-products-cta { background: var(--navy); padding: 96px 24px; }
@@ -339,7 +342,7 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 .se-products-cta-features { display: flex; flex-direction: column; gap: 16px; }
 .se-pf-item { display: flex; gap: 12px; align-items: flex-start; }
 .se-pf-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 6px; }
-.se-pf-item span { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+.se-pf-item span { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.55; }
 .se-products-cta-action { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; min-width: 240px; }
 .se-products-cta-action .btn-se-outline-navy {
   color: rgba(255,255,255,0.75);

@@ -140,7 +140,7 @@ function coulomb_enqueue_page_styles() {
         );
     }
     // BESS Core Technology page — matched by slug
-    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'bess-core' ) {
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'bess' ) {
         wp_enqueue_style(
             'coulomb-besscore',
             plugin_dir_url( __FILE__ ) . 'css/besscore.css',
@@ -202,7 +202,7 @@ function coulomb_hide_avada_header_footer() {
     if ( $post->post_name === 'smart-ems' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'bess-core' ) {
+    if ( $post->post_name === 'bess' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -256,7 +256,7 @@ function coulomb_disable_wpautop( $content ) {
     if ( $post->post_name === 'smart-ems' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'bess-core' ) {
+    if ( $post->post_name === 'bess' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -484,7 +484,7 @@ add_filter( 'the_content', function( $content ) {
     if ( isset( $post->post_name ) && $post->post_name === 'smart-ems' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( isset( $post->post_name ) && $post->post_name === 'bess-core' ) {
+    if ( isset( $post->post_name ) && $post->post_name === 'bess' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {

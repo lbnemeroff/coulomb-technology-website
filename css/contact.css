@@ -748,3 +748,6 @@
       .cf-submit-row { flex-direction: column; }
       .cf-submit-row .btn { width: 100%; }
     }
+
+/* Ensure mobile nav never shows as raw list on desktop */
+.mobile-nav { display: none !important; }

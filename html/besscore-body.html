@@ -132,7 +132,82 @@
         </div>
       </div>
       <div class="bc-intro-visual fade-up fade-up-d1">
-        <img src="https://coulombtechnology.com/wp-content/uploads/2026/02/ems_diagram-1-scaled.png" alt="BESS Core open-protocol architecture diagram showing BMS interface and integration layers" loading="lazy" />
+        <!-- BESS Core Open-Protocol Integration Diagram -->
+        <svg viewBox="0 0 540 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;background:#0d1117;display:block;">
+          <!-- Background -->
+          <rect width="540" height="420" fill="#0d1117" rx="12"/>
+
+          <!-- Title -->
+          <text x="270" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="2">OPEN-PROTOCOL INTEGRATION ARCHITECTURE</text>
+
+          <!-- BESS Core Cabinet (center-left) -->
+          <rect x="30" y="150" width="140" height="120" rx="10" fill="#1e2530" stroke="#4caf1a" stroke-width="2"/>
+          <text x="100" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#4caf1a" letter-spacing="1">COULOMB BESS</text>
+          <!-- Battery icon -->
+          <rect x="68" y="188" width="64" height="30" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <rect x="132" y="196" width="6" height="14" rx="2" fill="rgba(255,255,255,0.4)"/>
+          <rect x="70" y="190" width="40" height="26" rx="3" fill="rgba(76,175,26,0.5)"/>
+          <text x="100" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.7)">Sodium-Ion NFPP</text>
+          <!-- BMS label -->
+          <rect x="60" y="248" width="80" height="18" rx="4" fill="rgba(76,175,26,0.15)" stroke="rgba(76,175,26,0.4)" stroke-width="1"/>
+          <text x="100" y="261" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#4caf1a">Open BMS Interface</text>
+
+          <!-- Protocol Hub (center) -->
+          <rect x="210" y="155" width="120" height="110" rx="10" fill="#161b22" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+          <text x="270" y="178" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="1">PROTOCOLS</text>
+          <!-- Protocol tags -->
+          <rect x="222" y="185" width="96" height="16" rx="4" fill="rgba(76,175,26,0.12)" stroke="rgba(76,175,26,0.3)" stroke-width="1"/>
+          <text x="270" y="197" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#4caf1a">Modbus TCP/IP</text>
+          <rect x="222" y="206" width="96" height="16" rx="4" fill="rgba(76,175,26,0.12)" stroke="rgba(76,175,26,0.3)" stroke-width="1"/>
+          <text x="270" y="218" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#4caf1a">CAN Bus</text>
+          <rect x="222" y="227" width="96" height="16" rx="4" fill="rgba(76,175,26,0.12)" stroke="rgba(76,175,26,0.3)" stroke-width="1"/>
+          <text x="270" y="239" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#4caf1a">RS485</text>
+          <rect x="222" y="248" width="96" height="16" rx="4" fill="rgba(76,175,26,0.12)" stroke="rgba(76,175,26,0.3)" stroke-width="1"/>
+          <text x="270" y="260" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#4caf1a">BACnet</text>
+
+          <!-- Arrow: BESS -> Protocols -->
+          <line x1="170" y1="210" x2="208" y2="210" stroke="#4caf1a" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Right side: Integration targets -->
+          <!-- Third-Party EMS -->
+          <rect x="370" y="80" width="140" height="52" rx="8" fill="#1e2530" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <text x="440" y="102" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="white">Third-Party EMS</text>
+          <text x="440" y="118" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">SolarEdge, AlphaESS, etc.</text>
+
+          <!-- SCADA -->
+          <rect x="370" y="153" width="140" height="52" rx="8" fill="#1e2530" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <text x="440" y="175" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="white">SCADA / DCS</text>
+          <text x="440" y="191" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">Industrial control systems</text>
+
+          <!-- BMS -->
+          <rect x="370" y="226" width="140" height="52" rx="8" fill="#1e2530" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <text x="440" y="248" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="white">Building Mgmt (BMS)</text>
+          <text x="440" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">HVAC, lighting, metering</text>
+
+          <!-- Custom Controls -->
+          <rect x="370" y="299" width="140" height="52" rx="8" fill="#1e2530" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <text x="440" y="321" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="white">Custom Controls</text>
+          <text x="440" y="337" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">OEM / proprietary stack</text>
+
+          <!-- Arrows: Protocols -> Targets -->
+          <line x1="330" y1="195" x2="368" y2="106" stroke="rgba(76,175,26,0.6)" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+          <line x1="330" y1="205" x2="368" y2="179" stroke="rgba(76,175,26,0.6)" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+          <line x1="330" y1="215" x2="368" y2="252" stroke="rgba(76,175,26,0.6)" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+          <line x1="330" y1="225" x2="368" y2="325" stroke="rgba(76,175,26,0.6)" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+          <!-- Bottom label -->
+          <text x="270" y="395" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">You bring the controls layer. We bring the battery.</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="#4caf1a"/>
+            </marker>
+            <marker id="arrowGreen" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="rgba(76,175,26,0.8)"/>
+            </marker>
+          </defs>
+        </svg>
       </div>
     </div>
   </section>

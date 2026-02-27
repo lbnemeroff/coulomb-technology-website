@@ -474,3 +474,6 @@
   .coulomb-mf-page .partners-logos { grid-template-columns: repeat(2, 1fr); }
   .coulomb-mf-page .page-hero h1 { font-size: 1.9rem; }
 }
+
+/* Ensure mobile nav never shows as raw list on desktop */
+.mobile-nav { display: none !important; }

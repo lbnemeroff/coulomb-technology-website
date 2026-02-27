@@ -450,3 +450,6 @@
   .coulomb-tb48-page .footer-links { grid-template-columns: 1fr; }
   .coulomb-tb48-page .tb48-hero { padding-top: 88px; }
 }
+
+/* Ensure mobile nav never shows as raw list on desktop */
+.mobile-nav { display: none !important; }
