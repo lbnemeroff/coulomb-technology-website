@@ -5,6 +5,32 @@ If work is lost or a page regresses, reference these snapshots to restore.
 
 ---
 
+## All Products Page (`/all-products/`) — v1.x STABLE
+**Date:** 2026-02-27
+**Git Commit:** `d42ec56` (coulomb-pages-plugin master)
+**Files:** `html/allproducts-body.html` (940 lines), `css/allproducts.css` (579 lines)
+
+### Design Summary
+- **Hero:** Dark full-bleed slideshow hero. H1: *"One Platform. Every Application."* Subtext: five sodium-ion BESS products from 12V to 279 kWh. Two CTAs: green "Explore Smart EMS" → `#smart-ems`, outline "Explore Core BESS" → `#core-bess`.
+- **Section 1 — Smart EMS:** Green accent label. H2: *"Intelligent BESS with Built-In Software"*. EnergiOS™ / Coulomb AI™ / GridIQ™ feature bar (dark card). Two product cards: **Series-B** (279 kWh, `coulomb_cabinet_clean-scaled.png`) and **Series-R** (48V, `seriesr-hero-v2.png`). Comparison table for Series-B vs Series-R.
+- **Section 2 — Core BESS:** Blue accent label. H2: *"Open-Protocol. Any EMS. Any Application."* Three product cards: **Series-DC** (279 kWh, `coulomb_cabinet_clean-scaled.png`), **Series-M** (48V, `seriesm-hero-1-scaled.png`), **Series-S** (12V, `seriess-hero-scaled.png`). Comparison table for all three.
+- **Section 3 — Chemistry:** Shared NFPP chemistry band across all products.
+- **Section 4 — CTA:** Final call-to-action band.
+- **Footer:** Custom dark footer (Avada footer hidden by plugin PHP).
+
+### CSS Design Tokens
+- `--green: #6BBF00`, `--green-dk: #4d8c00`, `--green-lt: rgba(107,191,0,0.12)`
+- `--blue: #0066FF`, `--blue-lt: rgba(0,102,255,0.10)`
+- `--navy: #111111`, `--navy-mid: #181818`, `--navy-lt: #222222`
+- `--max-w: 1400px`
+
+### Key Notes
+- This page is a **native WordPress page** (not plugin-injected) — edit via WP REST API, not plugin HTML files.
+- Smart EMS family uses green accent (`--green`); Core BESS family uses blue accent (`--blue`).
+- All product card images are hosted at `wp-content/uploads/2026/02/`.
+
+---
+
 ## Homepage (`/`) — v1.x STABLE
 **Date:** 2026-02-27
 **Git Commit:** `2030059` (coulomb-pages-plugin master)
