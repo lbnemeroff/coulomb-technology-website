@@ -112,6 +112,8 @@
       color: var(--charcoal);
     }
     .nav-dropdown a:hover { background: var(--light); }
+    .nav-has-dropdown:hover .nav-dropdown,
+    .nav-has-dropdown:focus-within .nav-dropdown { display: block; }
     .nav-drop-tag {
       font-size: 0.68rem;
       font-weight: 600;
@@ -484,7 +486,7 @@
 
     /* Success state */
     .cf-success {
-      display: flex !important;
+      display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
