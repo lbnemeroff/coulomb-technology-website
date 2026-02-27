@@ -79,6 +79,11 @@
   border-radius: 20px; background: #e8eaed; color: #3c4043;
   letter-spacing: 0.02em;
 }
+.nav-drop-tag-green {
+  background: rgba(57,255,20,0.12) !important;
+  color: #1a7a00 !important;
+  border: 1px solid rgba(57,255,20,0.3);
+}
 .nav-drop-all-products { font-weight: 700; color: #0066FF !important; }
 .nav-drop-divider { height: 1px; background: #e8eaed; margin: 6px 0; }
 .nav-drop-section-label { font-size: 11px; font-weight: 700; color: #9aa0a6; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px 2px; }
@@ -208,28 +213,28 @@
 }
 .bc-pillar-card.pillar-performance {
   background: linear-gradient(135deg, #0f1117 0%, #0d1520 100%);
-  border: 1px solid rgba(59,130,246,0.2);
+  border: 1px solid rgba(57,255,20,0.18);
 }
 .bc-pillar-card.pillar-economics {
-  background: linear-gradient(135deg, #0f1117 0%, #1a1200 100%);
-  border: 1px solid rgba(245,158,11,0.2);
+  background: linear-gradient(135deg, #0f1117 0%, #0f1a10 100%);
+  border: 1px solid rgba(57,255,20,0.18);
 }
 .bc-pillar-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
-.pillar-safety   .bc-pillar-icon { background: rgba(57,255,20,0.10); color: var(--bc-green); }
-.pillar-performance .bc-pillar-icon { background: rgba(59,130,246,0.15); color: #60a5fa; }
-.pillar-economics .bc-pillar-icon { background: rgba(245,158,11,0.15); color: var(--bc-amber); }
+.pillar-safety      .bc-pillar-icon { background: rgba(57,255,20,0.10); color: var(--bc-green); }
+.pillar-performance .bc-pillar-icon { background: rgba(57,255,20,0.10); color: var(--bc-green); }
+.pillar-economics   .bc-pillar-icon { background: rgba(57,255,20,0.10); color: var(--bc-green); }
 .bc-pillar-num { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
-.pillar-safety   .bc-pillar-num { color: var(--bc-green); }
-.pillar-performance .bc-pillar-num { color: #60a5fa; }
-.pillar-economics .bc-pillar-num { color: var(--bc-amber); }
-.bc-pillar-h3 { font-size: 1.4rem; font-weight: 700; color: white; margin: 0 0 12px; line-height: 1.2; }
-.bc-pillar-lead { font-size: 0.95rem; color: rgba(255,255,255,0.68); line-height: 1.65; margin: 0 0 28px; }
+.pillar-safety      .bc-pillar-num { color: var(--bc-green) !important; }
+.pillar-performance .bc-pillar-num { color: var(--bc-green) !important; }
+.pillar-economics   .bc-pillar-num { color: var(--bc-green) !important; }
+.bc-pillar-h3 { font-size: 1.4rem; font-weight: 700; color: #ffffff !important; margin: 0 0 12px !important; line-height: 1.2; }
+.bc-pillar-lead { font-size: 0.95rem; color: rgba(255,255,255,0.75) !important; line-height: 1.65; margin: 0 0 28px !important; }
 .bc-pillar-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.bc-pillar-facts li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+.bc-pillar-facts li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.82) !important; line-height: 1.5; }
 .bc-pillar-facts li::before { content: '✓'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.pillar-safety   .bc-pillar-facts li::before { color: var(--bc-green); }
-.pillar-performance .bc-pillar-facts li::before { color: #60a5fa; }
-.pillar-economics .bc-pillar-facts li::before { color: var(--bc-amber); }
+.pillar-safety      .bc-pillar-facts li::before { color: var(--bc-green); }
+.pillar-performance .bc-pillar-facts li::before { color: var(--bc-green); }
+.pillar-economics   .bc-pillar-facts li::before { color: var(--bc-green); }
 
 /* ============================================================
    HOW IT WORKS — NFPP Chemistry
