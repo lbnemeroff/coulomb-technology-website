@@ -414,123 +414,40 @@
       var link = li.querySelector('a');
       var dropdown = li.querySelector('.nav-dropdown');
       if (!dropdown) return;
-      li.addEventListener('mouseenter', function() { dropdown.style.display = 'block'; });
-      li.addEventListener('mouseleave', function() { dropdown.style.display = 'none'; });
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth < 900) {
-          e.preventDefault();
-          var isOpen = dropdown.style.display === 'block';
-          dropdown.style.display = isOpen ? 'none' : 'block';
-        }
-      });
-    });
-
-    /* ── INQUIRY CARD TOGGLE ── */
-    document.querySelectorAll('.cf-inquiry-card').forEach(function(card) {
-      var checkbox = card.querySelector('input[type="checkbox"]');
-      checkbox.addEventListener('change', function() {
-        card.classList.toggle('selected', checkbox.checked);
-      });
-    });
-
-    /* ── INDUSTRY "OTHER" REVEAL ── */
-    var industrySelect = document.getElementById('cf-industry');
-    var otherGroup = document.getElementById('otherIndustryGroup');
-    var otherInput = document.getElementById('cf-industry-other');
-    industrySelect.addEventListener('change', function() {
-      var isOther = this.value === 'other';
-      otherGroup.style.display = isOther ? 'block' : 'none';
-      otherInput.required = isOther;
-    });
-
-    /* ── PRE-SELECTION FROM URL PARAMS ── */
-    var params = new URLSearchParams(window.location.search);
-    var inquiry = params.get('inquiry');
-    if (inquiry) {
-      var inquiries = inquiry.split(',');
-      inquiries.forEach(function(val) {
-        val = val.trim();
-        var card = document.querySelector('.cf-inquiry-card[data-value="' + val + '"]');
-        if (card) {
-          var cb = card.querySelector('input[type="checkbox"]');
-          cb.checked = true;
-          card.classList.add('selected');
-        }
-      });
-    }
-
-    /* ── FADE-UP ANIMATIONS ── */
-    var fadeEls = document.querySelectorAll('.fade-up');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      // Desktop nav dropdowns — smooth hover with close delay
+    (function() {
+      var nav = document.getElementById('mainNav');
+      var dropdownItems = document.querySelectorAll('.nav-has-dropdown');
+      var closeTimers = new WeakMap();
+      function openDropdown(li, dd) {
+        if (closeTimers.has(li)) { clearTimeout(closeTimers.get(li)); closeTimers.delete(li); }
+        dropdownItems.forEach(function(o) {
+          if (o !== li) { var d = o.querySelector('.nav-dropdown'); if (d) d.style.display='none'; o.classList.remove('dd-open'); if(closeTimers.has(o)){clearTimeout(closeTimers.get(o));closeTimers.delete(o);} }
         });
-      }, { threshold: 0.1 });
-      fadeEls.forEach(function(el) { observer.observe(el); });
-    } else {
-      fadeEls.forEach(function(el) { el.classList.add('visible'); });
-    }
-
-    /* ── FORM SUBMISSION (WordPress CF7 / mailto fallback) ── */
-    var form = document.getElementById('contactForm');
-    var submitBtn = document.getElementById('cfSubmitBtn');
-    var successEl = document.getElementById('cfSuccess');
-    var errorEl = document.getElementById('cfError');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      /* Basic validation */
-      var required = form.querySelectorAll('[required]');
-      var valid = true;
-      required.forEach(function(field) {
-        field.classList.remove('cf-invalid');
-        if (!field.value.trim()) {
-          field.classList.add('cf-invalid');
-          valid = false;
+        dd.style.display = 'block'; li.classList.add('dd-open');
+      }
+      function scheduleClose(li, dd) {
+        closeTimers.set(li, setTimeout(function(){ dd.style.display='none'; li.classList.remove('dd-open'); closeTimers.delete(li); }, 150));
+      }
+      function closeAll() {
+        dropdownItems.forEach(function(li){ if(closeTimers.has(li)){clearTimeout(closeTimers.get(li));closeTimers.delete(li);} var d=li.querySelector('.nav-dropdown'); if(d)d.style.display='none'; li.classList.remove('dd-open'); });
+      }
+      dropdownItems.forEach(function(li) {
+        var dropdown = li.querySelector('.nav-dropdown');
+        if (!dropdown) return;
+        dropdown.style.cssText = 'display:none;position:absolute;top:calc(100% + 0px);left:0;min-width:420px;background:#fff;border:1px solid rgba(0,0,0,0.10);border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.16);padding:8px 0;z-index:999999;list-style:none;margin:0';
+        li.addEventListener('mouseenter', function(){ openDropdown(li, dropdown); });
+        li.addEventListener('mouseleave', function(){ scheduleClose(li, dropdown); });
+        dropdown.addEventListener('mouseenter', function(){ if(closeTimers.has(li)){clearTimeout(closeTimers.get(li));closeTimers.delete(li);} });
+        dropdown.addEventListener('mouseleave', function(){ scheduleClose(li, dropdown); });
+        var anchor = li.querySelector(':scope > a');
+        if (anchor) {
+          anchor.addEventListener('click', function(e){
+            if(window.innerWidth > 768){ e.preventDefault(); e.stopPropagation(); var o=li.classList.contains('dd-open'); closeAll(); if(!o) openDropdown(li,dropdown); }
+          });
         }
       });
-
-      /* At least one inquiry type */
-      var anyChecked = form.querySelectorAll('input[name="inquiry[]"]:checked').length > 0;
-      var inquiryGroup = document.getElementById('inquiryCards');
-      inquiryGroup.classList.toggle('cf-invalid-group', !anyChecked);
-      if (!anyChecked) valid = false;
-
-      if (!valid) return;
-
-      /* Collect form data */
-      var data = new FormData(form);
-      submitBtn.disabled = true;
-      submitBtn.querySelector('.cf-submit-text').textContent = 'Sending…';
-
-      /* Send via WordPress AJAX or fallback */
-      fetch(window.location.origin + '/wp-admin/admin-ajax.php', {
-        method: 'POST',
-        body: (function() {
-          data.append('action', 'coulomb_contact_form');
-          data.append('nonce', (window.coulombContactNonce || ''));
-          return data;
-        })()
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(res) {
-        if (res && res.success) {
-          form.style.display = 'none';
-          successEl.style.display = 'flex';
-        } else {
-          errorEl.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.querySelector('.cf-submit-text').textContent = 'Send Message';
-        }
-      })
-      .catch(function() {
-        errorEl.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.querySelector('.cf-submit-text').textContent = 'Send Message';
-      });
-    });
-
-  })();
+      document.addEventListener('click', function(e){ if(nav && !nav.contains(e.target)) closeAll(); });
+      window.addEventListener('scroll', function(){ closeAll(); }, {passive:true});
+    })();
   </script>
