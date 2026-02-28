@@ -397,6 +397,7 @@
   ============================================= -->
   <script>
   (function() {
+
     /* ── NAV SCROLL ── */
     var nav = document.getElementById('mainNav');
     window.addEventListener('scroll', function() {
@@ -405,18 +406,14 @@
 
     /* ── MOBILE NAV ── */
     var hamburger = document.getElementById('hamburger');
-    hamburger.addEventListener('click', function() {
-      nav.classList.toggle('nav-open');
-    });
+    if (hamburger) {
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('nav-open');
+      });
+    }
 
-    /* ── NAV DROPDOWNS ── */
-    document.querySelectorAll('.nav-has-dropdown').forEach(function(li) {
-      var link = li.querySelector('a');
-      var dropdown = li.querySelector('.nav-dropdown');
-      if (!dropdown) return;
-      // Desktop nav dropdowns — smooth hover with close delay
+    /* ── NAV DROPDOWNS — smooth hover with close delay ── */
     (function() {
-      var nav = document.getElementById('mainNav');
       var dropdownItems = document.querySelectorAll('.nav-has-dropdown');
       var closeTimers = new WeakMap();
       function openDropdown(li, dd) {
@@ -450,4 +447,94 @@
       document.addEventListener('click', function(e){ if(nav && !nav.contains(e.target)) closeAll(); });
       window.addEventListener('scroll', function(){ closeAll(); }, {passive:true});
     })();
+
+    /* ── INDUSTRY SELECT: show/hide Other field ── */
+    var industrySelect = document.getElementById('cf-industry');
+    var otherGroup = document.getElementById('otherIndustryGroup');
+    if (industrySelect && otherGroup) {
+      industrySelect.addEventListener('change', function() {
+        otherGroup.style.display = this.value === 'other' ? 'block' : 'none';
+      });
+    }
+
+    /* ── INQUIRY CARDS: toggle selected state ── */
+    document.querySelectorAll('.cf-inquiry-card').forEach(function(card) {
+      var checkbox = card.querySelector('input[type="checkbox"]');
+      if (!checkbox) return;
+      card.addEventListener('click', function() {
+        setTimeout(function() {
+          card.classList.toggle('selected', checkbox.checked);
+        }, 0);
+      });
+    });
+
+    /* ── CONTACT FORM SUBMISSION ── */
+    (function() {
+      var form = document.getElementById('contactForm');
+      var successEl = document.getElementById('cfSuccess');
+      var errorEl = document.getElementById('cfError');
+      var submitBtn = document.getElementById('cfSubmitBtn');
+      var submitText = submitBtn ? submitBtn.querySelector('.cf-submit-text') : null;
+
+      // Always hide thank-you on page load — never persist across visits
+      if (successEl) successEl.style.display = 'none';
+      if (errorEl) errorEl.style.display = 'none';
+
+      if (!form) return;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (errorEl) errorEl.style.display = 'none';
+
+        // Basic validation
+        var firstName = (form.querySelector('[name="first_name"]') || {}).value || '';
+        var email = (form.querySelector('[name="email"]') || {}).value || '';
+        var company = (form.querySelector('[name="company"]') || {}).value || '';
+        if (!firstName.trim() || !email.trim() || !company.trim()) {
+          if (errorEl) { errorEl.textContent = 'Please fill in all required fields (First Name, Work Email, Company).'; errorEl.style.display = 'block'; }
+          return;
+        }
+
+        // Loading state
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Sending\u2026';
+
+        // Collect form data
+        var data = {};
+        new FormData(form).forEach(function(v, k) {
+          if (data[k]) {
+            data[k] = [].concat(data[k], v);
+          } else {
+            data[k] = v;
+          }
+        });
+
+        // Submit to WordPress REST endpoint
+        fetch('/wp-json/coulomb/v1/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (res && res.success) {
+            // Show thank-you, hide form fields
+            form.style.display = 'none';
+            if (successEl) successEl.style.display = 'block';
+          } else {
+            throw new Error(res && res.message ? res.message : 'Submission failed');
+          }
+        })
+        .catch(function() {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Send Message';
+          if (errorEl) {
+            errorEl.textContent = 'Something went wrong. Please email us directly at sales@coulombtechnology.com';
+            errorEl.style.display = 'block';
+          }
+        });
+      });
+    })();
+
+  })();
   </script>
