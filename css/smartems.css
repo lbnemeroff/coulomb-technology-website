@@ -382,6 +382,68 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color var(--transition); }
 .footer-legal a:hover { color: white; }
 
+/* ---- NEW BADGE ---- */
+.se-new-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+  background: rgba(76,175,26,0.18); color: var(--green);
+  border: 1px solid rgba(76,175,26,0.3); vertical-align: middle;
+  margin-left: 8px; position: relative; top: -2px;
+}
+
+/* ---- TECH BADGE VARIANT ---- */
+.se-tech-badge-new {
+  background: rgba(76,175,26,0.12); color: var(--green);
+  border: 1px solid rgba(76,175,26,0.3);
+}
+
+/* ---- PLACEHOLDER VISUAL (for sections without final imagery) ---- */
+.se-tech-visual-placeholder {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius);
+  border: 1px solid rgba(76,175,26,0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; padding: 40px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.se-placeholder-icon {
+  width: 80px; height: 80px;
+  background: rgba(76,175,26,0.12); border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); border: 1px solid rgba(76,175,26,0.25);
+}
+.se-placeholder-icon svg { width: 48px !important; height: 48px !important; max-width: 48px !important; max-height: 48px !important; display: block; }
+.se-placeholder-label {
+  font-size: 1.4rem; font-weight: 800; color: white; letter-spacing: -0.01em;
+}
+.se-placeholder-sub {
+  font-size: 13px; color: rgba(255,255,255,0.5); text-align: center; max-width: 200px; line-height: 1.5;
+}
+
+/* ---- GRIDREADY STAKEHOLDER CARDS ---- */
+.se-gridready-stakeholders {
+  display: flex; flex-direction: column; gap: 14px; margin-top: 8px;
+}
+.se-stakeholder-card {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: rgba(76,175,26,0.04); border: 1px solid rgba(76,175,26,0.15);
+  border-radius: var(--radius-sm); padding: 16px 18px;
+  transition: background var(--transition), border-color var(--transition);
+}
+.se-stakeholder-card:hover {
+  background: rgba(76,175,26,0.08); border-color: rgba(76,175,26,0.3);
+}
+.se-stakeholder-icon {
+  width: 36px; height: 36px; min-width: 36px;
+  background: rgba(76,175,26,0.15); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); flex-shrink: 0;
+}
+.se-stakeholder-icon svg { width: 20px !important; height: 20px !important; max-width: 20px !important; max-height: 20px !important; display: block; }
+.se-stakeholder-card strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.se-stakeholder-card span { font-size: 13px; color: var(--text-light); line-height: 1.55; }
+
 /* ---- FADE-UP ANIMATIONS ---- */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }

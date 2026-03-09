@@ -59,7 +59,7 @@ function coulomb_enqueue_page_styles() {
         );
     }
     // Motive & Fleet page — matched by slug
-    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'motive-fleet' ) {
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'motive-traction' ) {
         wp_enqueue_style(
             'coulomb-mf',
             plugin_dir_url( __FILE__ ) . 'css/mf.css',
@@ -148,6 +148,15 @@ function coulomb_enqueue_page_styles() {
             COULOMB_PAGES_VERSION
         );
     }
+    // Sodium-Ion Technology page — matched by slug
+    if ( is_a( $post, 'WP_Post' ) && $post->post_name === 'sodium-ion' ) {
+        wp_enqueue_style(
+            'coulomb-sodium',
+            plugin_dir_url( __FILE__ ) . 'css/sodium.css',
+            array(),
+            COULOMB_PAGES_VERSION
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'coulomb_enqueue_page_styles', 9999 );
 
@@ -175,7 +184,7 @@ function coulomb_hide_avada_header_footer() {
     if ( $post->post_name === 'defense-government' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'motive-fleet' ) {
+    if ( $post->post_name === 'motive-traction' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === '48v-traction-battery' ) {
@@ -203,6 +212,9 @@ function coulomb_hide_avada_header_footer() {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'bess' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'sodium-ion' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -229,7 +241,7 @@ function coulomb_disable_wpautop( $content ) {
     if ( $post->post_name === 'defense-government' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( $post->post_name === 'motive-fleet' ) {
+    if ( $post->post_name === 'motive-traction' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === '48v-traction-battery' ) {
@@ -257,6 +269,9 @@ function coulomb_disable_wpautop( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( $post->post_name === 'bess' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( $post->post_name === 'sodium-ion' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
@@ -423,6 +438,15 @@ function coulomb_besscore_shortcode() {
 }
 add_shortcode( 'coulomb_besscore', 'coulomb_besscore_shortcode' );
 
+function coulomb_sodium_shortcode() {
+    $file = plugin_dir_path( __FILE__ ) . 'html/sodium-body.html';
+    if ( file_exists( $file ) ) {
+        return file_get_contents( $file );
+    }
+    return '<!-- Coulomb Sodium-Ion HTML not found -->';
+}
+add_shortcode( 'coulomb_sodium', 'coulomb_sodium_shortcode' );
+
 // ─── 5. Allow unfiltered HTML from shortcodes ───────────────────────────────
 add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_home';
@@ -441,6 +465,7 @@ add_filter( 'no_texturize_shortcodes', function( $shortcodes ) {
     $shortcodes[] = 'coulomb_privacy';
     $shortcodes[] = 'coulomb_smartems';
     $shortcodes[] = 'coulomb_besscore';
+    $shortcodes[] = 'coulomb_sodium';
     return $shortcodes;
 });
 
@@ -457,7 +482,7 @@ add_filter( 'the_content', function( $content ) {
     if ( isset( $post->post_name ) && $post->post_name === 'defense-government' ) {
         $coulomb_ids[] = $post->ID;
     }
-    if ( isset( $post->post_name ) && $post->post_name === 'motive-fleet' ) {
+    if ( isset( $post->post_name ) && $post->post_name === 'motive-traction' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === '48v-traction-battery' ) {
@@ -485,6 +510,9 @@ add_filter( 'the_content', function( $content ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( isset( $post->post_name ) && $post->post_name === 'bess' ) {
+        $coulomb_ids[] = $post->ID;
+    }
+    if ( isset( $post->post_name ) && $post->post_name === 'sodium-ion' ) {
         $coulomb_ids[] = $post->ID;
     }
     if ( in_array( $post->ID, $coulomb_ids ) ) {
