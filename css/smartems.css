@@ -1,6 +1,6 @@
 /* ============================================================
    SMART EMS TECHNOLOGY PAGE — smartems.css
-   Coulomb Technology v2.0.0
+   Coulomb Technology v2.1.0
    ============================================================ */
 
 /* ---- Variables ---- */
@@ -381,6 +381,64 @@ body .se-hero-h1 em { color: var(--green) !important; font-style: normal !import
 .footer-legal { display: flex; gap: 20px; }
 .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color var(--transition); }
 .footer-legal a:hover { color: white; }
+
+/* ---- GRIDREADY STAKEHOLDER CARDS ---- */
+.se-gridready-stakeholders { display: flex; flex-direction: column; gap: 16px; }
+.se-stakeholder-card {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: rgba(76,175,26,0.06); border: 1px solid rgba(76,175,26,0.2);
+  border-radius: var(--radius-sm); padding: 18px 20px;
+}
+.se-stakeholder-icon {
+  width: 36px; height: 36px; min-width: 36px;
+  background: rgba(76,175,26,0.15); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green); flex-shrink: 0;
+}
+.se-stakeholder-card strong { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.se-stakeholder-card span { font-size: 13px; color: var(--text-light); line-height: 1.55; }
+
+/* ---- TECH BADGE NEW VARIANT ---- */
+.se-tech-badge-new { background: rgba(76,175,26,0.25); }
+
+/* ---- AVADA OVERRIDE: High-specificity selectors to beat .post-content h2/h4 ---- */
+/* These beat Avada's .post-content h4 { color: var(--awb-color8) } (specificity 0,1,1) */
+.post-content .se-tech-name,
+.post-content .se-tech-name a,
+.post-content .se-tech-name span { color: var(--navy) !important; font-size: clamp(2rem, 3.5vw, 2.8rem) !important; font-weight: 900 !important; }
+.post-content .se-tech-feature strong,
+.post-content .se-tech-feature strong span { color: var(--navy) !important; font-size: 14px !important; font-weight: 700 !important; }
+.post-content .se-tech-feature span,
+.post-content .se-tech-lead { color: var(--text-light) !important; }
+.post-content .se-step-content h4,
+.post-content .se-step-content h4 a,
+.post-content .se-step-content h4 span { color: var(--navy) !important; font-size: 18px !important; font-weight: 700 !important; }
+.post-content .se-step-content p,
+.post-content .se-step-content p span { color: var(--text-light) !important; font-size: 14px !important; }
+.post-content .se-rev-card h4,
+.post-content .se-rev-card h4 a,
+.post-content .se-rev-card h4 span { color: var(--navy) !important; font-size: 16px !important; font-weight: 700 !important; }
+.post-content .se-rev-card p,
+.post-content .se-rev-card p span { color: var(--text-light) !important; font-size: 14px !important; }
+.post-content .se-stakeholder-card strong,
+.post-content .se-stakeholder-card strong span { color: var(--navy) !important; font-size: 14px !important; font-weight: 700 !important; }
+.post-content .se-stakeholder-card span { color: var(--text-light) !important; font-size: 13px !important; }
+/* Dark-background sections: products CTA h2 must stay white */
+.post-content .se-products-cta-header h2,
+.post-content .se-products-cta-header h2 span { color: #ffffff !important; }
+.post-content .se-products-cta-header p,
+.post-content .se-products-cta-header p span { color: rgba(255,255,255,0.82) !important; }
+.post-content .se-pf-item span { color: rgba(255,255,255,0.9) !important; }
+/* Footer h4 must stay muted white */
+.post-content .footer-col h4,
+.post-content .footer-col h4 span { color: rgba(255,255,255,0.4) !important; font-size: 12px !important; }
+/* Sodium teaser h3 */
+.post-content .se-sodium-teaser-text h3,
+.post-content .se-sodium-teaser-text h3 span { color: var(--navy) !important; font-size: 1.4rem !important; font-weight: 800 !important; }
+/* How It Works / Revenue section headers */
+.post-content .se-how-header h2,
+.post-content .se-revenue-header h2,
+.post-content .se-roi-text h2 { color: var(--navy) !important; }
 
 /* ---- FADE-UP ANIMATIONS ---- */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
