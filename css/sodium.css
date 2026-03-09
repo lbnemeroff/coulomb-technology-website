@@ -141,11 +141,13 @@
 .si-stats-inner {
   max-width: 1100px; margin: 0 auto; padding: 32px 0;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  align-items: stretch;
 }
 .si-stat-item {
   padding: 24px 20px; text-align: center;
   border: 1px solid rgba(255,255,255,0.12); border-radius: var(--si-radius);
   background: rgba(255,255,255,0.04);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 .si-stat-num { font-size: 2rem; font-weight: 900; color: var(--si-green); line-height: 1; margin-bottom: 6px; }
 .si-stat-label { font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px; }
@@ -244,7 +246,7 @@
 .si-feature-item span { font-size: 13px; color: var(--si-text-light); line-height: 1.55; }
 
 /* ---- SUPPLY CHAIN GRID ---- */
-.si-supply-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.si-supply-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
 .si-supply-card {
   background: white; border: 1px solid var(--si-gray-light);
   border-radius: var(--si-radius); padding: 28px 24px;
@@ -283,7 +285,7 @@
 /* ---- COMPARISON TABLE ---- */
 .si-compare-section { background: var(--si-off-white); padding: 96px 24px; }
 .si-compare-section-inner { max-width: 1100px; margin: 0 auto; }
-.si-compare-header { text-align: left; margin-bottom: 48px; max-width: 680px; }
+.si-compare-header { text-align: center; margin-bottom: 48px; max-width: 680px; margin-left: auto; margin-right: auto; }
 .si-compare-header h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--si-navy); margin: 0 0 16px; }
 .si-compare-header p { font-size: 17px; color: var(--si-text-light); line-height: 1.6; }
 .si-table-wrap { overflow-x: auto; }
