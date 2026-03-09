@@ -104,6 +104,11 @@
 .si-hero {
   background: linear-gradient(160deg, var(--si-navy) 0%, #0a1628 60%, #0d1f0d 100%);
   padding: 120px 24px 80px;
+  position: relative;
+  width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  left: 0 !important;
+  box-sizing: border-box;
 }
 .si-hero-content {
   max-width: 760px; margin: 0 auto; text-align: center !important;
@@ -287,6 +292,17 @@
 .si-chem-step h4 span { font-size: 18px !important; font-weight: 700 !important; color: #ffffff !important; margin: 0 0 10px !important; }
 .si-chem-step p,
 .si-chem-step p span { font-size: 13px !important; color: rgba(255,255,255,0.85) !important; line-height: 1.65 !important; margin: 0 !important; }
+/* Higher specificity overrides to beat Avada .post-content h4 */
+.si-section-dark .si-chem-step h4,
+.si-section-dark .si-chem-step h4 a,
+.si-section-dark .si-chem-step h4 span,
+.post-content .si-chem-step h4,
+.post-content .si-chem-step h4 a,
+.post-content .si-chem-step h4 span { color: #ffffff !important; font-size: 18px !important; font-weight: 700 !important; }
+.post-content .si-chem-step p,
+.post-content .si-chem-step p span,
+.si-section-dark .si-chem-step p,
+.si-section-dark .si-chem-step p span { color: rgba(255,255,255,0.85) !important; font-size: 13px !important; line-height: 1.65 !important; }
 
 /* ---- COMPARISON TABLE ---- */
 .si-compare-section { background: var(--si-off-white); padding: 96px 24px; }
