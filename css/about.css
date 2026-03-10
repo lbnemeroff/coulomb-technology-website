@@ -111,7 +111,7 @@ a { text-decoration: none; }
 
 /* ---- HERO ---- */
 .au-hero {
-  background: var(--navy);
+  background: linear-gradient(135deg, #0a1628 0%, #0d1117 50%, #0d1117 100%);
   padding: 100px 24px 80px;
   text-align: center;
   position: relative;
@@ -121,8 +121,8 @@ a { text-decoration: none; }
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 15% 100%, rgba(0,102,255,0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(76,175,26,0.14) 0%, transparent 65%);
+    radial-gradient(ellipse 90% 80% at -5% 110%, rgba(0,102,255,0.50) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 55% at 105% -10%, rgba(76,175,26,0.25) 0%, transparent 55%);
   pointer-events: none;
 }
 .au-hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
@@ -307,13 +307,14 @@ a { text-decoration: none; }
 .au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 40px; }
 .au-partner-item {
   display: flex; align-items: center; justify-content: center;
-  width: 140px; height: 52px; flex-shrink: 0;
+  width: 180px; height: 52px; flex-shrink: 0;
 }
 .au-partner-item img {
-  max-width: 130px; max-height: 44px;
-  width: auto; height: auto;
-  object-fit: contain;
-  opacity: 0.55; filter: grayscale(1);
+  width: 100% !important;
+  height: 52px !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  opacity: 0.6; filter: grayscale(1);
   transition: opacity var(--transition), filter var(--transition);
   display: block;
 }

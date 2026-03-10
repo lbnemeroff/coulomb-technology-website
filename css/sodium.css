@@ -115,8 +115,8 @@
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 65% 55% at 85% 100%, rgba(0,102,255,0.16) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 60% at 15% 0%, rgba(76,175,26,0.18) 0%, transparent 65%);
+    radial-gradient(ellipse 85% 75% at 105% 110%, rgba(0,102,255,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 75% 65% at -5% -10%, rgba(76,175,26,0.30) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
