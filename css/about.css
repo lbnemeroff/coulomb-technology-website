@@ -120,7 +120,9 @@ a { text-decoration: none; }
 .au-hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(76,175,26,0.12) 0%, transparent 70%);
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 100%, rgba(0,102,255,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(76,175,26,0.14) 0%, transparent 65%);
   pointer-events: none;
 }
 .au-hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
@@ -276,14 +278,20 @@ a { text-decoration: none; }
   transition: box-shadow var(--transition);
 }
 .au-research-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.au-research-card img { max-height: 48px; width: auto; object-fit: contain; filter: grayscale(0.4); opacity: 0.85; transition: filter var(--transition), opacity var(--transition); }
+.au-research-card img {
+  max-height: 44px; max-width: 120px;
+  width: auto; height: auto;
+  object-fit: contain;
+  filter: grayscale(0.4); opacity: 0.85;
+  transition: filter var(--transition), opacity var(--transition);
+}
 .au-research-card:hover img { filter: grayscale(0); opacity: 1; }
 .au-research-featured {
   grid-column: span 2;
   flex-direction: column; align-items: flex-start; gap: 16px;
   padding: 28px;
 }
-.au-research-featured img { max-height: 56px; }
+.au-research-featured img { max-height: 52px; max-width: 180px; }
 .au-research-card-body {}
 .au-research-name { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
 .au-research-role { font-size: 13px; color: var(--text-light); line-height: 1.55; }
@@ -296,9 +304,36 @@ a { text-decoration: none; }
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gray-mid); margin-bottom: 32px;
 }
-.au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px; }
-.au-partner-item img { height: 36px; width: auto; opacity: 0.55; filter: grayscale(1); transition: opacity var(--transition), filter var(--transition); }
+.au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 40px; }
+.au-partner-item {
+  display: flex; align-items: center; justify-content: center;
+  width: 140px; height: 52px; flex-shrink: 0;
+}
+.au-partner-item img {
+  max-width: 130px; max-height: 44px;
+  width: auto; height: auto;
+  object-fit: contain;
+  opacity: 0.55; filter: grayscale(1);
+  transition: opacity var(--transition), filter var(--transition);
+  display: block;
+}
 .au-partner-item img:hover { opacity: 1; filter: grayscale(0); }
+
+/* Research section logos — same treatment */
+.au-research-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 40px; margin-top: 40px; }
+.au-research-logo-item {
+  display: flex; align-items: center; justify-content: center;
+  width: 160px; height: 56px; flex-shrink: 0;
+}
+.au-research-logo-item img {
+  max-width: 150px; max-height: 48px;
+  width: auto; height: auto;
+  object-fit: contain;
+  opacity: 0.6; filter: grayscale(1);
+  transition: opacity var(--transition), filter var(--transition);
+  display: block;
+}
+.au-research-logo-item img:hover { opacity: 1; filter: grayscale(0); }
 
 /* ---- CTA ---- */
 .au-cta-section { background: var(--navy); padding: 96px 24px; }

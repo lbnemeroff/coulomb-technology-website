@@ -111,7 +111,9 @@
 .bc-hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(76,175,26,0.09) 0%, transparent 70%);
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 100%, rgba(0,102,255,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 80% 0%, rgba(76,175,26,0.14) 0%, transparent 65%);
   pointer-events: none;
 }
 .bc-hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
