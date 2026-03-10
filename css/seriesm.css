@@ -801,6 +801,9 @@
     .apps-header .section-title { color: var(--white); max-width: 600px; }
 
     .apps-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2px;

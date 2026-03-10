@@ -366,3 +366,23 @@ cp /tmp/PAGENAME-prev.html html/PAGENAME-body.html
 cp /tmp/PAGENAME-prev.css css/PAGENAME.css
 # Then run the deploy script and commit the revert
 ```
+
+### Shared Section CSS — Applications Grid
+
+The Applications section (`.apps-section`, `.apps-grid`, `.app-card`) also uses a standard pattern that must be applied consistently for the grid to render correctly as a full-width, edge-to-edge element.
+
+When adding or fixing an applications grid on any product or industry page:
+1.  Ensure the `.apps-grid` class in the page's CSS file contains the following properties to align with the Avada theme's main container:
+    ```css
+    .apps-grid {
+      max-width: var(--max-w); /* 1400px */
+      margin: 0 auto;
+      padding: 0 var(--pad-x); /* 40px */
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.04);
+    }
+    ```
+2.  The canonical source for this CSS block is `seriesb.css`.
+3.  The `.app-card` height should be `400px`.
