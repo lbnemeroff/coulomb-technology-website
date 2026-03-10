@@ -312,7 +312,9 @@ a { text-decoration: none; }
 }
 .au-partner-item {
   display: flex; align-items: center; justify-content: center;
-  width: 100%;
+  width: 100%; padding: 12px 20px;
+  opacity: 0.5; filter: grayscale(100%);
+  transition: all 0.3s;
 }
 .au-partner-item img {
   height: auto;
@@ -320,10 +322,9 @@ a { text-decoration: none; }
   max-height: 44px;
   max-width: 130px;
   display: block;
-  opacity: 0.6; filter: grayscale(1);
-  transition: opacity 0.25s, filter 0.25s;
+  object-fit: contain;
 }
-.au-partner-item img:hover { opacity: 1; filter: grayscale(0); }
+.au-partner-item:hover { opacity: 0.9; filter: grayscale(0%); }
 
 /* Research section logos — same treatment */
 .au-research-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 40px; margin-top: 40px; }
