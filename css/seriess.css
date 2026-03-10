@@ -389,8 +389,12 @@
     ============================================= */
     .platform-section {
       background: #111111;
-      padding: 80px 0 0;
-      overflow: hidden;
+      padding: 80px 0 80px;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .platform-header {
       max-width: var(--max-w);
@@ -492,6 +496,28 @@
       border-radius: 50%;
       margin-top: 6px;
     }
+    /* engine-list alias (used in Series-S HTML) */
+    .engine-list { list-style: none !important; display: flex; flex-direction: column; gap: 10px; padding: 0 !important; margin: 0 !important; }
+    .engine-list li {
+      display: flex !important;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem !important;
+      color: rgba(255,255,255,0.65) !important;
+      line-height: 1.4 !important;
+    }
+    .engine-list li::before {
+      content: '' !important;
+      width: 5px;
+      height: 5px;
+      min-width: 5px;
+      background: var(--green) !important;
+      border-radius: 50%;
+      margin-top: 6px;
+      display: inline-block;
+    }
+    .engine-card .engine-desc { color: rgba(255,255,255,0.88) !important; }
+    .engine-card .engine-subtitle { color: rgba(255,255,255,0.55) !important; }
 
     /* Integration diagram band */
     .platform-app-band {
@@ -790,6 +816,11 @@
     .apps-section {
       background: var(--navy);
       padding: 100px 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .apps-header {
       max-width: var(--max-w);
@@ -1002,6 +1033,11 @@
       background: #111111;
       color: var(--white);
       padding: 64px 0 32px;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
