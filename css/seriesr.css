@@ -418,6 +418,9 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
+    .engines-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
     .engine-card {
       background: #1a1a1a;
       border: 1px solid rgba(255,255,255,0.08);
