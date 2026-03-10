@@ -304,17 +304,17 @@ a { text-decoration: none; }
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gray-mid); margin-bottom: 32px;
 }
-.au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px 40px; }
+.au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 48px; }
 .au-partner-item {
   display: flex; align-items: center; justify-content: center;
-  width: 180px; height: 52px; flex-shrink: 0;
 }
 .au-partner-item img {
-  width: 100% !important;
-  height: 52px !important;
+  height: auto !important;
+  width: auto !important;
+  max-height: 40px !important;
+  max-width: 240px !important;
   object-fit: contain !important;
-  object-position: center !important;
-  opacity: 0.6; filter: grayscale(1);
+  opacity: 0.55; filter: grayscale(1);
   transition: opacity var(--transition), filter var(--transition);
   display: block;
 }
