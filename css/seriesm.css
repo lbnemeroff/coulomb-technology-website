@@ -812,7 +812,7 @@
     .app-card {
       position: relative;
       overflow: hidden;
-      height: 400px;
+      height: 260px;
       cursor: pointer;
     }
     .app-card img {
