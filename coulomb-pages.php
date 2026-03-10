@@ -7,7 +7,7 @@
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-define( 'COULOMB_PAGES_VERSION', '2.4.2' );
+define( 'COULOMB_PAGES_VERSION', '2.4.3' );
 
 // ─── 1. Enqueue CSS on the correct pages ────────────────────────────────────
 function coulomb_enqueue_page_styles() {
