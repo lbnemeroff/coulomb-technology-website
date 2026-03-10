@@ -933,3 +933,58 @@
 
     .included-text h4,
     .included-text h4.fusion-responsive-typography-calculated { color: #0f1923 !important; }
+
+    /* =============================================
+       BANKABLE ECONOMICS / TCO SECTION
+    ============================================= */
+    .economics-section {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .economics-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .economics-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .economics-header .section-title {
+      color: #0f1923 !important;
+      font-size: clamp(28px, 3.5vw, 42px);
+      line-height: 1.15;
+      margin: 8px 0 0;
+    }
+    .economics-header .section-title em {
+      color: var(--green) !important;
+      font-style: normal;
+    }
+    .economics-header p { color: #444; line-height: 1.7; margin-bottom: 28px; }
+    .econ-proof-row { display: flex; gap: 28px; flex-wrap: wrap; }
+    .econ-proof-item { flex: 1; min-width: 100px; }
+    .econ-proof-num { font-size: 28px; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .econ-proof-label { font-size: 12px; color: #666; line-height: 1.4; }
+    .economics-body { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
+    .tco-chart-wrap { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .tco-chart-img { width: 100%; height: auto; display: block; border-radius: 6px; }
+    .tco-chart-caption { margin-top: 14px; font-size: 13px; color: #555; line-height: 1.5; }
+    .tco-savings { color: var(--green); font-weight: 700; }
+    .tco-assumptions { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    .tco-assumptions h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin: 0 0 16px; }
+    .tco-table { width: 100%; border-collapse: collapse; }
+    .tco-table td { padding: 8px 0; font-size: 13px; color: #333; border-bottom: 1px solid #f0f0f0; line-height: 1.4; }
+    .tco-table td.tco-val { text-align: right; font-weight: 700; color: #0f1923; white-space: nowrap; }
+    .tco-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 900px) {
+      .economics-header { grid-template-columns: 1fr; gap: 24px; }
+      .economics-body { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .economics-section { padding: 48px 0; }
+      .economics-inner { padding: 0 20px; }
+      .econ-proof-row { gap: 16px; }
+    }
