@@ -801,9 +801,6 @@
     .apps-header .section-title { color: var(--white); max-width: 600px; }
 
     .apps-grid {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 var(--pad-x);
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2px;
@@ -812,7 +809,7 @@
     .app-card {
       position: relative;
       overflow: hidden;
-      height: 260px;
+      height: 400px;
       cursor: pointer;
     }
     .app-card img {
