@@ -415,7 +415,7 @@
       margin: 0 auto;
       padding: 0 var(--pad-x);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
     .engine-card {
@@ -1142,7 +1142,7 @@
       .hero-bg img { max-height: 50vh; }
       .hero-content { padding: 48px var(--pad-x) 48px; max-width: 100%; }
       .included-inner, .platform-header, .platform-app-inner, .specs-header, .cta-inner { grid-template-columns: 1fr; gap: 48px; }
-      .engines-grid { grid-template-columns: 1fr; }
+      .engines-grid { grid-template-columns: repeat(2, 1fr); }
       .revenue-grid { grid-template-columns: repeat(2, 1fr); }
       .apps-grid { grid-template-columns: 1fr; }
       .specs-table-wrap { grid-template-columns: 1fr; }
@@ -1167,6 +1167,7 @@
       :root { --pad-x: 20px; }
       .hero-specs-grid { grid-template-columns: repeat(2, 1fr); }
       .cta-stats { grid-template-columns: 1fr; }
+      .engines-grid { grid-template-columns: 1fr; }
       .revenue-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
