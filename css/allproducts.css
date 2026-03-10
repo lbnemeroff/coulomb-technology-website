@@ -62,7 +62,7 @@
     .nav-arrow { font-size: 0.65rem; opacity: 0.5; margin-left: 2px; }
     .nav-cta-group { display: flex; align-items: center; gap: 16px; }
     .nav-cta {
-      background: var(--blue); color: var(--white); padding: 10px 22px;
+      background: #0066FF; color: var(--white); padding: 10px 22px;
       border-radius: 4px; text-decoration: none; font-size: 0.88rem; font-weight: 600;
       transition: all 0.25s;
     }

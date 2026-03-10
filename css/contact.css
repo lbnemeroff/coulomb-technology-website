@@ -163,7 +163,7 @@
     }
     .nav-contact:hover, .nav-contact.active { background: var(--light); text-decoration: none; }
     .nav-cta {
-      background: var(--blue);
+      background: #0066FF;
       color: var(--white) !important;
       padding: 9px 20px;
       border-radius: 6px;

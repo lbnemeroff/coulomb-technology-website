@@ -149,7 +149,7 @@
 }
 .coulomb-def-page .nav-cta-group { display: flex; align-items: center; gap: 12px; }
 .coulomb-def-page .nav-cta {
-  background: var(--blue); color: #fff; font-size: 0.875rem;
+  background: #0066FF; color: #fff; font-size: 0.875rem;
   font-weight: 600; padding: 10px 22px; border-radius: 4px;
   text-decoration: none; transition: all 0.2s;
 }

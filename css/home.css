@@ -284,7 +284,7 @@
     }
     .nav-contact:hover { background: var(--light); }
     .nav-cta {
-      background: var(--blue);
+      background: #0066FF;
       color: var(--white);
       font-size: 0.875rem;
       font-weight: 600;
