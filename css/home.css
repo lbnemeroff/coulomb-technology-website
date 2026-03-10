@@ -639,7 +639,10 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
-    @media (max-width: 1024px) { .ci-sub-grid { grid-template-columns: repeat(2,1fr); } }
+    .ci-sub-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 1200px) { .ci-sub-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .ci-sub-grid-4 { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .ci-sub-grid:not(.ci-sub-grid-4) { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 640px)  { .ci-sub-grid { grid-template-columns: 1fr; } }
 
     .ci-sub-card {
@@ -1055,6 +1058,9 @@
       border-radius: 16px;
       overflow: hidden;
     }
+    .pillars-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 1200px) { .pillars-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .pillars-grid-4 { grid-template-columns: 1fr; } }
     .pillar-card {
       background: var(--white);
       padding: 40px 32px;
