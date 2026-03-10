@@ -297,12 +297,12 @@ a { text-decoration: none; }
 .au-research-role { font-size: 13px; color: var(--text-light); line-height: 1.55; }
 
 /* ---- PARTNERS ---- */
-.au-partners-section { background: #ffffff; padding: 56px 0; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.au-partners-section { background: #0a0a0a; padding: 56px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); }
 .au-partners-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 .au-partners-eyebrow {
   text-align: center; font-size: 12px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--gray-mid); margin-bottom: 32px;
+  color: rgba(255,255,255,0.45); margin-bottom: 32px;
 }
 .au-partners-logos {
   display: grid;
