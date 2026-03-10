@@ -297,26 +297,31 @@ a { text-decoration: none; }
 .au-research-role { font-size: 13px; color: var(--text-light); line-height: 1.55; }
 
 /* ---- PARTNERS ---- */
-.au-partners-section { background: var(--off-white); padding: 64px 24px; border-top: 1px solid var(--gray-light); }
-.au-partners-inner { max-width: 1100px; margin: 0 auto; }
+.au-partners-section { background: #ffffff; padding: 56px 0; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.au-partners-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 .au-partners-eyebrow {
   text-align: center; font-size: 12px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--gray-mid); margin-bottom: 32px;
 }
-.au-partners-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 48px; }
+.au-partners-logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+  gap: 24px 16px;
+}
 .au-partner-item {
   display: flex; align-items: center; justify-content: center;
+  width: 100%;
 }
 .au-partner-item img {
-  height: auto !important;
-  width: auto !important;
-  max-height: 40px !important;
-  max-width: 240px !important;
-  object-fit: contain !important;
-  opacity: 0.55; filter: grayscale(1);
-  transition: opacity var(--transition), filter var(--transition);
+  height: auto;
+  width: auto;
+  max-height: 44px;
+  max-width: 130px;
   display: block;
+  opacity: 0.6; filter: grayscale(1);
+  transition: opacity 0.25s, filter 0.25s;
 }
 .au-partner-item img:hover { opacity: 1; filter: grayscale(0); }
 
