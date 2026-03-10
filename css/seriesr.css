@@ -389,8 +389,12 @@
     ============================================= */
     .platform-section {
       background: #111111;
-      padding: 80px 0 0;
-      overflow: hidden;
+      padding: 80px 0 80px;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .platform-header {
       max-width: var(--max-w);
@@ -632,6 +636,88 @@
     .int-target span { font-size: 0.8rem; color: var(--text-lt); font-weight: 600; }
 
     /* =============================================
+       SECTION 3C — SAVINGS / REVENUE STREAMS
+    ============================================= */
+    .revenue-section {
+      background: var(--off-white);
+      padding: 100px 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
+    }
+    .revenue-header {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .revenue-header .section-title { color: #0f1923; }
+    .revenue-header .section-desc { max-width: 600px; margin: 0 auto; }
+
+    .revenue-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .revenue-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 28px;
+      border: 1px solid rgba(0,0,0,0.07);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .revenue-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+    .revenue-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .revenue-card:hover::after { transform: scaleX(1); }
+    .revenue-icon {
+      width: 52px; height: 52px;
+      background: rgba(107,191,0,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .revenue-icon svg { width: 24px; height: 24px; stroke: var(--green); fill: none; stroke-width: 1.8; }
+    .revenue-stat {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0f1923;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .revenue-stat em { font-style: normal; color: var(--green); }
+    .revenue-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f1923;
+      margin-bottom: 12px;
+    }
+    .revenue-desc {
+      font-size: 0.87rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* =============================================
        SECTION 4 — SPECS (white, clean table)
     ============================================= */
     .specs-section {
@@ -790,6 +876,11 @@
     .apps-section {
       background: var(--navy);
       padding: 100px 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .apps-header {
       max-width: var(--max-w);
@@ -1002,6 +1093,11 @@
       background: #111111;
       color: var(--white);
       padding: 64px 0 32px;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      box-sizing: border-box;
     }
     .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
@@ -1047,6 +1143,7 @@
       .hero-content { padding: 48px var(--pad-x) 48px; max-width: 100%; }
       .included-inner, .platform-header, .platform-app-inner, .specs-header, .cta-inner { grid-template-columns: 1fr; gap: 48px; }
       .engines-grid { grid-template-columns: 1fr; }
+      .revenue-grid { grid-template-columns: repeat(2, 1fr); }
       .apps-grid { grid-template-columns: 1fr; }
       .specs-table-wrap { grid-template-columns: 1fr; }
       .related-grid { grid-template-columns: 1fr; max-width: 480px; }
@@ -1070,6 +1167,7 @@
       :root { --pad-x: 20px; }
       .hero-specs-grid { grid-template-columns: repeat(2, 1fr); }
       .cta-stats { grid-template-columns: 1fr; }
+      .revenue-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .nav-links, .nav-cta-group { display: none; }
