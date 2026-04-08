@@ -55,7 +55,7 @@ coulomb-pages-plugin/
 | `contact` | `contact-body.html` | `contact.css` |
 | `commercial-industrial` | `ci-body.html` | `ci.css` |
 | `defense-government` | `def-body.html` | `def.css` |
-| `motive-fleet` | `mf-body.html` | `mf.css` |
+| `motive-traction` | `mf-body.html` | `mf.css` |
 | `48v-traction-battery` | `tb48-body.html` | `tb48.css` |
 | `279v-series-b` | `seriesb-body.html` | `seriesb.css` |
 | `279v-series-dc` | `seriesdc-body.html` | `seriesdc.css` |
@@ -109,22 +109,84 @@ with open("/path/to/file.pdf", "rb") as f:
 wp_url = r.json()["source_url"]
 ```
 
-## Nav Structure (All Pages)
+## Nav Structure (All Pages) — CANONICAL DEFINITION
 
-Every page uses identical nav HTML. The canonical nav includes:
-- `id="mainNav"` on the `<nav>` element
-- `id="hamburger"` on the mobile hamburger button
-- Products dropdown with **All Products** (blue `#0066FF`, bold) at top, then Smart EMS group (Series-B, Series-R) and Core BESS group (Series-DC, Series-M, Series-S)
-- Nav dropdown product label format: `Series-X (Subtitle) [voltage tag right-aligned]`
+**Consistency is imperative.** Every page on the site must use exactly the same nav HTML. Never create a custom or modified nav for any page — always copy the canonical block below verbatim.
 
-**Product naming convention in nav:**
-- Series-B: (Business) — 279V
-- Series-DC: (DC Block) — 279V
-- Series-R: (Residential) — 48V
-- Series-M: (Mobility) — 48V
-- Series-S: (Starter) — 12V
+### Canonical Nav HTML
 
-When updating nav across all pages, use a Python script — do NOT manually edit each file. After any bulk nav update, verify all pages have the IntersectionObserver script intact (see below).
+```html
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="https://coulombtechnology.com/" class="nav-logo" aria-label="Coulomb Technology">
+      <img src="https://coulombtechnology.com/wp-content/uploads/2026/02/coulomb-logo-black-1.jpg" alt="Coulomb Technology">
+    </a>
+    <ul class="nav-links">
+      <li class="nav-has-dropdown">
+        <a href="#">Industries <span class="nav-arrow">▼</span></a>
+        <div class="nav-dropdown">
+          <a href="/commercial-industrial/" class="nav-drop-item">Commercial &amp; Industrial</a>
+          <a href="/defense-government/" class="nav-drop-item">Defense &amp; Government</a>
+          <a href="/motive-traction/" class="nav-drop-item">Motive / Traction Batteries</a>
+        </div>
+      </li>
+      <li class="nav-has-dropdown">
+        <a href="/all-products/">Products <span class="nav-arrow">▼</span></a>
+        <div class="nav-dropdown">
+          <a href="/all-products/" class="nav-drop-item nav-drop-all-products">All Products <span class="nav-drop-tag nav-drop-tag-green">Overview</span></a>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-section-label">Smart EMS</div>
+          <a href="/279v-series-c/" class="nav-drop-item">Series-C <span class="nav-drop-tag">279V</span></a>
+          <a href="/48v-series-r/" class="nav-drop-item">Series-R <span class="nav-drop-tag">48V</span></a>
+          <div class="nav-drop-divider"></div>
+          <div class="nav-drop-section-label">Core BESS</div>
+          <a href="/279v-series-dc/" class="nav-drop-item">Series-DC <span class="nav-drop-tag">279V</span></a>
+          <a href="/series-m/" class="nav-drop-item">Series-M <span class="nav-drop-tag">48V</span></a>
+          <a href="/series-s/" class="nav-drop-item">Series-S <span class="nav-drop-tag">12V</span></a>
+        </div>
+      </li>
+      <li class="nav-has-dropdown">
+        <a href="#">Technology <span class="nav-arrow">▼</span></a>
+        <div class="nav-dropdown">
+          <a href="/smart-ems/" class="nav-drop-item">Smart EMS <span class="nav-drop-tag nav-drop-tag-green">AI-Powered</span></a>
+          <a href="/bess/" class="nav-drop-item">BESS Core <span class="nav-drop-tag">Open Protocol</span></a>
+          <a href="/technology/sodium-ion/" class="nav-drop-item">Sodium-Ion Technology <span class="nav-drop-tag nav-drop-tag-green">Chemistry</span></a>
+        </div>
+      </li>
+      <li><a href="/about-us/" class="nav-link">About Us</a></li>
+    </ul>
+    <div class="nav-cta-group">
+      <a href="/contact/" class="nav-cta">Contact Us</a>
+    </div>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+```
+
+### Nav Rules (MUST follow)
+
+- **All links must be relative paths** (e.g., `/series-s/`) — never absolute URLs like `https://coulombtechnology.com/series-s/`
+- **Industries dropdown label:** "Motive / Traction Batteries" → `/motive-traction/` (NOT "Motive & Fleet" or `/motive-fleet/`)
+- **Products top-level link:** `href="/all-products/"` (NOT `href="#"`)
+- **Technology links:** `/smart-ems/`, `/bess/`, `/technology/sodium-ion/` — never `/technology/smart-ems/` or `/technology/bess-core/`
+- **About Us label:** always "About Us" with `class="nav-link"` — never just "About"
+- **No "Coming Soon" items** in the nav — do not add placeholder products until their pages are fully built
+- **All Products page** is a native WordPress page (not a plugin shortcode page) — its nav must be updated via the WP REST API when nav changes are made
+
+### Updating Nav Across All Pages
+
+When the nav structure changes (new product added, link updated, etc.):
+1. Update the canonical nav block above in this skill file
+2. Run a Python script to replace the nav in all plugin HTML files (never edit files one by one)
+3. Also update the All Products WordPress page nav via REST API (page ID: 2538)
+4. Deploy all pages using `/home/ubuntu/deploy_all_pages.py`
+5. Verify all pages in browser before committing
+
+After any bulk nav update, verify all pages have the IntersectionObserver script intact (see below).
 
 ## Avada CSS Override Patterns
 
@@ -354,6 +416,40 @@ Add new pages to the slug table in this skill file when created:
 Local: `/home/ubuntu/coulomb-pages-plugin/`
 All changes must be committed after each deploy verification. Use descriptive commit messages.
 
+## Known Gotchas & Lessons Learned
+
+### WordPress Page Caching — "Blank Page" or "Shortcode Not Rendering"
+
+**Symptom:** A page appears blank, or shows the raw shortcode text (e.g., `[coulomb_seriesb]`) instead of the rendered content.
+
+**Root cause:** This is almost always a **WordPress page caching issue**, NOT a plugin or shortcode registration problem. The live site caches rendered pages, and after a deploy or content update the cache may serve a stale version that shows the raw shortcode.
+
+**Diagnosis before assuming a bug:**
+1. Check the page via the WP REST API with `?context=edit` — if `rendered` length is > 0, the shortcode IS working server-side
+2. Check the raw content — if it contains `[coulomb_PAGENAME]`, the shortcode is correctly stored
+3. Add `?v=N` (cache-busting query param) to the URL in the browser to bypass CDN/browser cache
+4. If the REST API `rendered` field shows the full HTML but the browser shows blank — it's purely a cache issue
+
+**Fix:** Wait 1–2 minutes for the cache to expire, or append `?nocache=1` or `?v=N` to the URL. Do NOT attempt to rewrite the plugin PHP, change the page template, or push the full HTML directly into WP page content — these are unnecessary and can cause new problems.
+
+**Confirmed working architecture for all product pages:**
+- WordPress page content stores: `[coulomb_PAGENAME]` shortcode (17 chars)
+- Plugin PHP registers the shortcode and returns `file_get_contents('html/PAGENAME-body.html')`
+- Page template: `blank.php`
+- This pattern works for: series-m, series-s, series-r, series-dc, 279v-series-c, smart-ems, bess, about-us, contact, all industry pages
+
+### Series C (279v-series-c) — Shortcode Name
+
+The Series C page (WP page ID: 2363, slug: `279v-series-c`) uses the shortcode `[coulomb_seriesb]` and the HTML file `seriesb-body.html`. This is because the page was originally created as "Series B" and renamed to "Series C" — the underlying shortcode name was not changed. This is intentional and working correctly. Do NOT rename the shortcode or HTML file unless doing a full migration.
+
+### Nav Label vs. Slug Mismatch (Series C)
+
+The nav shows **"Series-C"** but the link points to `/279v-series-c/` (not `/series-c/`). This is correct — the WordPress page slug is `279v-series-c` and cannot be changed without breaking existing links. The display label in the nav is "Series-C" for user clarity.
+
+### All Products Page — Native WordPress Page
+
+The All Products page (`/all-products/`) is NOT a plugin shortcode page — its full HTML (including nav) is stored directly in the WordPress page content. When making nav changes, this page must be updated separately via the WP REST API (page ID: 2538). The `deploy_all_pages.py` script handles this automatically.
+
 ## Page Revert Workflow
 
 To revert a page to a previous version:
@@ -366,23 +462,3 @@ cp /tmp/PAGENAME-prev.html html/PAGENAME-body.html
 cp /tmp/PAGENAME-prev.css css/PAGENAME.css
 # Then run the deploy script and commit the revert
 ```
-
-### Shared Section CSS — Applications Grid
-
-The Applications section (`.apps-section`, `.apps-grid`, `.app-card`) also uses a standard pattern that must be applied consistently for the grid to render correctly as a full-width, edge-to-edge element.
-
-When adding or fixing an applications grid on any product or industry page:
-1.  Ensure the `.apps-grid` class in the page's CSS file contains the following properties to align with the Avada theme's main container:
-    ```css
-    .apps-grid {
-      max-width: var(--max-w); /* 1400px */
-      margin: 0 auto;
-      padding: 0 var(--pad-x); /* 40px */
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      background: rgba(255,255,255,0.04);
-    }
-    ```
-2.  The canonical source for this CSS block is `seriesb.css`.
-3.  The `.app-card` height should be `400px`.
