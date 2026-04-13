@@ -112,7 +112,7 @@
     <div class="container">
 
       <!-- Section Header -->
-      <div class="ap-section-header fade-up">
+      <div class="ap-section-header fade-up visible">
         <div class="ap-section-label ap-section-label-ems">Smart EMS</div>
         <h2>Intelligent BESS with Built-In Software</h2>
         <p class="ap-section-desc">
@@ -121,7 +121,7 @@
           Revenue-ready from day one.
         </p>
         <!-- Smart Tech Callout Banner -->
-        <div class="smart-tech-banner fade-up">
+        <div class="smart-tech-banner fade-up visible">
           <div class="smart-tech-banner-inner">
             <div class="smart-tech-item">
               <div class="smart-tech-icon">
@@ -157,7 +157,7 @@
       </div>
 
       <!-- Smart EMS Product Cards -->
-      <div class="ap-cards-grid ap-cards-2col fade-up">
+      <div class="ap-cards-grid ap-cards-2col fade-up visible">
 
         <!-- Series-C Card -->
         <div class="ap-card ap-card-ems">
@@ -292,7 +292,7 @@
       </div><!-- /ap-cards-grid -->
 
       <!-- Smart EMS Comparison Table -->
-      <div class="ap-compare-wrap fade-up">
+      <div class="ap-compare-wrap fade-up visible">
         <h3 class="ap-compare-title">Smart EMS — Side-by-Side Comparison</h3>
         <div class="ap-compare-scroll">
           <table class="ap-compare-table">
@@ -419,7 +419,7 @@
     <div class="container">
 
       <!-- Section Header -->
-      <div class="ap-section-header fade-up">
+      <div class="ap-section-header fade-up visible">
         <div class="ap-section-label ap-section-label-core">Core BESS</div>
         <h2>Open-Protocol Battery Platforms</h2>
         <p class="ap-section-desc">
@@ -428,7 +428,7 @@
           No licensing fees. No lock-in.
         </p>
         <!-- Core BESS Protocol Callout -->
-        <div class="core-proto-banner fade-up">
+        <div class="core-proto-banner fade-up visible">
           <div class="core-proto-item">
             <div class="core-proto-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -461,7 +461,7 @@
       </div>
 
       <!-- Core BESS Product Cards -->
-      <div class="ap-cards-grid ap-cards-3col fade-up">
+      <div class="ap-cards-grid ap-cards-3col fade-up visible">
 
         <!-- Series-DC Card -->
         <div class="ap-card ap-card-core">
@@ -637,7 +637,7 @@
       </div><!-- /ap-cards-grid -->
 
       <!-- Core BESS Comparison Table -->
-      <div class="ap-compare-wrap fade-up">
+      <div class="ap-compare-wrap fade-up visible">
         <h3 class="ap-compare-title">Core BESS — Side-by-Side Comparison</h3>
         <div class="ap-compare-scroll">
           <table class="ap-compare-table">
@@ -770,7 +770,7 @@
   <!-- =============================================
        SECTION 3 — CHEMISTRY SHARED ACROSS ALL
   ============================================= -->
-  <section class="ap-chemistry fade-up">
+  <section class="ap-chemistry fade-up visible">
     <div class="container">
       <div class="ap-chem-inner">
         <div class="ap-chem-text">
@@ -805,7 +805,7 @@
   <!-- =============================================
        SECTION 4 — CTA
   ============================================= -->
-  <section class="ap-cta fade-up">
+  <section class="ap-cta fade-up visible">
     <div class="container">
       <div class="ap-cta-inner">
         <h2>Ready to Find Your Solution?</h2>
@@ -938,8 +938,16 @@
     // Intersection observer for fade-up animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => {
+      // Immediately show elements already in the viewport on page load
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('visible');
+      } else {
+        observer.observe(el);
+      }
+    });
 
     // ── HERO SLIDESHOW ──
     (function() {
