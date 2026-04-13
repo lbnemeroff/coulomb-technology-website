@@ -9,6 +9,16 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 define( 'COULOMB_PAGES_VERSION', '2.5.2' );
 
+// ─── 0. Cache-Control headers — limit CDN/Cloudflare caching to 1 hour ──────
+// GoDaddy Managed WP CDN (Cloudflare) was caching HTML pages for 31 days,
+// causing stale content to persist after deploys. This sets a 1-hour TTL
+// for all front-end HTML responses so updates go live within 60 minutes.
+add_action( 'send_headers', function() {
+    if ( ! is_admin() && ! defined( 'DOING_AJAX' ) ) {
+        header( 'Cache-Control: public, max-age=3600, s-maxage=3600, stale-while-revalidate=60' );
+    }
+} );
+
 // ─── 1. Enqueue CSS on the correct pages ────────────────────────────────────
 function coulomb_enqueue_page_styles() {
     global $post;
@@ -751,8 +761,16 @@ function coulomb_rest_deploy( WP_REST_Request $request ) {
     if ( function_exists( 'rocket_clean_domain' ) ) { rocket_clean_domain(); }
     if ( function_exists( 'w3tc_flush_all' ) ) { w3tc_flush_all(); }
     if ( function_exists( 'wpfc_clear_all_cache' ) ) { wpfc_clear_all_cache(); }
-    // GoDaddy Managed WordPress cache purge
+    // GoDaddy Managed WordPress cache purge (multiple methods for reliability)
     if ( class_exists( 'WPaaS\\Cache' ) ) { do_action( 'wpaas_purge_cache' ); }
+    // GoDaddy WPaaS CDN purge via action hook (Managed WP platform v2)
+    do_action( 'wpaas_purge_cache' );
+    // Also purge via GoDaddy's internal cache clear if available
+    if ( function_exists( 'godaddy_mwp_flush_cache' ) ) { godaddy_mwp_flush_cache(); }
+    // Purge via WP native transient-based cache
+    wp_cache_flush();
+    // Set a short-lived marker so the next request rebuilds from origin
+    set_transient( 'coulomb_last_deploy', time(), 3600 );
     // Flush rewrite rules and transients
     delete_transient( 'coulomb_pages_cache' );
     flush_rewrite_rules( false );
