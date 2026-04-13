@@ -450,6 +450,14 @@ The nav shows **"Series-C"** but the link points to `/279v-series-c/` (not `/ser
 
 The All Products page (`/all-products/`) is NOT a plugin shortcode page — its full HTML (including nav) is stored directly in the WordPress page content. When making nav changes, this page must be updated separately via the WP REST API (page ID: 2538). The `deploy_all_pages.py` script handles this automatically.
 
+### FUTURE TASK: Never Push Raw HTML Directly to WordPress Page Content
+
+**Lesson learned (April 2026):** During a nav-fix session, raw HTML was pushed directly into the WordPress page content for the All Products page via the REST API. This inadvertently stripped the hero carousel slides (`ap-slides` div), which had to be manually restored in a subsequent session.
+
+**Rule:** The local plugin HTML files (`/home/ubuntu/coulomb-pages-plugin/pages/`) are the **single source of truth**. All page updates MUST go through `deploy_all_pages.py` (or the individual deploy script), which reads from these local files and pushes to the server. Never construct or push raw HTML strings directly to WordPress page content via the REST API — this bypasses the local source of truth and risks losing content.
+
+**TODO:** Refactor the All Products page to use a plugin shortcode (like all other product pages) so that its content is always managed via the local HTML file and never stored as raw WordPress page content. This will eliminate the risk of carousel/content being stripped during nav updates.
+
 ## Page Revert Workflow
 
 To revert a page to a previous version:
