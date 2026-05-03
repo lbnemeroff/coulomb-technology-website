@@ -7,7 +7,10 @@
  * Author:      Coulomb Technology
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-define( 'COULOMB_PAGES_VERSION', '2.5.2' );
+define( 'COULOMB_PAGES_VERSION', '2.5.3' );
+
+// ─── Copy Editor Admin Panel ─────────────────────────────────────────────────
+require_once plugin_dir_path( __FILE__ ) . 'coulomb-copy-editor.php';
 
 // ─── 0. Cache-Control headers — limit CDN/Cloudflare caching to 1 hour ──────
 // GoDaddy Managed WP CDN (Cloudflare) was caching HTML pages for 31 days,
